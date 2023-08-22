@@ -1,11 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:sortifyx_app/features/family_auth/application/cubits/auth_form_cubit/auth_form_cubit.dart';
 
-import 'package:sortifyx_app/shared/utils/utils.dart';
-import 'package:sortifyx_app/shared/widgets/widgets.dart';
+import '../../../../shared/app/app.dart';
+import '../../../../shared/utils/utils.dart';
+import '../../../../shared/widgets/widgets.dart';
+import '../../application/cubits/cubits.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
@@ -56,7 +58,15 @@ class LoginForm extends StatelessWidget {
                 label: "Login",
                 variant: 2,
                 onPressed: () {
+                  if (form.invalid) {
+                    form.markAllAsTouched();
+                    return;
+                  }
+
                   print(form.value);
+                  Future.delayed(const Duration(seconds: 3), () {
+                    context.goNamed(RouteDetails.authFamilyIntroPage.name);
+                  });
                 },
               ),
               SizedBoxSeparator(

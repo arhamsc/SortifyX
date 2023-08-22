@@ -3,6 +3,24 @@ part of 'auth_form_cubit.dart';
 class AuthFormState extends Equatable {
   AuthFormState();
 
+  final registerFamilyForm = FormGroup({
+    "familyName": FormControl<String>(
+      validators: [
+        Validators.required,
+        Validators.minLength(6),
+      ],
+    ),
+  });
+
+  final joinFamilyForm = FormGroup({
+    "familyCode": FormControl<String>(
+      validators: [
+        Validators.required,
+        // Validators.minLength(4),
+      ],
+    ),
+  });
+
   final loginForm = FormGroup(
     {
       "username": FormControl<String>(validators: [
@@ -41,7 +59,7 @@ class AuthFormState extends Equatable {
       ),
       "username": FormControl<String>(
         validators: [
-          Validators.required,
+          // Validators.required,
           Validators.minLength(5),
         ],
       ),

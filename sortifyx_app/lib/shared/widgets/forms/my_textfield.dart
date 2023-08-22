@@ -56,6 +56,7 @@ class MyTextfield<T> extends StatelessWidget {
               hintStyle: Theme.of(context).textTheme.displaySmall?.copyWith(
                     color: Colors.black.withOpacity(0.38),
                   ),
+              errorMaxLines: 2,
               contentPadding: EdgeInsets.only(
                 left: getWidth(10),
                 top: getHeight(8),

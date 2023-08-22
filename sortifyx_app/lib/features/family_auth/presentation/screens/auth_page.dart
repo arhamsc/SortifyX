@@ -1,20 +1,19 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:rive/rive.dart' as rive;
 import 'package:sizer/sizer.dart';
-import 'package:sortifyx_app/features/family_auth/application/cubits/cubits.dart';
-import 'package:sortifyx_app/features/family_auth/presentation/widgets/widgets.dart';
 
-import 'package:sortifyx_app/shared/app/app_theme.dart';
-import 'package:sortifyx_app/shared/utils/figma_to_flutter_size.dart';
-import 'package:sortifyx_app/shared/widgets/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../constants/constants.dart';
+import '../../../../shared/app/app.dart';
+import '../../../../shared/utils/utils.dart';
+import '../../../../shared/widgets/widgets.dart';
+import '../../application/cubits/cubits.dart';
+import '../widgets/widgets.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -24,31 +23,42 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
-  bool isSignUp = false;
+  AuthStep authStep = AuthStep.login;
 
   late AnimationController _opacityController;
   late Animation<double> _opacityAnimation;
   late FormGroup authForm;
   late Widget _formWidget;
 
-  void toggleAuthMode() {
+  void changeAuthMode(AuthStep step) {
     setState(() {
-      isSignUp = !isSignUp;
+      authStep = step;
     });
 
-    if (isSignUp) {
+    if (authStep == AuthStep.signUp) {
       _opacityController.forward().then((value) {
-        _formWidget = SignupForm(onToggleAuth: toggleAuthMode);
+        _formWidget = SignupForm(
+          onToggleAuth: () => changeAuthMode(AuthStep.login),
+          onNext: () => changeAuthMode(AuthStep.username),
+        ); //Go to login
       });
-    } else {
+    } else if (authStep == AuthStep.login) {
       _opacityController.reverse();
-      _formWidget = LoginForm(onToggleAuth: toggleAuthMode);
+      _formWidget =
+          LoginForm(onToggleAuth: () => changeAuthMode(AuthStep.signUp));
+    } else if (authStep == AuthStep.username) {
+      _opacityController.reverse();
+      _formWidget = UsernameForm(
+        onGoBack: () => changeAuthMode(AuthStep.signUp),
+        onGoToLogin: () => changeAuthMode(AuthStep.login),
+      );
     }
   }
 
   @override
   void initState() {
-    _formWidget = LoginForm(onToggleAuth: toggleAuthMode);
+    _formWidget =
+        LoginForm(onToggleAuth: () => changeAuthMode(AuthStep.signUp));
     _opacityController = AnimationController(
       vsync: this,
       duration: 300.ms,
@@ -84,7 +94,9 @@ class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
                   duration: const Duration(
                     milliseconds: 500,
                   ),
-                  height: (isKeyboardVisible || isSignUp) ? 100.h : 40.h,
+                  height: (isKeyboardVisible || authStep == AuthStep.signUp)
+                      ? 100.h
+                      : 40.h,
                   curve: Curves.easeInOut,
                   child: GlassBgAnimation(
                     width: 100.w,
@@ -98,7 +110,7 @@ class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
                         AnimatedSize(
                           duration: 500.ms,
                           child: SizedBox(
-                            height: isSignUp ? 0.0 : null,
+                            height: authStep == AuthStep.signUp ? 0.0 : null,
                             child: FadeTransition(
                               opacity: _opacityAnimation,
                               child: Column(
@@ -118,7 +130,7 @@ class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
                         ),
                         AnimatedAlign(
                           duration: 500.ms,
-                          alignment: !isSignUp
+                          alignment: !(authStep == AuthStep.signUp)
                               ? Alignment.bottomCenter
                               : Alignment.topCenter,
                           child: AssetImageContainer(
@@ -139,125 +151,54 @@ class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
               },
             ),
             /* FORM BLOC BUILDER */
-            BlocBuilder<AuthFormCubit, AuthFormState>(
-              builder: (context, authFormState) {
-                return Positioned(
-                  bottom: 0,
-                  child: AnimatedContainer(
-                    duration: 500.ms,
-                    height: isSignUp ? 80.h : 62.h,
-                    width: 100.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(20.sp),
-                      ),
-                      border: Border.all(
-                        color:
-                            colors(context).tertiaryDefault!.withOpacity(0.13),
-                      ),
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [
-                          colors(context).secondaryDefault!,
-                          Colors.white.withOpacity(0.05),
-                        ],
-                      ),
-                    ),
-                    /* AUTH FORM */
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: getHeight(50),
-                          ),
-                          child: StrokeTextVTitle(
-                            text: isSignUp ? "Sign Up" : "Login",
-                          ),
-                        ),
-                        SizedBox(
-                          width: getWidth(304),
-                          child: AnimatedSwitcher(
-                            duration: 600.ms,
-                            child: _formWidget,
-                          ),
-                        ),
-                      ],
-                    ),
+            Positioned(
+              bottom: 0,
+              child: AnimatedContainer(
+                duration: 500.ms,
+                height: authStep == AuthStep.signUp ? 80.h : 62.h,
+                width: 100.w,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(20.sp),
                   ),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class GlassBgAnimation extends StatelessWidget {
-  const GlassBgAnimation({
-    Key? key,
-    this.width,
-    this.height,
-    this.child,
-  }) : super(key: key);
-  final double? width;
-  final double? height;
-  final Widget? child;
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.vertical(
-        top: Radius.circular(20.sp),
-      ),
-      child: Container(
-        height: height,
-        width: width,
-        color: Colors.transparent,
-        child: Stack(
-          children: [
-            const rive.RiveAnimation.asset(
-              "assets/animations/sortify_x_bg_animation.riv",
-              fit: BoxFit.cover,
-              placeHolder: Text("Loading"),
-            ),
-            //Blur Effect
-            BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 10,
-                sigmaY: 10,
-              ),
-              child: Container(), //this will stretch the width to the parent
-            ),
-            BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 10,
-                sigmaY: 10,
-              ),
-              child: Container(), //this will stretch the width to the parent
-            ),
-            //Gradient Effect
-            Container(
-              decoration: BoxDecoration(
-                border: Border.symmetric(
-                  vertical: BorderSide(
+                  border: Border.all(
                     color: colors(context).tertiaryDefault!.withOpacity(0.13),
                   ),
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      colors(context).secondaryDefault!,
+                      Colors.white.withOpacity(0.05),
+                    ],
+                  ),
                 ),
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    colors(context).tertiaryDefault!.withOpacity(0.15),
-                    Colors.white.withOpacity(0.05),
+                /* AUTH FORM */
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: getHeight(50),
+                      ),
+                      child: StrokeTextVTitle(
+                        text: authStep == AuthStep.signUp
+                            ? "Sign Up"
+                            : authStep == AuthStep.username
+                                ? "Set Username"
+                                : "Login",
+                      ),
+                    ),
+                    SizedBox(
+                      width: getWidth(304),
+                      child: AnimatedSwitcher(
+                        duration: 600.ms,
+                        child: _formWidget,
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
-            //Child
-            if (child != null) SizedBox(width: 100.w, child: child!),
           ],
         ),
       ),

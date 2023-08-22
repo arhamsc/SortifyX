@@ -86,18 +86,21 @@ flutter:
     - assets/images/
     - assets/animations/
   fonts:
+    - family: FuturaCondensed
+      fonts:
+        - asset: assets/fonts/futura/Futura-CondensedExtraBold.ttf
+        - asset: assets/fonts/futura/Futura-CondensedMedium.ttf
     - family: Futura
       fonts:
         - asset: assets/fonts/futura/Futura-Bold.ttf
           weight: 700
-        - asset: assets/fonts/futura/Futura-CondensedExtraBold.ttf
-          weight: 900
-        - asset: assets/fonts/futura/Futura-CondensedMedium.ttf
-          weight: 800
         - asset: assets/fonts/futura/Futura-Medium.ttf
-          weight: 600
+          weight: 500
         - asset: assets/fonts/futura/Futura-MediumItalic.ttf
+          weight: 500
+          style: italic
     - family: FuturaBkBt
       fonts:
         - asset: assets/fonts/futura_bk/FuturaBkBTBookItalic.ttf
+          style: italic
         - asset: assets/fonts/futura_bk/FuturaBkBTBook.ttf

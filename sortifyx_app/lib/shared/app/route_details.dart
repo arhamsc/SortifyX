@@ -11,10 +11,11 @@ class RouteType {
 class RouteDetails {
   static final authPage = RouteType(name: "auth", path: "/auth");
   static final authFamilyIntroPage =
-      RouteType(name: "family_intro", path: "/auth/family_intro");
+      RouteType(name: "family_intro", path: "/auth/family");
 
-  static final authFamilyPage =
-      RouteType(name: "family_sign_up", path: "/auth/family/family_sign_up");
+  static final authSignUpFamilyPage =
+      RouteType(name: "family_sign_up", path: "/auth/family/signUp");
+
 
   static final documentsHomePage =
       RouteType(name: "documents_home", path: "/documents");

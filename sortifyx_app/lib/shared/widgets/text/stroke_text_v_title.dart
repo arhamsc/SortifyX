@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sortifyx_app/shared/app/app_theme.dart';
+
+import '../../app/app.dart';
 
 class StrokeTextVTitle extends StatelessWidget {
   final String text;

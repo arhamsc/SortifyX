@@ -4,16 +4,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:sizer/sizer.dart';
 
-import 'package:sortifyx_app/features/family_auth/application/cubits/cubits.dart';
-import 'package:sortifyx_app/shared/utils/utils.dart';
-import 'package:sortifyx_app/shared/widgets/widgets.dart';
+import '../../../../shared/utils/utils.dart';
+import '../../../../shared/widgets/widgets.dart';
+import '../../application/cubits/cubits.dart';
 
 class SignupForm extends StatelessWidget {
   const SignupForm({
     Key? key,
     required this.onToggleAuth,
+    required this.onNext,
   }) : super(key: key);
   final Function() onToggleAuth;
+  final Function() onNext;
   @override
   Widget build(BuildContext context) {
     return ReactiveFormBuilder(
@@ -55,32 +57,28 @@ class SignupForm extends StatelessWidget {
                       SizedBoxSeparator(
                         height: getHeight(10),
                       ),
-                      Container(
-                        height: 10.h,
-                        width: 100.w,
-                        child: Row(
-                          children: [
-                            const Expanded(
-                              child: MyTextfield(
-                                label: "First Name",
-                                hintText: "first name",
-                                formFieldName: "firstName",
-                                variant: 2,
-                              ),
+                      Row(
+                        children: [
+                          const Expanded(
+                            child: MyTextfield(
+                              label: "First Name",
+                              hintText: "first name",
+                              formFieldName: "firstName",
+                              variant: 2,
                             ),
-                            SizedBoxSeparator(
-                              width: getWidth(20),
+                          ),
+                          SizedBoxSeparator(
+                            width: getWidth(20),
+                          ),
+                          const Expanded(
+                            child: MyTextfield(
+                              label: "Last Name",
+                              hintText: "last name",
+                              formFieldName: "lastName",
+                              variant: 2,
                             ),
-                            const Expanded(
-                              child: MyTextfield(
-                                label: "Last Name",
-                                hintText: "last name",
-                                formFieldName: "lastName",
-                                variant: 2,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       SizedBoxSeparator(
                         height: getHeight(10),
@@ -103,7 +101,12 @@ class SignupForm extends StatelessWidget {
                 variant: 2,
                 width: 100.w,
                 onPressed: () {
-                  print(form.value);
+                  if (form.invalid) {
+                    form.markAllAsTouched();
+                    MyTalker.instance.talker.warning(form.errors);
+                    return;
+                  }
+                  onNext();
                 },
               ),
               SizedBoxSeparator(
