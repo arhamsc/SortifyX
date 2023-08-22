@@ -57,6 +57,9 @@ dependencies:
   reactive_image_picker: ^3.0.0
   reactive_date_time_picker: ^1.0.0
   reactive_file_picker: ^1.0.0
+  rive: ^0.11.4
+  flutter_keyboard_visibility: ^5.4.1
+  flutter_animate: ^4.2.0+1
 
 dev_dependencies:
   flutter_test:

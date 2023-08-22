@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "931075800768",
+    "project_id": "sortifyx",
+    "storage_bucket": "sortifyx.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931075800768:android:b941d0e004ebc532843725",
+        "android_client_info": {
+          "package_name": "com.arhamsc.sortifyx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "931075800768-hj78qn0bed3bupuu0vajm6l68s8ua3uv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaNunsve6hEJ_2q9LFl135SGze8ewyMkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "931075800768-hj78qn0bed3bupuu0vajm6l68s8ua3uv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "931075800768-juql3gf54inqvepfnrin7vofiik0j9gj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sortifyx"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
