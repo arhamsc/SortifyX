@@ -1,3 +1,4 @@
+export 'buttons/primary_animated_button.dart';
 export 'buttons/primary_button.dart';
 export 'forms/my_textfield.dart';
 export 'image_containers/asset_image_container.dart';

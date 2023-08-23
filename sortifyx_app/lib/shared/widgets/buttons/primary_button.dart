@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import 'package:sortifyx_app/shared/app/app_theme.dart';
-import 'package:sortifyx_app/shared/utils/figma_to_flutter_size.dart';
+import '../../../shared/app/app.dart';
+import '../../../shared/utils/utils.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
@@ -15,6 +15,9 @@ class PrimaryButton extends StatelessWidget {
     this.height,
     this.disabled = false,
     this.elevation,
+    this.labelWidget,
+    this.isLoading = false,
+    this.isSuccess = false,
   }) : super(key: key);
   final int variant;
   final Function()? onPressed;
@@ -23,6 +26,9 @@ class PrimaryButton extends StatelessWidget {
   final double? height;
   final bool disabled;
   final double? elevation;
+  final Widget? labelWidget;
+  final bool isLoading;
+  final bool isSuccess;
 
   @override
   Widget build(BuildContext context) {
@@ -56,14 +62,13 @@ class PrimaryButton extends StatelessWidget {
             ),
           ),
         ),
-        child: FittedBox(
-          fit: BoxFit.scaleDown,
-          child: Text(
-            label,
-
-            // style:  Theme.of(context).textTheme.titleMedium,
-          ),
-        ),
+        child: labelWidget ??
+            ( FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      label,
+                    ),
+                  )),
       ),
     );
   }

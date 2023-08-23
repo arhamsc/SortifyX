@@ -5,17 +5,21 @@ import 'package:path_provider/path_provider.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger.dart';
 import 'package:talker_dio_logger/talker_dio_logger.dart';
 import 'package:talker_flutter/talker_flutter.dart';
+// import 'package:talker_flutter/talker_flutter.dart';
 
 class MyTalker {
   static final MyTalker _instance = MyTalker._();
 
   late Talker _talker;
+  late TalkerLogger _talkerLogger;
   late TalkerDioLogger _talkerDioLogger;
   late TalkerBlocObserver _talkerBlocObserver;
   late TalkerRouteObserver _talkerRouteObserver;
 
   MyTalker._() {
-    _talker = TalkerFlutter.init(); //*IMP
+    _talkerLogger = TalkerLogger();
+    // TalkerFlutter.init();
+    _talker = Talker(logger: _talkerLogger); //*IMP
     _talkerDioLogger = MyTalkerDioLogger(
       talker: _talker,
       settings: const TalkerDioLoggerSettings(

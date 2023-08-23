@@ -13,11 +13,11 @@ class AuthDataSource {
     _dio = _api.dio;
   }
 
-  // void _setAPIToken(String token) {
-  //   _api.setSortifyXBearerToken = token;
-  // }
+  void setAPIToken(String token) {
+    _api.setSortifyXBearerToken = token;
+  }
 
-  // String? _getAPIToken() => _api.getSortifyXBearerToken;
+  String? getAPIToken() => _api.getSortifyXBearerToken;
 
   Future<Response<T>> loginRequest<T>(String username, String password) async {
     return await dioTryCatchWrapper(() {

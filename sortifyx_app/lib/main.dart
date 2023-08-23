@@ -11,27 +11,50 @@ import 'package:sortifyx_app/config/config.dart';
 import 'package:sortifyx_app/features/family_auth/application/cubits/auth_form_cubit/auth_form_cubit.dart';
 import 'package:sortifyx_app/shared/app/app.dart';
 import 'package:sortifyx_app/shared/utils/utils.dart';
+import 'package:talker_logger/talker_logger.dart';
+
+import 'features/family_auth/application/bloc/bloc.dart';
+import 'features/family_auth/data/data.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  await runZonedGuarded(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      FlutterError.onError = (FlutterErrorDetails errorDetails) {
+        MyTalker.instance.talker.handle(errorDetails.exception,
+            errorDetails.stack, 'Uncaught app exception by talker.');
+      };
+      Animate.restartOnHotReload = true;
 
-  final appConfig = AppConfig();
+      /* App Configs */
+      final appConfig = AppConfig();
 
-  await appConfig.configureBloc();
-  final appRouter = AppRouter();
-  Animate.restartOnHotReload = true;
+      await appConfig.configureBloc();
+      await appConfig.loadEnv();
 
-  runZonedGuarded(
-    () => runApp(
-      MyApp(
-        appRouter: appRouter,
-      ),
-    ),
+      /* Router */
+      final appRouter = AppRouter();
+
+      /* Data Sources */
+      final authDS = AuthDataSource(
+        appConfig.getAppApi(),
+      );
+
+      /* Repositories */
+      final authRepo = AuthRepository(authDS);
+      runApp(
+        MyApp(
+          appRouter: appRouter,
+          authRepo: authRepo,
+        ),
+      );
+    },
     (
-      Object error,
-      StackTrace stack,
+      error,
+      stack,
     ) {
-      MyTalker.instance.talker.handle(error, stack, 'Uncaught app exception');
+      MyTalker.instance.talker
+          .handle(error, stack, 'Uncaught app exception by talker.');
     },
   );
 }
@@ -40,47 +63,62 @@ class MyApp extends StatelessWidget {
   const MyApp({
     Key? key,
     required AppRouter appRouter,
+    required AuthRepository authRepo,
   })  : _appRouter = appRouter,
+        _authRepository = authRepo,
         super(key: key);
 
   final AppRouter _appRouter;
+  final AuthRepository _authRepository;
 
   @override
   Widget build(BuildContext context) {
     return Sizer(
       builder: (context, _, __) {
-        return MultiBlocProvider(
+        return MultiRepositoryProvider(
           providers: [
-            BlocProvider(
-              create: (_) => AuthFormCubit(),
+            RepositoryProvider.value(
+              value: _authRepository,
             ),
           ],
-          child: ReactiveFormConfig(
-            validationMessages: {
-              ValidationMessage.required: (_) =>
-                  "Don't forget to enter a value here.",
-              ValidationMessage.email: (_) =>
-                  "Make sure you use a valid email format.",
-              ValidationMessage.maxLength: (error) =>
-                  "Must be max ${(error as Map)['requiredLength']} characters.",
-              ValidationMessage.minLength: (error) =>
-                  "Must be minimum ${(error as Map)['requiredLength']} characters.",
-              ValidationMessage.number: (_) =>
-                  "Make sure you enter a valid number.",
-              ValidationMessage.mustMatch: (_) => "Field doesn't match.",
-              ValidationMessage.pattern: (_) =>
-                  "Field doesn't match the required rules."
-            },
-            child: MaterialApp.router(
-              title: 'SortifyX',
-              routerConfig: _appRouter.router,
-              theme: ThemeData(
-                primarySwatch: Palette.primaryDefault,
-                textTheme: CustomTypography.textTheme,
-                scaffoldBackgroundColor: Palette.lightBG,
-                extensions: <ThemeExtension<dynamic>>[
-                  CustomTheme.lightThemePalette,
-                ],
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (_) => AuthFormCubit(),
+              ),
+              BlocProvider(
+                create: (context) => AuthBloc(
+                  RepositoryProvider.of<AuthRepository>(context),
+                ),
+              ),
+            ],
+            child: ReactiveFormConfig(
+              validationMessages: {
+                ValidationMessage.required: (_) =>
+                    "Don't forget to enter a value here.",
+                ValidationMessage.email: (_) =>
+                    "Make sure you use a valid email format.",
+                ValidationMessage.maxLength: (error) =>
+                    "Must be max ${(error as Map)['requiredLength']} characters.",
+                ValidationMessage.minLength: (error) =>
+                    "Must be minimum ${(error as Map)['requiredLength']} characters.",
+                ValidationMessage.number: (_) =>
+                    "Make sure you enter a valid number.",
+                ValidationMessage.mustMatch: (_) => "Field doesn't match.",
+                ValidationMessage.pattern: (_) =>
+                    "Field doesn't match the required rules."
+              },
+              child: MaterialApp.router(
+                title: 'SortifyX',
+                routerConfig: _appRouter.router,
+                theme: ThemeData(
+                  primarySwatch: Palette.primaryDefault,
+                  textTheme: CustomTypography.textTheme,
+                  scaffoldBackgroundColor: Palette.lightBG,
+                  extensions: <ThemeExtension<dynamic>>[
+                    CustomTheme.lightThemePalette,
+                  ],
+                ),
               ),
             ),
           ),

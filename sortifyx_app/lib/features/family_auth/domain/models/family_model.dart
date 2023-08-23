@@ -11,7 +11,7 @@ class Family extends Equatable {
   final List<String> familyMembers;
   final String familyName;
   final String familyCode;
-  
+
   const Family({
     required this.id,
     required this.familyHead,
@@ -19,6 +19,17 @@ class Family extends Equatable {
     required this.familyName,
     required this.familyCode,
   });
+
+  static const empty = Family(
+    id: "",
+    familyHead: "",
+    familyMembers: [],
+    familyName: "",
+    familyCode: "",
+  );
+
+  bool get isEmpty => this == Family.empty;
+  bool get isNotEmpty => this != Family.empty;
 
   @override
   List<Object> get props {

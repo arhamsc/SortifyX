@@ -42,6 +42,7 @@ class AuthFormState extends Equatable {
 
   final signUpForm = FormGroup(
     {
+      "id": FormControl<String>(value: "aa"),//Dummy values
       "email": FormControl<String>(
           validators: [Validators.required, Validators.email]),
       "password": FormControl<String>(validators: [

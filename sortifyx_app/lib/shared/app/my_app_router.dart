@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 
+import '../../features/documents/presentation/screens/screens.dart';
 import '../../features/family_auth/presentation/screens/screens.dart';
 import '../utils/utils.dart';
 import 'app.dart';
@@ -18,6 +19,11 @@ class AppRouter {
         name: RouteDetails.authFamilyIntroPage.name,
         path: RouteDetails.authFamilyIntroPage.path,
         builder: (context, state) => const FamilyRegistrationIntro(),
+      ),
+      GoRoute(
+        name: RouteDetails.documentsHomePage.name,
+        path: RouteDetails.documentsHomePage.path,
+        builder: (context, state) => const DocumentsHome(),
       ),
       // GoRoute(
       //   name: RouteDetails.authSignUpFamilyPage.name,

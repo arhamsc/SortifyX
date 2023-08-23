@@ -7,6 +7,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 import '../../../../shared/app/app.dart';
 import '../../../../shared/utils/utils.dart';
 import '../../../../shared/widgets/widgets.dart';
+import '../../application/bloc/bloc.dart';
 import '../../application/cubits/cubits.dart';
 
 class LoginForm extends StatelessWidget {
@@ -18,80 +19,103 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ReactiveFormBuilder(
-        form: () => context.read<AuthFormCubit>().state.loginForm,
-        builder: (context, form, _) {
-          return Column(
-            children: [
-              const MyTextfield(
-                label: "Username",
-                hintText: "username/email",
-                formFieldName: "username",
-                variant: 2,
-              ),
-              SizedBoxSeparator(
-                height: getHeight(20),
-              ),
-              const MyTextfield(
-                label: "Password",
-                hintText: "password",
-                formFieldName: "password",
-                variant: 2,
-                hideText: true,
-              ),
-              SizedBoxSeparator(
-                height: getHeight(10),
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  "Forgot Password?",
-                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        decoration: TextDecoration.underline,
-                      ),
-                ),
-              ),
-              SizedBoxSeparator(
-                height: getHeight(30),
-              ),
-              PrimaryButton(
-                label: "Login",
-                variant: 2,
-                onPressed: () {
-                  if (form.invalid) {
-                    form.markAllAsTouched();
-                    return;
-                  }
+    return BlocBuilder<AuthBloc, AuthState>(
+      builder: (context, authState) {
+        return ReactiveFormBuilder(
+            form: () => context.read<AuthFormCubit>().state.loginForm,
+            builder: (context, form, _) {
+              return Column(
+                children: [
+                  const MyTextfield(
+                    label: "Username",
+                    hintText: "username/email",
+                    formFieldName: "username",
+                    variant: 2,
+                  ),
+                  SizedBoxSeparator(
+                    height: getHeight(20),
+                  ),
+                  const MyTextfield(
+                    label: "Password",
+                    hintText: "password",
+                    formFieldName: "password",
+                    variant: 2,
+                    hideText: true,
+                  ),
+                  SizedBoxSeparator(
+                    height: getHeight(10),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      "Forgot Password?",
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            decoration: TextDecoration.underline,
+                          ),
+                    ),
+                  ),
+                  SizedBoxSeparator(
+                    height: getHeight(30),
+                  ),
+                  PrimaryAnimatedButton(
+                    label: "Login",
+                    variant: 2,
+                    isSuccess: authState.status.isLoggedIn,
+                    successCallback: () {
+                      if (authState.user.familyId == null ||
+                          (authState.user.familyId ?? "").isEmpty) {
+                        context.goNamed(
+                          RouteDetails.authFamilyIntroPage.name,
+                        );
+                      } else {
+                        context.goNamed(
+                          RouteDetails.documentsHomePage.name,
+                        );
+                      }
+                    },
+                    onPressed: () {
+                      if (form.invalid) {
+                        form.markAllAsTouched();
+                        return;
+                      }
 
-                  print(form.value);
-                  Future.delayed(const Duration(seconds: 3), () {
-                    context.goNamed(RouteDetails.authFamilyIntroPage.name);
-                  });
-                },
-              ),
-              SizedBoxSeparator(
-                height: getHeight(5),
-              ),
-              GestureDetector(
-                onTap: onToggleAuth,
-                child: Text.rich(
-                  TextSpan(
-                    text: "First Time? ",
-                    style: Theme.of(context).textTheme.displaySmall,
-                    children: [
+                      context.read<AuthBloc>().add(
+                            AuthLoginRequest(
+                              username:
+                                  form.control('username').value.toString(),
+                              password:
+                                  form.control('password').value.toString(),
+                            ),
+                          );
+                    },
+                  ),
+                  SizedBoxSeparator(
+                    height: getHeight(5),
+                  ),
+                  GestureDetector(
+                    onTap: onToggleAuth,
+                    child: Text.rich(
                       TextSpan(
-                        text: "Sign Up",
-                        style:
-                            Theme.of(context).textTheme.displaySmall?.copyWith(
+                        text: "First Time? ",
+                        style: Theme.of(context).textTheme.displaySmall,
+                        children: [
+                          TextSpan(
+                            text: "Sign Up",
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(
                                   decoration: TextDecoration.underline,
                                 ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          );
-        });
+                    ),
+                  )
+                ],
+              );
+            });
+      },
+    );
   }
 }
