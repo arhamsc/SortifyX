@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sortifyx_app/shared/utils/utils.dart';
+import '../utils/utils.dart';
 
 class Palette {
   static MaterialColor primaryDefault =

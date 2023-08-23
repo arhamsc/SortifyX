@@ -9,10 +9,10 @@ import '../../../../shared/widgets/widgets.dart';
 import '../widgets/widgets.dart';
 
 class RegisterFamily extends StatelessWidget {
-  RegisterFamily({super.key, this.familySignUpType, this.onGoBack})
+  RegisterFamily({super.key, required this.familySignUpType, this.onGoBack})
       : isRegisterFamily = familySignUpType == "register";
 
-  final familySignUpType;
+  final String familySignUpType;
 
   late bool isRegisterFamily;
   final Function()? onGoBack;

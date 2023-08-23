@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:sizer/sizer.dart';
-
 import 'package:sortifyx_app/shared/app/app_theme.dart';
 import 'package:sortifyx_app/shared/utils/figma_to_flutter_size.dart';
 import 'package:sortifyx_app/shared/widgets/widgets.dart';

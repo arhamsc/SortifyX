@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sortifyx_app/shared/app/app.dart';
+import 'app.dart';
 
 AppColorPalette colors(context) =>
     Theme.of(context).extension<AppColorPalette>()!;

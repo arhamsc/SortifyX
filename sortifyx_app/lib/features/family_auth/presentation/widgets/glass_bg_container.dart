@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 import 'package:rive/rive.dart' as rive;
+import 'package:sizer/sizer.dart';
 
 import '../../../../shared/app/app.dart';
 
