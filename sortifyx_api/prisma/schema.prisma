@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  username String @unique
+  email    String @unique
+
+  passwordHash String
+
+  firstName String?
+  lastName  String?
+
+  fcmToken         String?
+  refreshTokenHash String?
+
+  AsFamilyMember Family[] @relation("AsFamilyMember")
+  Family         Family?  @relation(name: "familyHead")
+
+  @@map("users")
+}
+
+model Family {
+  id String @id @default(uuid())
+
+  familyHead   User   @relation(fields: [familyHeadId], references: [id], name: "familyHead")
+  familyHeadId String @unique
+
+  familyMembers User[] @relation("AsFamilyMember")
+
+  familyName String
+  familyCode String @unique
+
+  @@map("families")
+}
