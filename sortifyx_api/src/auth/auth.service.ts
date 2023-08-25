@@ -2,7 +2,6 @@ import { ForbiddenException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PrismaService } from 'src/prisma';
 import { AuthLoginDto, AuthSignUpDto } from './dto';
-import { User } from '@prisma/client';
 import * as argon from 'argon2';
 import { MyArgonOptions } from 'src/types';
 import { AuthResponse, Tokens } from './types';
@@ -122,7 +121,7 @@ export class AuthService {
         { id: userId, email, username },
         {
           secret: this.config.get('ACCESS_TOKEN_SECRET'),
-          expiresIn: '5m', //15 min
+          expiresIn: '1 day', //15 min
         },
       ),
       this.jwt.signAsync(

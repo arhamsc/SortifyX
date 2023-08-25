@@ -23,6 +23,8 @@ model User {
   firstName String?
   lastName  String?
 
+  isAdmin Boolean @default(false)
+
   fcmToken         String?
   refreshTokenHash String?
 
@@ -42,6 +44,9 @@ model Family {
 
   familyName String
   familyCode String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("families")
 }
