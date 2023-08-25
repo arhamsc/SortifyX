@@ -2,6 +2,7 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Observable } from 'rxjs';
 
+//RT Guard
 @Injectable()
 export class RefreshTokenGuard
   extends AuthGuard('jwt-refresh')
