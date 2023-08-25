@@ -12,13 +12,13 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> with HydratedMixin {
   AuthBloc(this._authRepo)
-      : super(const AuthState(
+      : super(AuthState(
           errorMessage: "",
-          family: Family.empty,
+          family: Family.empty(),
           loadingMessage: "",
           status: AuthStatus.initial,
           successMessage: "",
-          user: User.empty,
+          user: User.empty(),
         )) {
     on<AuthEvent>((event, emit) async {
       switch (event.runtimeType) {
@@ -110,7 +110,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with HydratedMixin {
       await _authRepo.authenticateLogout();
       emit(
         state.copyWith(
-          user: User.empty,
+          user: User.empty(),
           status: AuthStatus.loggedIn,
           successMessage: "See you again later.",
         ),

@@ -6,7 +6,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:rive/rive.dart' as rive;
 import 'package:sizer/sizer.dart';
 
 import '../../../../constants/constants.dart';

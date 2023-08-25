@@ -9,6 +9,7 @@ import { FamilyModule } from './family';
 import { PrismaModule } from './prisma/prisma.module';
 import { PrismaService } from './prisma/prisma.service';
 import { AccessTokenGuard } from './shared/guards';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { AccessTokenGuard } from './shared/guards';
     AuthModule,
     FamilyModule,
     CaslModule,
+    UserModule,
   ],
   controllers: [],
   providers: [

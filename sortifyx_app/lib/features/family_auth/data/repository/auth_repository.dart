@@ -14,9 +14,9 @@ class AuthRepository {
       // final userResponse =
       //     await _authDataSource.loginRequest(username, password);
       // final user = User.fromJson(userResponse.data);
-      final user = User.empty;
+      final user = User.empty();
       return Future.delayed(const Duration(seconds: 2), () {
-        _authDataSource.setAPIToken(user.bearerToken ?? "");
+        _authDataSource.setAPIToken(user.accessToken ?? "");
         return user;
       });
     });
@@ -27,9 +27,9 @@ class AuthRepository {
       // final userResponse =
       //     await _authDataSource.registerRequest(user, password);
       // final userData = User.fromJson(userResponse.data);
-      final userData = User.empty;
+      final userData = User.empty();
       return Future.delayed(const Duration(seconds: 2), () {
-        _authDataSource.setAPIToken(user.bearerToken ?? "");
+        _authDataSource.setAPIToken(user.accessToken ?? "");
         return userData;
       });
     });
@@ -47,8 +47,8 @@ class AuthRepository {
     return await repoTryCatchWrapper(() async {
       // final userResponse = await _authDataSource.refreshTokenRequest();
       // final user = User.fromJson(userResponse.data);
-      final user = User.empty;
-      _authDataSource.setAPIToken(user.bearerToken ?? "");
+      final user = User.empty();
+      _authDataSource.setAPIToken(user.accessToken ?? "");
       return user;
     });
   }

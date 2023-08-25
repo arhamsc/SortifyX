@@ -11,7 +11,6 @@ import 'package:sortifyx_app/config/config.dart';
 import 'package:sortifyx_app/features/family_auth/application/cubits/auth_form_cubit/auth_form_cubit.dart';
 import 'package:sortifyx_app/shared/app/app.dart';
 import 'package:sortifyx_app/shared/utils/utils.dart';
-import 'package:talker_logger/talker_logger.dart';
 
 import 'features/family_auth/application/bloc/bloc.dart';
 import 'features/family_auth/data/data.dart';
@@ -142,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Center(child: Text("SortifyX")),
+      body: const Center(child: Text("SortifyX")),
     );
   }
 }

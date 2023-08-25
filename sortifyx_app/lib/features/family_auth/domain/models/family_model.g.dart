@@ -6,11 +6,11 @@ part of 'family_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Family _$FamilyFromJson(Map<String, dynamic> json) => $checkedCreate(
-      'Family',
+_$_Family _$$_FamilyFromJson(Map<String, dynamic> json) => $checkedCreate(
+      r'_$_Family',
       json,
       ($checkedConvert) {
-        final val = Family(
+        final val = _$_Family(
           id: $checkedConvert('id', (v) => v as String),
           familyHead: $checkedConvert('familyHead', (v) => v as String),
           familyMembers: $checkedConvert('familyMembers',
@@ -22,7 +22,7 @@ Family _$FamilyFromJson(Map<String, dynamic> json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$FamilyToJson(Family instance) => <String, dynamic>{
+Map<String, dynamic> _$$_FamilyToJson(_$_Family instance) => <String, dynamic>{
       'id': instance.id,
       'familyHead': instance.familyHead,
       'familyMembers': instance.familyMembers,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:sortifyx_app/features/family_auth/domain/models/user_model.dart';
 
 import '../../../../shared/app/app.dart';
 import '../../../../shared/utils/utils.dart';
@@ -62,16 +63,17 @@ class LoginForm extends StatelessWidget {
                     variant: 2,
                     isSuccess: authState.status.isLoggedIn,
                     successCallback: () {
-                      if (authState.user.familyId == null ||
-                          (authState.user.familyId ?? "").isEmpty) {
-                        context.goNamed(
-                          RouteDetails.authFamilyIntroPage.name,
-                        );
-                      } else {
-                        context.goNamed(
-                          RouteDetails.documentsHomePage.name,
-                        );
-                      }
+                      //TODO: Navigate to family reg page.
+                      // if (authState.user.familyId == null ||
+                      //     (authState.user.familyId ?? "").isEmpty) {
+                      //   context.goNamed(
+                      //     RouteDetails.authFamilyIntroPage.name,
+                      //   );
+                      // } else {
+                      context.goNamed(
+                        RouteDetails.documentsHomePage.name,
+                      );
+                      // }
                     },
                     onPressed: () {
                       if (form.invalid) {
