@@ -1,7 +1,11 @@
+import 'package:injectable/injectable.dart';
+
 import '../../../../shared/utils/utils.dart';
 import '../../data/data.dart';
 import '../../domain/models/models.dart';
 
+@injectable
+// @Order(-2)
 //Todo: Link API Calls
 class AuthRepository {
   late final AuthDataSource _authDataSource;

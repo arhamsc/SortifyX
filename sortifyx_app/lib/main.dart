@@ -8,19 +8,19 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:sizer/sizer.dart';
 
 import 'package:sortifyx_app/config/config.dart';
+import 'package:sortifyx_app/config/injectable/injectable.dart';
 import 'package:sortifyx_app/features/family_auth/application/cubits/auth_form_cubit/auth_form_cubit.dart';
 import 'package:sortifyx_app/shared/app/app.dart';
 import 'package:sortifyx_app/shared/utils/utils.dart';
 
 import 'features/family_auth/application/bloc/bloc.dart';
-import 'features/family_auth/data/data.dart';
 
 void main() async {
   await runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
       FlutterError.onError = (FlutterErrorDetails errorDetails) {
-        MyTalker.instance.talker.handle(errorDetails.exception,
+        getIt.get<MyTalker>().talker.handle(errorDetails.exception,
             errorDetails.stack, 'Uncaught app exception by talker.');
       };
       Animate.restartOnHotReload = true;
@@ -31,117 +31,71 @@ void main() async {
       await appConfig.configureBloc();
       await appConfig.loadEnv();
 
-      /* Router */
-      final appRouter = AppRouter();
-
-      /* Data Sources */
-      final authDS = AuthDataSource(
-        appConfig.getAppApi(),
-      );
-
-      /* Repositories */
-      final authRepo = AuthRepository(authDS);
-      runApp(
-        MyApp(
-          appRouter: appRouter,
-          authRepo: authRepo,
-        ),
+     return runApp(
+        MyApp(),
       );
     },
     (
       error,
       stack,
     ) {
-      MyTalker.instance.talker
+      getIt.get<MyTalker>().talker
           .handle(error, stack, 'Uncaught app exception by talker.');
     },
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({
+  MyApp({
     Key? key,
-    required AppRouter appRouter,
-    required AuthRepository authRepo,
-  })  : _appRouter = appRouter,
-        _authRepository = authRepo,
-        super(key: key);
+  }) : super(key: key);
 
-  final AppRouter _appRouter;
-  final AuthRepository _authRepository;
+  final AppRouter _appRouter = getIt.get();
 
   @override
   Widget build(BuildContext context) {
     return Sizer(
       builder: (context, _, __) {
-        return MultiRepositoryProvider(
+        return MultiBlocProvider(
           providers: [
-            RepositoryProvider.value(
-              value: _authRepository,
+            BlocProvider(
+              create: (_) => getIt.get<AuthFormCubit>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt.get<AuthBloc>(),
             ),
           ],
-          child: MultiBlocProvider(
-            providers: [
-              BlocProvider(
-                create: (_) => AuthFormCubit(),
-              ),
-              BlocProvider(
-                create: (context) => AuthBloc(
-                  RepositoryProvider.of<AuthRepository>(context),
-                ),
-              ),
-            ],
-            child: ReactiveFormConfig(
-              validationMessages: {
-                ValidationMessage.required: (_) =>
-                    "Don't forget to enter a value here.",
-                ValidationMessage.email: (_) =>
-                    "Make sure you use a valid email format.",
-                ValidationMessage.maxLength: (error) =>
-                    "Must be max ${(error as Map)['requiredLength']} characters.",
-                ValidationMessage.minLength: (error) =>
-                    "Must be minimum ${(error as Map)['requiredLength']} characters.",
-                ValidationMessage.number: (_) =>
-                    "Make sure you enter a valid number.",
-                ValidationMessage.mustMatch: (_) => "Field doesn't match.",
-                ValidationMessage.pattern: (_) =>
-                    "Field doesn't match the required rules."
-              },
-              child: MaterialApp.router(
-                title: 'SortifyX',
-                routerConfig: _appRouter.router,
-                theme: ThemeData(
-                  primarySwatch: Palette.primaryDefault,
-                  textTheme: CustomTypography.textTheme,
-                  scaffoldBackgroundColor: Palette.lightBG,
-                  extensions: <ThemeExtension<dynamic>>[
-                    CustomTheme.lightThemePalette,
-                  ],
-                ),
+          child: ReactiveFormConfig(
+            validationMessages: {
+              ValidationMessage.required: (_) =>
+                  "Don't forget to enter a value here.",
+              ValidationMessage.email: (_) =>
+                  "Make sure you use a valid email format.",
+              ValidationMessage.maxLength: (error) =>
+                  "Must be max ${(error as Map)['requiredLength']} characters.",
+              ValidationMessage.minLength: (error) =>
+                  "Must be minimum ${(error as Map)['requiredLength']} characters.",
+              ValidationMessage.number: (_) =>
+                  "Make sure you enter a valid number.",
+              ValidationMessage.mustMatch: (_) => "Field doesn't match.",
+              ValidationMessage.pattern: (_) =>
+                  "Field doesn't match the required rules."
+            },
+            child: MaterialApp.router(
+              title: 'SortifyX',
+              routerConfig: _appRouter.router,
+              theme: ThemeData(
+                primarySwatch: Palette.primaryDefault,
+                textTheme: CustomTypography.textTheme,
+                scaffoldBackgroundColor: Palette.lightBG,
+                extensions: <ThemeExtension<dynamic>>[
+                  CustomTheme.lightThemePalette,
+                ],
               ),
             ),
           ),
         );
       },
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({
-    super.key,
-  });
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: const Center(child: Text("SortifyX")),
     );
   }
 }

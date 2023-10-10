@@ -8,11 +8,12 @@ part of 'auth_bloc.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AuthState _$AuthStateFromJson(Map<String, dynamic> json) => $checkedCreate(
-      'AuthState',
+_$AuthStateImpl _$$AuthStateImplFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$AuthStateImpl',
       json,
       ($checkedConvert) {
-        final val = AuthState(
+        final val = _$AuthStateImpl(
           errorMessage: $checkedConvert('errorMessage', (v) => v as String),
           family: $checkedConvert(
               'family', (v) => Family.fromJson(v as Map<String, dynamic>)),
@@ -27,13 +28,14 @@ AuthState _$AuthStateFromJson(Map<String, dynamic> json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$AuthStateToJson(AuthState instance) => <String, dynamic>{
-      'status': _$AuthStatusEnumMap[instance.status]!,
-      'user': instance.user.toJson(),
-      'family': instance.family.toJson(),
-      'successMessage': instance.successMessage,
-      'loadingMessage': instance.loadingMessage,
+Map<String, dynamic> _$$AuthStateImplToJson(_$AuthStateImpl instance) =>
+    <String, dynamic>{
       'errorMessage': instance.errorMessage,
+      'family': instance.family.toJson(),
+      'loadingMessage': instance.loadingMessage,
+      'status': _$AuthStatusEnumMap[instance.status]!,
+      'successMessage': instance.successMessage,
+      'user': instance.user.toJson(),
     };
 
 const _$AuthStatusEnumMap = {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:sizer/sizer.dart';
+import 'package:sortifyx_app/config/injectable/injectable.dart';
 
 import '../../../../shared/utils/utils.dart';
 import '../../../../shared/widgets/widgets.dart';
@@ -103,7 +104,7 @@ class SignupForm extends StatelessWidget {
                 onPressed: () {
                   if (form.invalid) {
                     form.markAllAsTouched();
-                    MyTalker.instance.talker.warning(form.errors);
+                    getIt.get<MyTalker>().talker.warning(form.errors);
                     return;
                   }
                   onNext();

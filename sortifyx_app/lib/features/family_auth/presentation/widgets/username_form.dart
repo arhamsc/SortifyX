@@ -71,7 +71,7 @@ class UsernameForm extends StatelessWidget {
                     }
                     form.control('username').removeError('required');
                     context.read<AuthBloc>().add(
-                          AuthSignUpRequest(
+                          AuthEvent.signUpRequest(
                             user: User.fromJson(
                               form.value,
                             ),

@@ -1,18 +1,23 @@
-import 'package:equatable/equatable.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-import '../../data/data.dart';
-import '../../domain/models/models.dart';
-import '../../utility/bloc_wrapper.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:injectable/injectable.dart';
+
+import '../../../data/data.dart';
+import '../../../domain/models/models.dart';
+import '../../../utility/bloc_wrapper.dart';
 
 part 'auth_bloc.g.dart';
+part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
+@singleton
 class AuthBloc extends Bloc<AuthEvent, AuthState> with HydratedMixin {
-  AuthBloc(this._authRepo)
-      : super(AuthState(
+  AuthBloc(AuthRepository authRepo)
+      : _authRepo = authRepo,
+        super(AuthState(
           errorMessage: "",
           family: Family.empty(),
           loadingMessage: "",
@@ -22,24 +27,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with HydratedMixin {
         )) {
     on<AuthEvent>((event, emit) async {
       switch (event.runtimeType) {
-        case AuthLoginRequest:
+        case _$AuthEventLoginRequestImpl:
           await _onAuthLoginRequest(event, emit);
           break;
-        case AuthSignUpRequest:
+        case _$AuthEventSignUpRequestImpl:
           await _onAuthSignUpRequest(event, emit);
           break;
-        case AuthLogoutRequest:
+        case _$AuthEventLogoutRequestImpl:
           await _onAuthLogoutRequest(event, emit);
           break;
-        case AuthTokenRefreshRequest:
+        case _$AuthEventTokenRefreshRequestImpl:
           await _onAuthTokenRefreshRequest(event, emit);
-          break;
-        case AuthDummyEvent:
-          emit(
-            state.copyWith(
-              loadingMessage: "Dummy Event",
-            ),
-          );
           break;
         default:
           break;
@@ -58,7 +56,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with HydratedMixin {
           loadingMessage: "Logging you in, please wait.",
         ),
       );
-      if (event is! AuthLoginRequest) return;
+      if (event is! _$AuthEventLoginRequestImpl) return;
       final user = await _authRepo.authenticateLogin(
         event.username,
         event.password,
@@ -82,7 +80,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with HydratedMixin {
           loadingMessage: "Signing you up, please wait.",
         ),
       );
-      if (event is! AuthSignUpRequest) return;
+      if (event is! _$AuthEventSignUpRequestImpl) return;
       final user = await _authRepo.authenticateSignUp(
         event.user,
         event.password,
@@ -106,7 +104,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with HydratedMixin {
           loadingMessage: "Logging you in, please wait.",
         ),
       );
-      if (event is! AuthLogoutRequest) return;
+      if (event is! _$AuthEventLogoutRequestImpl) return;
       await _authRepo.authenticateLogout();
       emit(
         state.copyWith(
@@ -127,7 +125,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with HydratedMixin {
           loadingMessage: "Re-Logging you in, please wait.",
         ),
       );
-      if (event is! AuthLoginRequest) return;
+      if (event is! _$AuthEventLoginRequestImpl) return;
       final user = await _authRepo.authenticateRefreshToken();
       emit(
         state.copyWith(

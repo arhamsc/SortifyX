@@ -8,11 +8,11 @@ part of 'user_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_User _$$_UserFromJson(Map<String, dynamic> json) => $checkedCreate(
-      r'_$_User',
+_$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => $checkedCreate(
+      r'_$UserImpl',
       json,
       ($checkedConvert) {
-        final val = _$_User(
+        final val = _$UserImpl(
           id: $checkedConvert('id', (v) => v as String),
           username: $checkedConvert('username', (v) => v as String),
           email: $checkedConvert('email', (v) => v as String),
@@ -27,7 +27,8 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
+Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'username': instance.username,
       'email': instance.email,

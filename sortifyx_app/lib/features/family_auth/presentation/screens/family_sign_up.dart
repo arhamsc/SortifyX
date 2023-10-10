@@ -8,6 +8,7 @@ import '../../../../shared/utils/utils.dart';
 import '../../../../shared/widgets/widgets.dart';
 import '../widgets/widgets.dart';
 
+// ignore: must_be_immutable
 class RegisterFamily extends StatelessWidget {
   RegisterFamily({super.key, required this.familySignUpType, this.onGoBack})
       : isRegisterFamily = familySignUpType == "register";

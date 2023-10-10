@@ -1,10 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../utility/utility.dart';
 import '../../../../shared/api/api.dart';
 
 import '../../domain/models/models.dart';
 
+@injectable
+// @Order(-2)
 class AuthDataSource {
   late final API _api;
   late final Dio _dio;

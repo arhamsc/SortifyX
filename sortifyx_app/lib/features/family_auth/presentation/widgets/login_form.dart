@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:sortifyx_app/features/family_auth/domain/models/user_model.dart';
 
 import '../../../../shared/app/app.dart';
 import '../../../../shared/utils/utils.dart';
@@ -82,7 +81,7 @@ class LoginForm extends StatelessWidget {
                       }
 
                       context.read<AuthBloc>().add(
-                            AuthLoginRequest(
+                            AuthEvent.loginRequest(
                               username:
                                   form.control('username').value.toString(),
                               password:

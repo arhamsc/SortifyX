@@ -1,10 +1,13 @@
 import 'package:go_router/go_router.dart';
+import 'package:injectable/injectable.dart';
+import 'package:sortifyx_app/config/injectable/injectable.dart';
 
 import '../../features/documents/presentation/screens/screens.dart';
 import '../../features/family_auth/presentation/screens/screens.dart';
 import '../utils/utils.dart';
 import 'app.dart';
 
+@singleton
 class AppRouter {
   final GoRouter router = GoRouter(
     // initialLocation: "${RouteDetails.authSignUpFamilyPage.path}?page=register",
@@ -34,7 +37,7 @@ class AppRouter {
       // ),
     ],
     observers: [
-      MyTalker.instance.talkerRouteObserver,
+      getIt.get<MyTalker>().talkerRouteObserver,
     ],
   );
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:sizer/sizer.dart';
+import 'package:sortifyx_app/config/injectable/injectable.dart';
 
 import '../../../../shared/utils/utils.dart';
 import '../../../../shared/widgets/widgets.dart';
@@ -77,7 +78,7 @@ class _RegisterFamilyFormState extends State<RegisterFamilyForm> {
                   form.markAllAsTouched();
                   return;
                 }
-                print(form.value);
+                getIt.get<MyTalker>().talker.log(form.value);
               },
             ),
             SizedBoxSeparator(
