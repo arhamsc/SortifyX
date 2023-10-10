@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: type=lint, invalid_annotation_target
+
 part of 'auth_bloc.dart';
 
 // **************************************************************************
@@ -27,8 +29,8 @@ AuthState _$AuthStateFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$AuthStateToJson(AuthState instance) => <String, dynamic>{
       'status': _$AuthStatusEnumMap[instance.status]!,
-      'user': instance.user,
-      'family': instance.family,
+      'user': instance.user.toJson(),
+      'family': instance.family.toJson(),
       'successMessage': instance.successMessage,
       'loadingMessage': instance.loadingMessage,
       'errorMessage': instance.errorMessage,
