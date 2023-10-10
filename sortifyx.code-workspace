@@ -1,10 +1,13 @@
 {
   "folders": [
-	{
-		"path": "sortifyx_api"
-	},
-	{
-		"path": "sortifyx_app"
-	}
-]
+    {
+      "path": "sortifyx_api"
+    },
+    {
+      "path": "sortifyx_app"
+    }
+  ],
+  "settings": {
+    "jest.disabledWorkspaceFolders": ["sortifyx_app"]
+  }
 }

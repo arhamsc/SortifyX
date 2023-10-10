@@ -10,6 +10,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum AuthStep {
+  NONE
+  USER
+  FAMILY
+  FINISHED
+}
+
 model User {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
@@ -31,6 +38,8 @@ model User {
 
   AsFamilyMember Family[] @relation("AsFamilyMember")
   Family         Family?  @relation(name: "familyHead")
+
+  authStep AuthStep @default(NONE)
 
   @@map("users")
 }
