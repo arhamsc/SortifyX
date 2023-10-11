@@ -19,19 +19,22 @@ void main() async {
   await runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
+
+      /* App Configs */
+      final appConfig = AppConfig();
+
+      //*Order matters
+      await appConfig.loadEnv();
+      configureGetItDependencies();
+      await appConfig.configureBloc();
+
       FlutterError.onError = (FlutterErrorDetails errorDetails) {
         getIt.get<MyTalker>().talker.handle(errorDetails.exception,
             errorDetails.stack, 'Uncaught app exception by talker.');
       };
       Animate.restartOnHotReload = true;
 
-      /* App Configs */
-      final appConfig = AppConfig();
-
-      await appConfig.configureBloc();
-      await appConfig.loadEnv();
-
-     return runApp(
+      return runApp(
         MyApp(),
       );
     },
@@ -39,7 +42,9 @@ void main() async {
       error,
       stack,
     ) {
-      getIt.get<MyTalker>().talker
+      getIt
+          .get<MyTalker>()
+          .talker
           .handle(error, stack, 'Uncaught app exception by talker.');
     },
   );
