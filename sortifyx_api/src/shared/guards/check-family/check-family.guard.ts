@@ -5,7 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Request } from 'express';
-import { PrismaService } from 'src/prisma';
+import { PrismaService } from 'src/global/prisma';
 
 @Injectable()
 export class CheckFamilyGuard implements CanActivate {

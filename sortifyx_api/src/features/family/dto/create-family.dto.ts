@@ -6,9 +6,9 @@ export class CreateFamilyDto {
   @Length(5)
   familyName: string;
 
-  @IsString()
-  @IsNotEmpty()
-  familyCode: string;
+  // @IsString()
+  // @IsNotEmpty()
+  // familyCode: string;
 
   // @IsUUID()
   // @IsNotEmpty()

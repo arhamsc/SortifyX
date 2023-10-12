@@ -1,15 +1,19 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
-import { AuthModule } from './auth/auth.module';
-import { AccessTokenStrategy, RefreshTokenStrategy } from './auth/strategies';
-import { CaslModule } from './casl';
+import { AuthModule } from './features/auth/auth.module';
+import {
+  AccessTokenStrategy,
+  RefreshTokenStrategy,
+} from './features/auth/strategies';
+import { CaslModule } from './global/casl';
 import { argonOptions } from './config';
-import { FamilyModule } from './family';
-import { PrismaModule } from './prisma/prisma.module';
-import { PrismaService } from './prisma/prisma.service';
+import { FamilyModule } from './features/family';
+import { PrismaModule } from './global/prisma/prisma.module';
+import { PrismaService } from './global/prisma/prisma.service';
 import { AccessTokenGuard } from './shared/guards';
-import { UserModule } from './user/user.module';
+import { UserModule } from './features/user/user.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -19,6 +23,7 @@ import { UserModule } from './user/user.module';
     FamilyModule,
     CaslModule,
     UserModule,
+    JwtModule.register({}),
   ],
   controllers: [],
   providers: [

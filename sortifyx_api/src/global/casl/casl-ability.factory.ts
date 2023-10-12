@@ -9,12 +9,6 @@ import { Injectable } from '@nestjs/common';
 import { Family, User } from '@prisma/client';
 import { FamilyAction } from 'src/shared/enums';
 
-// type MySubjects = {
-//   User: User;
-//   Family: Family;
-//   // all: { all: 'all' };
-// };
-
 type MySubjects = Family | 'Family' | User | 'User';
 
 export type AppFamilyAbility = PureAbility<

@@ -37,6 +37,11 @@ export class FamilyController {
     return this.familyService.findAll();
   }
 
+  @Get('/my')
+  getMyFamilies(@GetCurrentUser('id') userId: string) {
+    return this.familyService.getMyFamilies(userId);
+  }
+
   @Get(':id')
   @CheckFamilyExists()
   @FamilyActions(FamilyAction.ReadFamily)

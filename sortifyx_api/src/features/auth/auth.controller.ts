@@ -7,7 +7,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AuthLoginDto, AuthSignUpDto } from './dto';
+import { AuthLoginDto, AuthSignUpDto, CheckUsernameOrEmailDto } from './dto';
 import { GetCurrentUser, Public } from 'src/shared/decorators';
 import { User } from '@prisma/client';
 import { RefreshTokenGuard } from 'src/shared/guards';
@@ -28,6 +28,15 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   login(@Body() loginDto: AuthLoginDto) {
     return this.authService.loginLocal(loginDto);
+  }
+
+  //TODO: Implement async validator in front end to check this
+  @Post('/check-username-or-email')
+  @Public()
+  checkUsernameOrEmail(
+    @Body() checkUsernameOrEmailDto: CheckUsernameOrEmailDto,
+  ) {
+    return this.authService.checkUsernameOrEmail(checkUsernameOrEmailDto);
   }
 
   @Post('logout')

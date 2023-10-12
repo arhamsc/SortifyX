@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { PrismaService } from 'src/prisma';
+import { PrismaService } from 'src/global/prisma';
 import { CommonMessageResponse, ResponseWithData } from 'src/types';
-import { UserResponse } from 'src/family/types';
+import { UserResponse } from 'src/features/family/types';
 
 @Injectable()
 export class UserService {
@@ -18,8 +18,13 @@ export class UserService {
         username: true,
         id: true,
         isAdmin: true,
+        authStep: true,
+        phone: true,
       },
     });
+    if (users.length <= 0) {
+      throw new NotFoundException('No users found');
+    }
     return { message: 'Got all the users.', data: users };
   }
 
@@ -36,6 +41,8 @@ export class UserService {
         username: true,
         id: true,
         isAdmin: true,
+        authStep: true,
+        phone: true,
       },
     });
     if (!user) throw new NotFoundException('User not registered with us.');
@@ -57,6 +64,8 @@ export class UserService {
         username: true,
         id: true,
         isAdmin: true,
+        authStep: true,
+        phone: true,
       },
     });
     if (!user) throw new NotFoundException('User not registered with us.');
@@ -79,6 +88,8 @@ export class UserService {
         username: true,
         id: true,
         isAdmin: true,
+        authStep: true,
+        phone: true,
       },
     });
     if (!user) throw new NotFoundException('User not registered with us.');
@@ -86,6 +97,33 @@ export class UserService {
       message: `Got user data with email: ${user.email}.`,
       data: user,
     };
+  }
+
+  async checkUserHasFamily(userId: string): Promise<ResponseWithData<boolean>> {
+    const familyCount = await this.prisma.family.count({
+      where: {
+        OR: [
+          { familyHeadId: userId },
+          {
+            familyMembers: { some: { id: userId } },
+          },
+        ],
+      },
+    });
+    if (familyCount > 0) {
+      return {
+        message: `You are a part of ${
+          familyCount + ' ' + (familyCount == 1 ? 'family' : 'families')
+        }.`,
+        data: true,
+      };
+    } else {
+      return {
+        message:
+          'You are not a part of any family, please create a family or join one to continue.',
+        data: false,
+      };
+    }
   }
 
   async update(
@@ -103,6 +141,8 @@ export class UserService {
         username: true,
         id: true,
         isAdmin: true,
+        authStep: true,
+        phone: true,
       },
     });
     return { message: 'Updated user.', data: user };

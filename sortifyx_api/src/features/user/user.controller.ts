@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { IsAdmin } from 'src/shared/decorators';
+import { GetCurrentUser, IsAdmin } from 'src/shared/decorators';
 import { UserGuard } from './guards';
 
 @Controller('user')
@@ -23,6 +23,11 @@ export class UserController {
   @IsAdmin()
   findAll() {
     return this.userService.findAll();
+  }
+
+  @Get('/check-my-family-count')
+  checkUserHasFamily(@GetCurrentUser('id') userId: string) {
+    return this.userService.checkUserHasFamily(userId);
   }
 
   @Get(':unique')

@@ -406,8 +406,6 @@ abstract class _$$AuthEventSignUpRequestImplCopyWith<$Res> {
       __$$AuthEventSignUpRequestImplCopyWithImpl<$Res>;
   @useResult
   $Res call({User user, String password});
-
-  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -422,11 +420,11 @@ class __$$AuthEventSignUpRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? user = freezed,
     Object? password = null,
   }) {
     return _then(_$AuthEventSignUpRequestImpl(
-      user: null == user
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
@@ -435,14 +433,6 @@ class __$$AuthEventSignUpRequestImplCopyWithImpl<$Res>
           : password // ignore: cast_nullable_to_non_nullable
               as String,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
   }
 }
 
@@ -478,13 +468,14 @@ class _$AuthEventSignUpRequestImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthEventSignUpRequestImpl &&
-            (identical(other.user, user) || other.user == user) &&
+            const DeepCollectionEquality().equals(other.user, user) &&
             (identical(other.password, password) ||
                 other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, password);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(user), password);
 
   @JsonKey(ignore: true)
   @override
@@ -886,7 +877,6 @@ abstract class $AuthStateCopyWith<$Res> {
       User user});
 
   $FamilyCopyWith<$Res> get family;
-  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -907,7 +897,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? loadingMessage = null,
     Object? status = null,
     Object? successMessage = null,
-    Object? user = null,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       errorMessage: null == errorMessage
@@ -930,7 +920,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.successMessage
           : successMessage // ignore: cast_nullable_to_non_nullable
               as String,
-      user: null == user
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
@@ -942,14 +932,6 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   $FamilyCopyWith<$Res> get family {
     return $FamilyCopyWith<$Res>(_value.family, (value) {
       return _then(_value.copyWith(family: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
     });
   }
 }
@@ -972,8 +954,6 @@ abstract class _$$AuthStateImplCopyWith<$Res>
 
   @override
   $FamilyCopyWith<$Res> get family;
-  @override
-  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -992,7 +972,7 @@ class __$$AuthStateImplCopyWithImpl<$Res>
     Object? loadingMessage = null,
     Object? status = null,
     Object? successMessage = null,
-    Object? user = null,
+    Object? user = freezed,
   }) {
     return _then(_$AuthStateImpl(
       errorMessage: null == errorMessage
@@ -1015,7 +995,7 @@ class __$$AuthStateImplCopyWithImpl<$Res>
           ? _value.successMessage
           : successMessage // ignore: cast_nullable_to_non_nullable
               as String,
-      user: null == user
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
@@ -1081,13 +1061,19 @@ class _$AuthStateImpl with DiagnosticableTreeMixin implements _AuthState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.successMessage, successMessage) ||
                 other.successMessage == successMessage) &&
-            (identical(other.user, user) || other.user == user));
+            const DeepCollectionEquality().equals(other.user, user));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, errorMessage, family,
-      loadingMessage, status, successMessage, user);
+  int get hashCode => Object.hash(
+      runtimeType,
+      errorMessage,
+      family,
+      loadingMessage,
+      status,
+      successMessage,
+      const DeepCollectionEquality().hash(user));
 
   @JsonKey(ignore: true)
   @override

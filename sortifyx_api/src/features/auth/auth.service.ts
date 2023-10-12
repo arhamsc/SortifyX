@@ -1,9 +1,17 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ForbiddenException,
+  Injectable,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { PrismaService } from 'src/prisma';
-import { AuthLoginDto, AuthSignUpDto } from './dto';
+import { PrismaService } from 'src/global/prisma';
+import { AuthLoginDto, AuthSignUpDto, CheckUsernameOrEmailDto } from './dto';
 import * as argon from 'argon2';
-import { MyArgonOptions } from 'src/types';
+import {
+  CommonMessageResponse,
+  MyArgonOptions,
+  ResponseWithData,
+} from 'src/types';
 import { AuthResponse, Tokens } from './types';
 import { JwtService } from '@nestjs/jwt';
 
@@ -22,7 +30,7 @@ export class AuthService {
       data: {
         email: signUpDto.email,
         passwordHash,
-        username: signUpDto.username,
+        username: '',
         firstName: signUpDto.firstName,
         lastName: signUpDto.lastName,
         fcmToken: signUpDto.fcmToken,
@@ -37,6 +45,38 @@ export class AuthService {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { passwordHash: _, refreshTokenHash: __, ...filteredUser } = user;
     return { ...filteredUser, ...tokens };
+  }
+
+  async checkUsernameOrEmail(
+    checkUsernameOrEmailDto: CheckUsernameOrEmailDto,
+  ): Promise<CommonMessageResponse> {
+    if (!checkUsernameOrEmailDto.email && !checkUsernameOrEmailDto.username) {
+      throw new BadRequestException(
+        'Please provide username or email to verify.',
+      );
+    }
+    const user = await this.prisma.user.findFirst({
+      where: {
+        OR: [
+          { username: checkUsernameOrEmailDto.username },
+          { email: checkUsernameOrEmailDto.email },
+        ],
+      },
+    });
+    if (user) {
+      if (checkUsernameOrEmailDto.username) {
+        throw new ForbiddenException('Username already taken');
+      } else {
+        throw new ForbiddenException('Email already taken');
+      }
+    }
+    let message: string;
+    if (checkUsernameOrEmailDto.username) {
+      message = 'Username is available';
+    } else {
+      message = 'Email is available';
+    }
+    return { message };
   }
 
   async loginLocal(loginDto: AuthLoginDto): Promise<AuthResponse> {
@@ -80,7 +120,7 @@ export class AuthService {
   async refreshTokenGeneration(
     userId: string,
     refreshToken: string,
-  ): Promise<Tokens> {
+  ): Promise<ResponseWithData<Tokens>> {
     const user = await this.prisma.user.findUnique({ where: { id: userId } });
     if (!user || !user.refreshTokenHash)
       throw new ForbiddenException('Access denied');
@@ -89,7 +129,8 @@ export class AuthService {
     if (!tokenMatches) throw new ForbiddenException('Access denied.');
 
     const tokens = await this.getTokens(user.id, user.email, user.username);
-    return tokens;
+    await this.updateRtHash(userId, tokens.refreshToken);
+    return { message: 'Regenerated Tokens', data: tokens };
   }
 
   private async updateRtHash(userId: string, refreshToken: string) {

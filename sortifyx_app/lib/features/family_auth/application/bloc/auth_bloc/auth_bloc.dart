@@ -1,4 +1,3 @@
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -23,7 +22,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with HydratedMixin {
           loadingMessage: "",
           status: AuthStatus.initial,
           successMessage: "",
-          user: User.empty(),
+          user: UserModel.emptyUser(),
         )) {
     on<AuthEvent>((event, emit) async {
       switch (event.runtimeType) {
@@ -108,7 +107,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with HydratedMixin {
       await _authRepo.authenticateLogout();
       emit(
         state.copyWith(
-          user: User.empty(),
+          user: UserModel.emptyUser(),
           status: AuthStatus.loggedIn,
           successMessage: "See you again later.",
         ),

@@ -6,8 +6,8 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { CaslAbilityFactory } from 'src/casl';
-import { PrismaService } from 'src/prisma';
+import { CaslAbilityFactory } from 'src/global/casl';
+import { PrismaService } from 'src/global/prisma';
 import { ACTIONS_KEY } from 'src/shared/decorators';
 import { FamilyAction } from 'src/shared/enums';
 

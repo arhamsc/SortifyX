@@ -46,9 +46,19 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
     host: ArgumentsHost,
   ) {
     const statusCode = this.errorCodesStatusMapping[exception.code];
-    const message = `[${exception.code}]: ${this.exceptionShortMessage(
-      exception.message,
-    )}`;
+    let message = this.exceptionShortMessage(exception.message);
+
+    if (exception.code === 'P2002') {
+      if (exception.meta !== null) {
+        if (exception.meta?.target ?? [][0] === 'familyHeadId') {
+          message = 'Family head cannot create multiple families';
+        } else {
+          message =
+            ((exception.meta?.target ?? ([] as any)).join(', ') as string) +
+            ' already exists.';
+        }
+      }
+    }
 
     if (!Object.keys(this.errorCodesStatusMapping).includes(exception.code)) {
       return super.catch(exception, host);

@@ -50,20 +50,20 @@ class _RegisterFamilyFormState extends State<RegisterFamilyForm> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextDisplayLarge(text: "Your Family Code is:\n$_familyCode"),
-                PrimaryButton(
-                  label: "Get Code",
-                  width: 20.w,
-                  height: 4.h,
-                  onPressed: () {
-                    if (form.invalid) {
-                      form.markAllAsTouched();
-                      return;
-                    }
-                    setFamilyCode(
-                      form.control('familyName').value,
-                    );
-                  },
-                ),
+                // PrimaryButton(
+                //   label: "Get Code",
+                //   width: 20.w,
+                //   height: 4.h,
+                //   onPressed: () {
+                //     if (form.invalid) {
+                //       form.markAllAsTouched();
+                //       return;
+                //     }
+                //     setFamilyCode(
+                //       form.control('familyName').value,
+                //     );
+                //   },
+                // ),
               ],
             ),
             SizedBoxSeparator(

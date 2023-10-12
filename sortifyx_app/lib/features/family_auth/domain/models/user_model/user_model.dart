@@ -7,8 +7,9 @@ part 'user_model.freezed.dart';
 part 'user_model.g.dart';
 
 @freezed
-class User with _$User {
-  const factory User({
+class UserModel with _$UserModel {
+  const UserModel._();
+  const factory UserModel({
     required String id,
     required String username,
     required String email,
@@ -18,9 +19,19 @@ class User with _$User {
     String? fcmToken,
     String? accessToken,
     String? refreshToken,
-  }) = _User;
+  }) = User;
 
-  factory User.empty() => const _User(
+  const factory UserModel.essentialFields({
+    required String id,
+    required String username,
+    required String email,
+    required String firstName,
+    required String lastName,
+    required String phone,
+    @Default(false) bool? isAdmin,
+  }) = UserEssentialFields;
+
+  static User emptyUser() => const User(
         email: '',
         id: '',
         firstName: '',
@@ -32,6 +43,7 @@ class User with _$User {
         refreshToken: null,
       );
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
   // Map<String, dynamic> toJson() =>toJson(this);
 }
