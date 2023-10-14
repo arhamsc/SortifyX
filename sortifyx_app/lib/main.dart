@@ -9,11 +9,11 @@ import 'package:sizer/sizer.dart';
 
 import 'package:sortifyx_app/config/config.dart';
 import 'package:sortifyx_app/config/injectable/injectable.dart';
-import 'package:sortifyx_app/features/family_auth/application/cubits/auth_form_cubit/auth_form_cubit.dart';
+import 'package:sortifyx_app/features/auth/application/cubits/auth_form_cubit/auth_form_cubit.dart';
 import 'package:sortifyx_app/shared/app/app.dart';
 import 'package:sortifyx_app/shared/utils/utils.dart';
 
-import 'features/family_auth/application/bloc/bloc.dart';
+import 'features/auth/application/bloc/bloc.dart';
 
 void main() async {
   await runZonedGuarded(
@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
               create: (_) => getIt.get<AuthFormCubit>(),
             ),
             BlocProvider(
-              create: (context) => getIt.get<AuthBloc>(),
+              create: (context) => getIt.get<UserBloc>(),
             ),
           ],
           child: ReactiveFormConfig(
