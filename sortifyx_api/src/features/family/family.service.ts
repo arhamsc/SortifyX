@@ -1,21 +1,16 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { CreateFamilyDto } from './dto/create-family.dto';
 import { UpdateFamilyDto } from './dto/update-family.dto';
 import { Family } from '@prisma/client';
 import { PrismaService } from 'src/global/prisma';
-import { CommonMessageResponse, ResponseWithData } from 'src/types';
-import { CaslAbilityFactory } from 'src/global/casl';
-
+import { ResponseWithData } from 'src/types';
 import { v4 as Uuidv4, v5 as Uuidv5, validate } from 'uuid';
 
 //TODO: Implement approval required by family head for adding members
 //TODO: Role based access
 @Injectable()
 export class FamilyService {
-  constructor(
-    private prisma: PrismaService,
-    private casl: CaslAbilityFactory,
-  ) {}
+  constructor(private prisma: PrismaService) {}
 
   async create(
     familyHeadId: string,
@@ -61,7 +56,30 @@ export class FamilyService {
   async findOne(id: string): Promise<Family> {
     const family = await this.prisma.family.findUniqueOrThrow({
       where: { id },
-      include: { familyMembers: { select: { id: true } } },
+      include: {
+        familyMembers: {
+          select: {
+            id: true,
+            firstName: true,
+            lastName: true,
+            email: true,
+            username: true,
+            phone: true,
+            isAdmin: true,
+          },
+        },
+        familyHead: {
+          select: {
+            id: true,
+            username: true,
+            firstName: true,
+            lastName: true,
+            phone: true,
+            email: true,
+            isAdmin: true,
+          },
+        },
+      },
     });
     return family;
   }
@@ -95,7 +113,7 @@ export class FamilyService {
       },
     });
     return {
-      message: `User is part of ${families.length} families`,
+      message: `You are a part of ${families.length} families`,
       data: families,
     };
   }
@@ -107,10 +125,31 @@ export class FamilyService {
     const family = await this.prisma.family.update({
       where: { id },
       data: { ...updateFamilyDto },
+      include: {
+        familyMembers: {
+          select: {
+            id: true,
+            firstName: true,
+            lastName: true,
+            email: true,
+            username: true,
+            phone: true,
+            isAdmin: true,
+          },
+        },
+        familyHead: {
+          select: {
+            id: true,
+            username: true,
+            firstName: true,
+            lastName: true,
+            phone: true,
+            email: true,
+            isAdmin: true,
+          },
+        },
+      },
     });
-    if (!family)
-      //This is not possible right now as prisma doesn't return null for family not found
-      throw new NotFoundException('Family is not registered with us');
     return {
       message: 'Updated family information successfully.',
       data: family,
@@ -121,14 +160,26 @@ export class FamilyService {
     familyCode: string,
     userId: string,
   ): Promise<ResponseWithData<Partial<Family>>> {
-    const family = await this.prisma.family.findUniqueOrThrow({
-      where: { familyCode },
+    const family = await this.prisma.family.findUnique({
+      where: {
+        familyCode,
+        OR: [
+          {
+            familyHeadId: userId,
+          },
+          {
+            familyMembers: { some: { id: userId } },
+          },
+        ],
+      },
     });
-    if (!family)
-      throw new NotFoundException('Family is not registered with us');
+    if (family)
+      throw new ForbiddenException(
+        `You are already a part of ${family.familyName} family.`,
+      );
 
     const updatedFamily = await this.prisma.family.update({
-      where: { id: family.id },
+      where: { familyCode: familyCode },
       data: {
         familyMembers: {
           connect: { id: userId },
@@ -137,6 +188,17 @@ export class FamilyService {
       select: {
         familyCode: true,
         familyHeadId: true,
+        familyHead: {
+          select: {
+            id: true,
+            username: true,
+            firstName: true,
+            lastName: true,
+            phone: true,
+            email: true,
+            isAdmin: true,
+          },
+        },
         familyName: true,
         id: true,
       },
