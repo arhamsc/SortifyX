@@ -19,7 +19,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
     case 'default':
       return User.fromJson(json);
     case 'essentialFields':
-      return _UserEssentialFields.fromJson(json);
+      return UserEssentialFields.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'UserModel',
@@ -35,6 +35,7 @@ mixin _$UserModel {
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
+  bool? get isAdmin => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
@@ -44,6 +45,7 @@ mixin _$UserModel {
             String firstName,
             String lastName,
             String phone,
+            bool? isAdmin,
             String? fcmToken,
             String? accessToken,
             String? refreshToken)
@@ -62,6 +64,7 @@ mixin _$UserModel {
             String firstName,
             String lastName,
             String phone,
+            bool? isAdmin,
             String? fcmToken,
             String? accessToken,
             String? refreshToken)?
@@ -80,6 +83,7 @@ mixin _$UserModel {
             String firstName,
             String lastName,
             String phone,
+            bool? isAdmin,
             String? fcmToken,
             String? accessToken,
             String? refreshToken)?
@@ -93,19 +97,19 @@ mixin _$UserModel {
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
     TResult Function(User value) $default, {
-    required TResult Function(_UserEssentialFields value) essentialFields,
+    required TResult Function(UserEssentialFields value) essentialFields,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(User value)? $default, {
-    TResult? Function(_UserEssentialFields value)? essentialFields,
+    TResult? Function(UserEssentialFields value)? essentialFields,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(User value)? $default, {
-    TResult Function(_UserEssentialFields value)? essentialFields,
+    TResult Function(UserEssentialFields value)? essentialFields,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,7 +130,8 @@ abstract class $UserModelCopyWith<$Res> {
       String email,
       String firstName,
       String lastName,
-      String phone});
+      String phone,
+      bool? isAdmin});
 }
 
 /// @nodoc
@@ -148,6 +153,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? firstName = null,
     Object? lastName = null,
     Object? phone = null,
+    Object? isAdmin = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -174,6 +180,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      isAdmin: freezed == isAdmin
+          ? _value.isAdmin
+          : isAdmin // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -192,6 +202,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       String firstName,
       String lastName,
       String phone,
+      bool? isAdmin,
       String? fcmToken,
       String? accessToken,
       String? refreshToken});
@@ -213,6 +224,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? firstName = null,
     Object? lastName = null,
     Object? phone = null,
+    Object? isAdmin = freezed,
     Object? fcmToken = freezed,
     Object? accessToken = freezed,
     Object? refreshToken = freezed,
@@ -242,6 +254,10 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      isAdmin: freezed == isAdmin
+          ? _value.isAdmin
+          : isAdmin // ignore: cast_nullable_to_non_nullable
+              as bool?,
       fcmToken: freezed == fcmToken
           ? _value.fcmToken
           : fcmToken // ignore: cast_nullable_to_non_nullable
@@ -268,6 +284,7 @@ class _$UserImpl extends User with DiagnosticableTreeMixin {
       required this.firstName,
       required this.lastName,
       required this.phone,
+      this.isAdmin = false,
       this.fcmToken,
       this.accessToken,
       this.refreshToken,
@@ -291,6 +308,9 @@ class _$UserImpl extends User with DiagnosticableTreeMixin {
   @override
   final String phone;
   @override
+  @JsonKey()
+  final bool? isAdmin;
+  @override
   final String? fcmToken;
   @override
   final String? accessToken;
@@ -302,7 +322,7 @@ class _$UserImpl extends User with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserModel(id: $id, username: $username, email: $email, firstName: $firstName, lastName: $lastName, phone: $phone, fcmToken: $fcmToken, accessToken: $accessToken, refreshToken: $refreshToken)';
+    return 'UserModel(id: $id, username: $username, email: $email, firstName: $firstName, lastName: $lastName, phone: $phone, isAdmin: $isAdmin, fcmToken: $fcmToken, accessToken: $accessToken, refreshToken: $refreshToken)';
   }
 
   @override
@@ -316,6 +336,7 @@ class _$UserImpl extends User with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('firstName', firstName))
       ..add(DiagnosticsProperty('lastName', lastName))
       ..add(DiagnosticsProperty('phone', phone))
+      ..add(DiagnosticsProperty('isAdmin', isAdmin))
       ..add(DiagnosticsProperty('fcmToken', fcmToken))
       ..add(DiagnosticsProperty('accessToken', accessToken))
       ..add(DiagnosticsProperty('refreshToken', refreshToken));
@@ -335,6 +356,7 @@ class _$UserImpl extends User with DiagnosticableTreeMixin {
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
             (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.isAdmin, isAdmin) || other.isAdmin == isAdmin) &&
             (identical(other.fcmToken, fcmToken) ||
                 other.fcmToken == fcmToken) &&
             (identical(other.accessToken, accessToken) ||
@@ -346,7 +368,7 @@ class _$UserImpl extends User with DiagnosticableTreeMixin {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, username, email, firstName,
-      lastName, phone, fcmToken, accessToken, refreshToken);
+      lastName, phone, isAdmin, fcmToken, accessToken, refreshToken);
 
   @JsonKey(ignore: true)
   @override
@@ -364,6 +386,7 @@ class _$UserImpl extends User with DiagnosticableTreeMixin {
             String firstName,
             String lastName,
             String phone,
+            bool? isAdmin,
             String? fcmToken,
             String? accessToken,
             String? refreshToken)
@@ -372,8 +395,8 @@ class _$UserImpl extends User with DiagnosticableTreeMixin {
             String firstName, String lastName, String phone, bool? isAdmin)
         essentialFields,
   }) {
-    return $default(id, username, email, firstName, lastName, phone, fcmToken,
-        accessToken, refreshToken);
+    return $default(id, username, email, firstName, lastName, phone, isAdmin,
+        fcmToken, accessToken, refreshToken);
   }
 
   @override
@@ -386,6 +409,7 @@ class _$UserImpl extends User with DiagnosticableTreeMixin {
             String firstName,
             String lastName,
             String phone,
+            bool? isAdmin,
             String? fcmToken,
             String? accessToken,
             String? refreshToken)?
@@ -395,7 +419,7 @@ class _$UserImpl extends User with DiagnosticableTreeMixin {
         essentialFields,
   }) {
     return $default?.call(id, username, email, firstName, lastName, phone,
-        fcmToken, accessToken, refreshToken);
+        isAdmin, fcmToken, accessToken, refreshToken);
   }
 
   @override
@@ -408,6 +432,7 @@ class _$UserImpl extends User with DiagnosticableTreeMixin {
             String firstName,
             String lastName,
             String phone,
+            bool? isAdmin,
             String? fcmToken,
             String? accessToken,
             String? refreshToken)?
@@ -418,8 +443,8 @@ class _$UserImpl extends User with DiagnosticableTreeMixin {
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(id, username, email, firstName, lastName, phone, fcmToken,
-          accessToken, refreshToken);
+      return $default(id, username, email, firstName, lastName, phone, isAdmin,
+          fcmToken, accessToken, refreshToken);
     }
     return orElse();
   }
@@ -428,7 +453,7 @@ class _$UserImpl extends User with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
     TResult Function(User value) $default, {
-    required TResult Function(_UserEssentialFields value) essentialFields,
+    required TResult Function(UserEssentialFields value) essentialFields,
   }) {
     return $default(this);
   }
@@ -437,7 +462,7 @@ class _$UserImpl extends User with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(User value)? $default, {
-    TResult? Function(_UserEssentialFields value)? essentialFields,
+    TResult? Function(UserEssentialFields value)? essentialFields,
   }) {
     return $default?.call(this);
   }
@@ -446,7 +471,7 @@ class _$UserImpl extends User with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(User value)? $default, {
-    TResult Function(_UserEssentialFields value)? essentialFields,
+    TResult Function(UserEssentialFields value)? essentialFields,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -471,6 +496,7 @@ abstract class User extends UserModel {
       required final String firstName,
       required final String lastName,
       required final String phone,
+      final bool? isAdmin,
       final String? fcmToken,
       final String? accessToken,
       final String? refreshToken}) = _$UserImpl;
@@ -490,6 +516,8 @@ abstract class User extends UserModel {
   String get lastName;
   @override
   String get phone;
+  @override
+  bool? get isAdmin;
   String? get fcmToken;
   String? get accessToken;
   String? get refreshToken;
@@ -571,7 +599,7 @@ class __$$UserEssentialFieldsImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserEssentialFieldsImpl extends _UserEssentialFields
+class _$UserEssentialFieldsImpl extends UserEssentialFields
     with DiagnosticableTreeMixin {
   const _$UserEssentialFieldsImpl(
       {required this.id,
@@ -665,6 +693,7 @@ class _$UserEssentialFieldsImpl extends _UserEssentialFields
             String firstName,
             String lastName,
             String phone,
+            bool? isAdmin,
             String? fcmToken,
             String? accessToken,
             String? refreshToken)
@@ -687,6 +716,7 @@ class _$UserEssentialFieldsImpl extends _UserEssentialFields
             String firstName,
             String lastName,
             String phone,
+            bool? isAdmin,
             String? fcmToken,
             String? accessToken,
             String? refreshToken)?
@@ -709,6 +739,7 @@ class _$UserEssentialFieldsImpl extends _UserEssentialFields
             String firstName,
             String lastName,
             String phone,
+            bool? isAdmin,
             String? fcmToken,
             String? accessToken,
             String? refreshToken)?
@@ -729,7 +760,7 @@ class _$UserEssentialFieldsImpl extends _UserEssentialFields
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
     TResult Function(User value) $default, {
-    required TResult Function(_UserEssentialFields value) essentialFields,
+    required TResult Function(UserEssentialFields value) essentialFields,
   }) {
     return essentialFields(this);
   }
@@ -738,7 +769,7 @@ class _$UserEssentialFieldsImpl extends _UserEssentialFields
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(User value)? $default, {
-    TResult? Function(_UserEssentialFields value)? essentialFields,
+    TResult? Function(UserEssentialFields value)? essentialFields,
   }) {
     return essentialFields?.call(this);
   }
@@ -747,7 +778,7 @@ class _$UserEssentialFieldsImpl extends _UserEssentialFields
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(User value)? $default, {
-    TResult Function(_UserEssentialFields value)? essentialFields,
+    TResult Function(UserEssentialFields value)? essentialFields,
     required TResult orElse(),
   }) {
     if (essentialFields != null) {
@@ -764,8 +795,8 @@ class _$UserEssentialFieldsImpl extends _UserEssentialFields
   }
 }
 
-abstract class _UserEssentialFields extends UserModel {
-  const factory _UserEssentialFields(
+abstract class UserEssentialFields extends UserModel {
+  const factory UserEssentialFields(
       {required final String id,
       required final String username,
       required final String email,
@@ -773,9 +804,9 @@ abstract class _UserEssentialFields extends UserModel {
       required final String lastName,
       required final String phone,
       final bool? isAdmin}) = _$UserEssentialFieldsImpl;
-  const _UserEssentialFields._() : super._();
+  const UserEssentialFields._() : super._();
 
-  factory _UserEssentialFields.fromJson(Map<String, dynamic> json) =
+  factory UserEssentialFields.fromJson(Map<String, dynamic> json) =
       _$UserEssentialFieldsImpl.fromJson;
 
   @override
@@ -790,6 +821,7 @@ abstract class _UserEssentialFields extends UserModel {
   String get lastName;
   @override
   String get phone;
+  @override
   bool? get isAdmin;
   @override
   @JsonKey(ignore: true)

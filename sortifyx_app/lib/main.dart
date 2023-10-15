@@ -15,6 +15,8 @@ import 'package:sortifyx_app/shared/utils/utils.dart';
 
 import 'features/auth/application/bloc/bloc.dart';
 
+final navigatorKey = GlobalKey<NavigatorState>();
+
 void main() async {
   await runZonedGuarded(
     () async {

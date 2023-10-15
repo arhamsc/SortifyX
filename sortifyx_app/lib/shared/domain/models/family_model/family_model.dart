@@ -30,7 +30,7 @@ class FamilyModel with _$FamilyModel {
         familyHead,
     required String familyName,
     required String familyCode,
-  }) = _FamilyEssentialFields;
+  }) = FamilyEssentialFields;
 
   static const emptyFamily = Family(
     id: '',

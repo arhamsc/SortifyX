@@ -15,9 +15,10 @@ _$UserStateImpl _$$UserStateImplFromJson(Map<String, dynamic> json) =>
       ($checkedConvert) {
         final val = _$UserStateImpl(
           status: $checkedConvert(
-              'status', (v) => $enumDecode(_$AuthStatusEnumMap, v)),
+              'status', (v) => $enumDecode(_$UserStatusEnumMap, v)),
           user: $checkedConvert(
               'user', (v) => User.fromJson(v as Map<String, dynamic>)),
+          userHasFamily: $checkedConvert('userHasFamily', (v) => v as bool),
           errorMessage: $checkedConvert('errorMessage', (v) => v as String),
           loadingMessage: $checkedConvert('loadingMessage', (v) => v as String),
           successMessage: $checkedConvert('successMessage', (v) => v as String),
@@ -28,18 +29,19 @@ _$UserStateImpl _$$UserStateImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$UserStateImplToJson(_$UserStateImpl instance) =>
     <String, dynamic>{
-      'status': _$AuthStatusEnumMap[instance.status]!,
+      'status': _$UserStatusEnumMap[instance.status]!,
       'user': instance.user.toJson(),
+      'userHasFamily': instance.userHasFamily,
       'errorMessage': instance.errorMessage,
       'loadingMessage': instance.loadingMessage,
       'successMessage': instance.successMessage,
     };
 
-const _$AuthStatusEnumMap = {
-  AuthStatus.initial: 'initial',
-  AuthStatus.loading: 'loading',
-  AuthStatus.success: 'success',
-  AuthStatus.error: 'error',
-  AuthStatus.loggedOut: 'loggedOut',
-  AuthStatus.loggedIn: 'loggedIn',
+const _$UserStatusEnumMap = {
+  UserStatus.initial: 'initial',
+  UserStatus.loading: 'loading',
+  UserStatus.success: 'success',
+  UserStatus.error: 'error',
+  UserStatus.loggedOut: 'loggedOut',
+  UserStatus.loggedIn: 'loggedIn',
 };

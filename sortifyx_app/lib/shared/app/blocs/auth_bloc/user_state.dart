@@ -2,7 +2,7 @@
 
 part of 'user_bloc.dart';
 
-enum AuthStatus {
+enum UserStatus {
   initial,
   loading,
   success,
@@ -11,20 +11,21 @@ enum AuthStatus {
   loggedIn,
 }
 
-extension ASExt on AuthStatus {
-  bool get isInitial => this == AuthStatus.initial;
-  bool get isLoading => this == AuthStatus.loading;
-  bool get isSuccess => this == AuthStatus.success;
-  bool get isError => this == AuthStatus.error;
-  bool get isLoggedIn => this == AuthStatus.loggedIn;
-  bool get isLoggedOut => this == AuthStatus.loggedOut;
+extension ASExt on UserStatus {
+  bool get isInitial => this == UserStatus.initial;
+  bool get isLoading => this == UserStatus.loading;
+  bool get isSuccess => this == UserStatus.success;
+  bool get isError => this == UserStatus.error;
+  bool get isLoggedIn => this == UserStatus.loggedIn;
+  bool get isLoggedOut => this == UserStatus.loggedOut;
 }
 
 @freezed
 class UserState with _$UserState {
   const factory UserState({
-    required AuthStatus status,
+    required UserStatus status,
     required User user,
+    required bool userHasFamily,
     required String errorMessage,
     required String loadingMessage,
     required String successMessage,

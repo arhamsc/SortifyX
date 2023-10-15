@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sortifyx_app/config/injectable/injectable.dart';
+import 'package:sortifyx_app/main.dart';
 
 import '../../../features/documents/presentation/screens/screens.dart';
 import '../../../features/auth/presentation/screens/screens.dart';
@@ -8,10 +9,12 @@ import '../../utils/utils.dart';
 import '../app.dart';
 
 @singleton
+@Order(-1)
 class AppRouter {
   final GoRouter router = GoRouter(
     // initialLocation: "${RouteDetails.authSignUpFamilyPage.path}?page=register",
     initialLocation: RouteDetails.authPage.path,
+    navigatorKey: navigatorKey,
     routes: [
       GoRoute(
         name: RouteDetails.authPage.name,

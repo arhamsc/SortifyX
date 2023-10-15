@@ -8,11 +8,11 @@ import 'package:sortifyx_app/shared/utils/utils.dart';
 
 @injectable
 @Order(-2)
-class AuthDataSource {
+class UserDataSource {
   final API _api = getIt.get();
   late final Dio _dio;
 
-  AuthDataSource() {
+  UserDataSource() {
     _dio = _api.dio;
   }
 
@@ -54,6 +54,49 @@ class AuthDataSource {
     return await dioTryCatchWrapper(
       () {
         return _dio.post("/auth/logout");
+      },
+    );
+  }
+
+  Future<Response<T>> getMyProfile<T>() async {
+    return await dioTryCatchWrapper(
+      () {
+        return _dio.get("/user/my");
+      },
+    );
+  }
+
+  Future<Response<T>> updateFCMToken<T>({
+    required String id,
+    required String fcmToken,
+  }) async {
+    return await dioTryCatchWrapper(
+      () {
+        return _dio.post("/user/$id/fcmToken", data: {'fcmToken': fcmToken});
+      },
+    );
+  }
+
+  Future<Response<T>> deleteUser<T>(String id) async {
+    return await dioTryCatchWrapper(
+      () {
+        return _dio.delete("/user/$id");
+      },
+    );
+  }
+
+  Future<Response<T>> checkUserHasFamily<T>() async {
+    return await dioTryCatchWrapper(
+      () {
+        return _dio.get("/user/check-my-family-count");
+      },
+    );
+  }
+
+  Future<Response<T>> getUserById<T>(String id) async {
+    return await dioTryCatchWrapper(
+      () {
+        return _dio.get("/user/$id");
       },
     );
   }

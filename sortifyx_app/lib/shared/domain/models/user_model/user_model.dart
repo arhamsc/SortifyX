@@ -16,6 +16,7 @@ class UserModel with _$UserModel {
     required String firstName,
     required String lastName,
     required String phone,
+    @Default(false) bool? isAdmin,
     String? fcmToken,
     String? accessToken,
     String? refreshToken,
@@ -29,7 +30,7 @@ class UserModel with _$UserModel {
     required String lastName,
     required String phone,
     @Default(false) bool? isAdmin,
-  }) = _UserEssentialFields;
+  }) = UserEssentialFields;
 
   static User emptyUser() => const User(
         email: '',

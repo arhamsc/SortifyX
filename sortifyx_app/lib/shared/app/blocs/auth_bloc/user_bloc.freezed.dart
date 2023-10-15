@@ -23,6 +23,12 @@ mixin _$UserEvent {
     required TResult Function(SignUpDto signUpDto) signUpRequest,
     required TResult Function() logoutRequest,
     required TResult Function() tokenRefreshRequest,
+    required TResult Function() getMyProfile,
+    required TResult Function() updateUserInfo,
+    required TResult Function(String id, String fcmToken) updateFCMToken,
+    required TResult Function(String id) deleteUser,
+    required TResult Function() checkUserHasFamily,
+    required TResult Function(String id) getUserById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +38,12 @@ mixin _$UserEvent {
     TResult? Function(SignUpDto signUpDto)? signUpRequest,
     TResult? Function()? logoutRequest,
     TResult? Function()? tokenRefreshRequest,
+    TResult? Function()? getMyProfile,
+    TResult? Function()? updateUserInfo,
+    TResult? Function(String id, String fcmToken)? updateFCMToken,
+    TResult? Function(String id)? deleteUser,
+    TResult? Function()? checkUserHasFamily,
+    TResult? Function(String id)? getUserById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +53,12 @@ mixin _$UserEvent {
     TResult Function(SignUpDto signUpDto)? signUpRequest,
     TResult Function()? logoutRequest,
     TResult Function()? tokenRefreshRequest,
+    TResult Function()? getMyProfile,
+    TResult Function()? updateUserInfo,
+    TResult Function(String id, String fcmToken)? updateFCMToken,
+    TResult Function(String id)? deleteUser,
+    TResult Function()? checkUserHasFamily,
+    TResult Function(String id)? getUserById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -52,6 +70,12 @@ mixin _$UserEvent {
     required TResult Function(UserEventLogoutRequest value) logoutRequest,
     required TResult Function(UserEventTokenRefreshRequest value)
         tokenRefreshRequest,
+    required TResult Function(UserGetMyProfile value) getMyProfile,
+    required TResult Function(UserUpdateUserInfo value) updateUserInfo,
+    required TResult Function(UserUpdateFCMToken value) updateFCMToken,
+    required TResult Function(UserDeleteUser value) deleteUser,
+    required TResult Function(UserCheckUserHasFamily value) checkUserHasFamily,
+    required TResult Function(UserGetUserById value) getUserById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +85,12 @@ mixin _$UserEvent {
     TResult? Function(UserEventSignUpRequest value)? signUpRequest,
     TResult? Function(UserEventLogoutRequest value)? logoutRequest,
     TResult? Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult? Function(UserGetMyProfile value)? getMyProfile,
+    TResult? Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult? Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult? Function(UserDeleteUser value)? deleteUser,
+    TResult? Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult? Function(UserGetUserById value)? getUserById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +100,12 @@ mixin _$UserEvent {
     TResult Function(UserEventSignUpRequest value)? signUpRequest,
     TResult Function(UserEventLogoutRequest value)? logoutRequest,
     TResult Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult Function(UserGetMyProfile value)? getMyProfile,
+    TResult Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult Function(UserDeleteUser value)? deleteUser,
+    TResult Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult Function(UserGetUserById value)? getUserById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,6 +177,12 @@ class _$AuthInitialImpl with DiagnosticableTreeMixin implements AuthInitial {
     required TResult Function(SignUpDto signUpDto) signUpRequest,
     required TResult Function() logoutRequest,
     required TResult Function() tokenRefreshRequest,
+    required TResult Function() getMyProfile,
+    required TResult Function() updateUserInfo,
+    required TResult Function(String id, String fcmToken) updateFCMToken,
+    required TResult Function(String id) deleteUser,
+    required TResult Function() checkUserHasFamily,
+    required TResult Function(String id) getUserById,
   }) {
     return initial();
   }
@@ -153,6 +195,12 @@ class _$AuthInitialImpl with DiagnosticableTreeMixin implements AuthInitial {
     TResult? Function(SignUpDto signUpDto)? signUpRequest,
     TResult? Function()? logoutRequest,
     TResult? Function()? tokenRefreshRequest,
+    TResult? Function()? getMyProfile,
+    TResult? Function()? updateUserInfo,
+    TResult? Function(String id, String fcmToken)? updateFCMToken,
+    TResult? Function(String id)? deleteUser,
+    TResult? Function()? checkUserHasFamily,
+    TResult? Function(String id)? getUserById,
   }) {
     return initial?.call();
   }
@@ -165,6 +213,12 @@ class _$AuthInitialImpl with DiagnosticableTreeMixin implements AuthInitial {
     TResult Function(SignUpDto signUpDto)? signUpRequest,
     TResult Function()? logoutRequest,
     TResult Function()? tokenRefreshRequest,
+    TResult Function()? getMyProfile,
+    TResult Function()? updateUserInfo,
+    TResult Function(String id, String fcmToken)? updateFCMToken,
+    TResult Function(String id)? deleteUser,
+    TResult Function()? checkUserHasFamily,
+    TResult Function(String id)? getUserById,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -182,6 +236,12 @@ class _$AuthInitialImpl with DiagnosticableTreeMixin implements AuthInitial {
     required TResult Function(UserEventLogoutRequest value) logoutRequest,
     required TResult Function(UserEventTokenRefreshRequest value)
         tokenRefreshRequest,
+    required TResult Function(UserGetMyProfile value) getMyProfile,
+    required TResult Function(UserUpdateUserInfo value) updateUserInfo,
+    required TResult Function(UserUpdateFCMToken value) updateFCMToken,
+    required TResult Function(UserDeleteUser value) deleteUser,
+    required TResult Function(UserCheckUserHasFamily value) checkUserHasFamily,
+    required TResult Function(UserGetUserById value) getUserById,
   }) {
     return initial(this);
   }
@@ -194,6 +254,12 @@ class _$AuthInitialImpl with DiagnosticableTreeMixin implements AuthInitial {
     TResult? Function(UserEventSignUpRequest value)? signUpRequest,
     TResult? Function(UserEventLogoutRequest value)? logoutRequest,
     TResult? Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult? Function(UserGetMyProfile value)? getMyProfile,
+    TResult? Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult? Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult? Function(UserDeleteUser value)? deleteUser,
+    TResult? Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult? Function(UserGetUserById value)? getUserById,
   }) {
     return initial?.call(this);
   }
@@ -206,6 +272,12 @@ class _$AuthInitialImpl with DiagnosticableTreeMixin implements AuthInitial {
     TResult Function(UserEventSignUpRequest value)? signUpRequest,
     TResult Function(UserEventLogoutRequest value)? logoutRequest,
     TResult Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult Function(UserGetMyProfile value)? getMyProfile,
+    TResult Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult Function(UserDeleteUser value)? deleteUser,
+    TResult Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult Function(UserGetUserById value)? getUserById,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -301,6 +373,12 @@ class _$UserEventLoginRequestImpl
     required TResult Function(SignUpDto signUpDto) signUpRequest,
     required TResult Function() logoutRequest,
     required TResult Function() tokenRefreshRequest,
+    required TResult Function() getMyProfile,
+    required TResult Function() updateUserInfo,
+    required TResult Function(String id, String fcmToken) updateFCMToken,
+    required TResult Function(String id) deleteUser,
+    required TResult Function() checkUserHasFamily,
+    required TResult Function(String id) getUserById,
   }) {
     return loginRequest(loginDto);
   }
@@ -313,6 +391,12 @@ class _$UserEventLoginRequestImpl
     TResult? Function(SignUpDto signUpDto)? signUpRequest,
     TResult? Function()? logoutRequest,
     TResult? Function()? tokenRefreshRequest,
+    TResult? Function()? getMyProfile,
+    TResult? Function()? updateUserInfo,
+    TResult? Function(String id, String fcmToken)? updateFCMToken,
+    TResult? Function(String id)? deleteUser,
+    TResult? Function()? checkUserHasFamily,
+    TResult? Function(String id)? getUserById,
   }) {
     return loginRequest?.call(loginDto);
   }
@@ -325,6 +409,12 @@ class _$UserEventLoginRequestImpl
     TResult Function(SignUpDto signUpDto)? signUpRequest,
     TResult Function()? logoutRequest,
     TResult Function()? tokenRefreshRequest,
+    TResult Function()? getMyProfile,
+    TResult Function()? updateUserInfo,
+    TResult Function(String id, String fcmToken)? updateFCMToken,
+    TResult Function(String id)? deleteUser,
+    TResult Function()? checkUserHasFamily,
+    TResult Function(String id)? getUserById,
     required TResult orElse(),
   }) {
     if (loginRequest != null) {
@@ -342,6 +432,12 @@ class _$UserEventLoginRequestImpl
     required TResult Function(UserEventLogoutRequest value) logoutRequest,
     required TResult Function(UserEventTokenRefreshRequest value)
         tokenRefreshRequest,
+    required TResult Function(UserGetMyProfile value) getMyProfile,
+    required TResult Function(UserUpdateUserInfo value) updateUserInfo,
+    required TResult Function(UserUpdateFCMToken value) updateFCMToken,
+    required TResult Function(UserDeleteUser value) deleteUser,
+    required TResult Function(UserCheckUserHasFamily value) checkUserHasFamily,
+    required TResult Function(UserGetUserById value) getUserById,
   }) {
     return loginRequest(this);
   }
@@ -354,6 +450,12 @@ class _$UserEventLoginRequestImpl
     TResult? Function(UserEventSignUpRequest value)? signUpRequest,
     TResult? Function(UserEventLogoutRequest value)? logoutRequest,
     TResult? Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult? Function(UserGetMyProfile value)? getMyProfile,
+    TResult? Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult? Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult? Function(UserDeleteUser value)? deleteUser,
+    TResult? Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult? Function(UserGetUserById value)? getUserById,
   }) {
     return loginRequest?.call(this);
   }
@@ -366,6 +468,12 @@ class _$UserEventLoginRequestImpl
     TResult Function(UserEventSignUpRequest value)? signUpRequest,
     TResult Function(UserEventLogoutRequest value)? logoutRequest,
     TResult Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult Function(UserGetMyProfile value)? getMyProfile,
+    TResult Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult Function(UserDeleteUser value)? deleteUser,
+    TResult Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult Function(UserGetUserById value)? getUserById,
     required TResult orElse(),
   }) {
     if (loginRequest != null) {
@@ -468,6 +576,12 @@ class _$UserEventSignUpRequestImpl
     required TResult Function(SignUpDto signUpDto) signUpRequest,
     required TResult Function() logoutRequest,
     required TResult Function() tokenRefreshRequest,
+    required TResult Function() getMyProfile,
+    required TResult Function() updateUserInfo,
+    required TResult Function(String id, String fcmToken) updateFCMToken,
+    required TResult Function(String id) deleteUser,
+    required TResult Function() checkUserHasFamily,
+    required TResult Function(String id) getUserById,
   }) {
     return signUpRequest(signUpDto);
   }
@@ -480,6 +594,12 @@ class _$UserEventSignUpRequestImpl
     TResult? Function(SignUpDto signUpDto)? signUpRequest,
     TResult? Function()? logoutRequest,
     TResult? Function()? tokenRefreshRequest,
+    TResult? Function()? getMyProfile,
+    TResult? Function()? updateUserInfo,
+    TResult? Function(String id, String fcmToken)? updateFCMToken,
+    TResult? Function(String id)? deleteUser,
+    TResult? Function()? checkUserHasFamily,
+    TResult? Function(String id)? getUserById,
   }) {
     return signUpRequest?.call(signUpDto);
   }
@@ -492,6 +612,12 @@ class _$UserEventSignUpRequestImpl
     TResult Function(SignUpDto signUpDto)? signUpRequest,
     TResult Function()? logoutRequest,
     TResult Function()? tokenRefreshRequest,
+    TResult Function()? getMyProfile,
+    TResult Function()? updateUserInfo,
+    TResult Function(String id, String fcmToken)? updateFCMToken,
+    TResult Function(String id)? deleteUser,
+    TResult Function()? checkUserHasFamily,
+    TResult Function(String id)? getUserById,
     required TResult orElse(),
   }) {
     if (signUpRequest != null) {
@@ -509,6 +635,12 @@ class _$UserEventSignUpRequestImpl
     required TResult Function(UserEventLogoutRequest value) logoutRequest,
     required TResult Function(UserEventTokenRefreshRequest value)
         tokenRefreshRequest,
+    required TResult Function(UserGetMyProfile value) getMyProfile,
+    required TResult Function(UserUpdateUserInfo value) updateUserInfo,
+    required TResult Function(UserUpdateFCMToken value) updateFCMToken,
+    required TResult Function(UserDeleteUser value) deleteUser,
+    required TResult Function(UserCheckUserHasFamily value) checkUserHasFamily,
+    required TResult Function(UserGetUserById value) getUserById,
   }) {
     return signUpRequest(this);
   }
@@ -521,6 +653,12 @@ class _$UserEventSignUpRequestImpl
     TResult? Function(UserEventSignUpRequest value)? signUpRequest,
     TResult? Function(UserEventLogoutRequest value)? logoutRequest,
     TResult? Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult? Function(UserGetMyProfile value)? getMyProfile,
+    TResult? Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult? Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult? Function(UserDeleteUser value)? deleteUser,
+    TResult? Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult? Function(UserGetUserById value)? getUserById,
   }) {
     return signUpRequest?.call(this);
   }
@@ -533,6 +671,12 @@ class _$UserEventSignUpRequestImpl
     TResult Function(UserEventSignUpRequest value)? signUpRequest,
     TResult Function(UserEventLogoutRequest value)? logoutRequest,
     TResult Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult Function(UserGetMyProfile value)? getMyProfile,
+    TResult Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult Function(UserDeleteUser value)? deleteUser,
+    TResult Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult Function(UserGetUserById value)? getUserById,
     required TResult orElse(),
   }) {
     if (signUpRequest != null) {
@@ -606,6 +750,12 @@ class _$UserEventLogoutRequestImpl
     required TResult Function(SignUpDto signUpDto) signUpRequest,
     required TResult Function() logoutRequest,
     required TResult Function() tokenRefreshRequest,
+    required TResult Function() getMyProfile,
+    required TResult Function() updateUserInfo,
+    required TResult Function(String id, String fcmToken) updateFCMToken,
+    required TResult Function(String id) deleteUser,
+    required TResult Function() checkUserHasFamily,
+    required TResult Function(String id) getUserById,
   }) {
     return logoutRequest();
   }
@@ -618,6 +768,12 @@ class _$UserEventLogoutRequestImpl
     TResult? Function(SignUpDto signUpDto)? signUpRequest,
     TResult? Function()? logoutRequest,
     TResult? Function()? tokenRefreshRequest,
+    TResult? Function()? getMyProfile,
+    TResult? Function()? updateUserInfo,
+    TResult? Function(String id, String fcmToken)? updateFCMToken,
+    TResult? Function(String id)? deleteUser,
+    TResult? Function()? checkUserHasFamily,
+    TResult? Function(String id)? getUserById,
   }) {
     return logoutRequest?.call();
   }
@@ -630,6 +786,12 @@ class _$UserEventLogoutRequestImpl
     TResult Function(SignUpDto signUpDto)? signUpRequest,
     TResult Function()? logoutRequest,
     TResult Function()? tokenRefreshRequest,
+    TResult Function()? getMyProfile,
+    TResult Function()? updateUserInfo,
+    TResult Function(String id, String fcmToken)? updateFCMToken,
+    TResult Function(String id)? deleteUser,
+    TResult Function()? checkUserHasFamily,
+    TResult Function(String id)? getUserById,
     required TResult orElse(),
   }) {
     if (logoutRequest != null) {
@@ -647,6 +809,12 @@ class _$UserEventLogoutRequestImpl
     required TResult Function(UserEventLogoutRequest value) logoutRequest,
     required TResult Function(UserEventTokenRefreshRequest value)
         tokenRefreshRequest,
+    required TResult Function(UserGetMyProfile value) getMyProfile,
+    required TResult Function(UserUpdateUserInfo value) updateUserInfo,
+    required TResult Function(UserUpdateFCMToken value) updateFCMToken,
+    required TResult Function(UserDeleteUser value) deleteUser,
+    required TResult Function(UserCheckUserHasFamily value) checkUserHasFamily,
+    required TResult Function(UserGetUserById value) getUserById,
   }) {
     return logoutRequest(this);
   }
@@ -659,6 +827,12 @@ class _$UserEventLogoutRequestImpl
     TResult? Function(UserEventSignUpRequest value)? signUpRequest,
     TResult? Function(UserEventLogoutRequest value)? logoutRequest,
     TResult? Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult? Function(UserGetMyProfile value)? getMyProfile,
+    TResult? Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult? Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult? Function(UserDeleteUser value)? deleteUser,
+    TResult? Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult? Function(UserGetUserById value)? getUserById,
   }) {
     return logoutRequest?.call(this);
   }
@@ -671,6 +845,12 @@ class _$UserEventLogoutRequestImpl
     TResult Function(UserEventSignUpRequest value)? signUpRequest,
     TResult Function(UserEventLogoutRequest value)? logoutRequest,
     TResult Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult Function(UserGetMyProfile value)? getMyProfile,
+    TResult Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult Function(UserDeleteUser value)? deleteUser,
+    TResult Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult Function(UserGetUserById value)? getUserById,
     required TResult orElse(),
   }) {
     if (logoutRequest != null) {
@@ -739,6 +919,12 @@ class _$UserEventTokenRefreshRequestImpl
     required TResult Function(SignUpDto signUpDto) signUpRequest,
     required TResult Function() logoutRequest,
     required TResult Function() tokenRefreshRequest,
+    required TResult Function() getMyProfile,
+    required TResult Function() updateUserInfo,
+    required TResult Function(String id, String fcmToken) updateFCMToken,
+    required TResult Function(String id) deleteUser,
+    required TResult Function() checkUserHasFamily,
+    required TResult Function(String id) getUserById,
   }) {
     return tokenRefreshRequest();
   }
@@ -751,6 +937,12 @@ class _$UserEventTokenRefreshRequestImpl
     TResult? Function(SignUpDto signUpDto)? signUpRequest,
     TResult? Function()? logoutRequest,
     TResult? Function()? tokenRefreshRequest,
+    TResult? Function()? getMyProfile,
+    TResult? Function()? updateUserInfo,
+    TResult? Function(String id, String fcmToken)? updateFCMToken,
+    TResult? Function(String id)? deleteUser,
+    TResult? Function()? checkUserHasFamily,
+    TResult? Function(String id)? getUserById,
   }) {
     return tokenRefreshRequest?.call();
   }
@@ -763,6 +955,12 @@ class _$UserEventTokenRefreshRequestImpl
     TResult Function(SignUpDto signUpDto)? signUpRequest,
     TResult Function()? logoutRequest,
     TResult Function()? tokenRefreshRequest,
+    TResult Function()? getMyProfile,
+    TResult Function()? updateUserInfo,
+    TResult Function(String id, String fcmToken)? updateFCMToken,
+    TResult Function(String id)? deleteUser,
+    TResult Function()? checkUserHasFamily,
+    TResult Function(String id)? getUserById,
     required TResult orElse(),
   }) {
     if (tokenRefreshRequest != null) {
@@ -780,6 +978,12 @@ class _$UserEventTokenRefreshRequestImpl
     required TResult Function(UserEventLogoutRequest value) logoutRequest,
     required TResult Function(UserEventTokenRefreshRequest value)
         tokenRefreshRequest,
+    required TResult Function(UserGetMyProfile value) getMyProfile,
+    required TResult Function(UserUpdateUserInfo value) updateUserInfo,
+    required TResult Function(UserUpdateFCMToken value) updateFCMToken,
+    required TResult Function(UserDeleteUser value) deleteUser,
+    required TResult Function(UserCheckUserHasFamily value) checkUserHasFamily,
+    required TResult Function(UserGetUserById value) getUserById,
   }) {
     return tokenRefreshRequest(this);
   }
@@ -792,6 +996,12 @@ class _$UserEventTokenRefreshRequestImpl
     TResult? Function(UserEventSignUpRequest value)? signUpRequest,
     TResult? Function(UserEventLogoutRequest value)? logoutRequest,
     TResult? Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult? Function(UserGetMyProfile value)? getMyProfile,
+    TResult? Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult? Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult? Function(UserDeleteUser value)? deleteUser,
+    TResult? Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult? Function(UserGetUserById value)? getUserById,
   }) {
     return tokenRefreshRequest?.call(this);
   }
@@ -804,6 +1014,12 @@ class _$UserEventTokenRefreshRequestImpl
     TResult Function(UserEventSignUpRequest value)? signUpRequest,
     TResult Function(UserEventLogoutRequest value)? logoutRequest,
     TResult Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult Function(UserGetMyProfile value)? getMyProfile,
+    TResult Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult Function(UserDeleteUser value)? deleteUser,
+    TResult Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult Function(UserGetUserById value)? getUserById,
     required TResult orElse(),
   }) {
     if (tokenRefreshRequest != null) {
@@ -818,14 +1034,1125 @@ abstract class UserEventTokenRefreshRequest implements UserEvent {
       _$UserEventTokenRefreshRequestImpl;
 }
 
+/// @nodoc
+abstract class _$$UserGetMyProfileImplCopyWith<$Res> {
+  factory _$$UserGetMyProfileImplCopyWith(_$UserGetMyProfileImpl value,
+          $Res Function(_$UserGetMyProfileImpl) then) =
+      __$$UserGetMyProfileImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UserGetMyProfileImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserGetMyProfileImpl>
+    implements _$$UserGetMyProfileImplCopyWith<$Res> {
+  __$$UserGetMyProfileImplCopyWithImpl(_$UserGetMyProfileImpl _value,
+      $Res Function(_$UserGetMyProfileImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$UserGetMyProfileImpl
+    with DiagnosticableTreeMixin
+    implements UserGetMyProfile {
+  const _$UserGetMyProfileImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UserEvent.getMyProfile()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'UserEvent.getMyProfile'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$UserGetMyProfileImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(LoginDto loginDto) loginRequest,
+    required TResult Function(SignUpDto signUpDto) signUpRequest,
+    required TResult Function() logoutRequest,
+    required TResult Function() tokenRefreshRequest,
+    required TResult Function() getMyProfile,
+    required TResult Function() updateUserInfo,
+    required TResult Function(String id, String fcmToken) updateFCMToken,
+    required TResult Function(String id) deleteUser,
+    required TResult Function() checkUserHasFamily,
+    required TResult Function(String id) getUserById,
+  }) {
+    return getMyProfile();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(LoginDto loginDto)? loginRequest,
+    TResult? Function(SignUpDto signUpDto)? signUpRequest,
+    TResult? Function()? logoutRequest,
+    TResult? Function()? tokenRefreshRequest,
+    TResult? Function()? getMyProfile,
+    TResult? Function()? updateUserInfo,
+    TResult? Function(String id, String fcmToken)? updateFCMToken,
+    TResult? Function(String id)? deleteUser,
+    TResult? Function()? checkUserHasFamily,
+    TResult? Function(String id)? getUserById,
+  }) {
+    return getMyProfile?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(LoginDto loginDto)? loginRequest,
+    TResult Function(SignUpDto signUpDto)? signUpRequest,
+    TResult Function()? logoutRequest,
+    TResult Function()? tokenRefreshRequest,
+    TResult Function()? getMyProfile,
+    TResult Function()? updateUserInfo,
+    TResult Function(String id, String fcmToken)? updateFCMToken,
+    TResult Function(String id)? deleteUser,
+    TResult Function()? checkUserHasFamily,
+    TResult Function(String id)? getUserById,
+    required TResult orElse(),
+  }) {
+    if (getMyProfile != null) {
+      return getMyProfile();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthInitial value) initial,
+    required TResult Function(UserEventLoginRequest value) loginRequest,
+    required TResult Function(UserEventSignUpRequest value) signUpRequest,
+    required TResult Function(UserEventLogoutRequest value) logoutRequest,
+    required TResult Function(UserEventTokenRefreshRequest value)
+        tokenRefreshRequest,
+    required TResult Function(UserGetMyProfile value) getMyProfile,
+    required TResult Function(UserUpdateUserInfo value) updateUserInfo,
+    required TResult Function(UserUpdateFCMToken value) updateFCMToken,
+    required TResult Function(UserDeleteUser value) deleteUser,
+    required TResult Function(UserCheckUserHasFamily value) checkUserHasFamily,
+    required TResult Function(UserGetUserById value) getUserById,
+  }) {
+    return getMyProfile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthInitial value)? initial,
+    TResult? Function(UserEventLoginRequest value)? loginRequest,
+    TResult? Function(UserEventSignUpRequest value)? signUpRequest,
+    TResult? Function(UserEventLogoutRequest value)? logoutRequest,
+    TResult? Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult? Function(UserGetMyProfile value)? getMyProfile,
+    TResult? Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult? Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult? Function(UserDeleteUser value)? deleteUser,
+    TResult? Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult? Function(UserGetUserById value)? getUserById,
+  }) {
+    return getMyProfile?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthInitial value)? initial,
+    TResult Function(UserEventLoginRequest value)? loginRequest,
+    TResult Function(UserEventSignUpRequest value)? signUpRequest,
+    TResult Function(UserEventLogoutRequest value)? logoutRequest,
+    TResult Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult Function(UserGetMyProfile value)? getMyProfile,
+    TResult Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult Function(UserDeleteUser value)? deleteUser,
+    TResult Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult Function(UserGetUserById value)? getUserById,
+    required TResult orElse(),
+  }) {
+    if (getMyProfile != null) {
+      return getMyProfile(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserGetMyProfile implements UserEvent {
+  const factory UserGetMyProfile() = _$UserGetMyProfileImpl;
+}
+
+/// @nodoc
+abstract class _$$UserUpdateUserInfoImplCopyWith<$Res> {
+  factory _$$UserUpdateUserInfoImplCopyWith(_$UserUpdateUserInfoImpl value,
+          $Res Function(_$UserUpdateUserInfoImpl) then) =
+      __$$UserUpdateUserInfoImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UserUpdateUserInfoImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserUpdateUserInfoImpl>
+    implements _$$UserUpdateUserInfoImplCopyWith<$Res> {
+  __$$UserUpdateUserInfoImplCopyWithImpl(_$UserUpdateUserInfoImpl _value,
+      $Res Function(_$UserUpdateUserInfoImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$UserUpdateUserInfoImpl
+    with DiagnosticableTreeMixin
+    implements UserUpdateUserInfo {
+  const _$UserUpdateUserInfoImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UserEvent.updateUserInfo()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'UserEvent.updateUserInfo'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$UserUpdateUserInfoImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(LoginDto loginDto) loginRequest,
+    required TResult Function(SignUpDto signUpDto) signUpRequest,
+    required TResult Function() logoutRequest,
+    required TResult Function() tokenRefreshRequest,
+    required TResult Function() getMyProfile,
+    required TResult Function() updateUserInfo,
+    required TResult Function(String id, String fcmToken) updateFCMToken,
+    required TResult Function(String id) deleteUser,
+    required TResult Function() checkUserHasFamily,
+    required TResult Function(String id) getUserById,
+  }) {
+    return updateUserInfo();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(LoginDto loginDto)? loginRequest,
+    TResult? Function(SignUpDto signUpDto)? signUpRequest,
+    TResult? Function()? logoutRequest,
+    TResult? Function()? tokenRefreshRequest,
+    TResult? Function()? getMyProfile,
+    TResult? Function()? updateUserInfo,
+    TResult? Function(String id, String fcmToken)? updateFCMToken,
+    TResult? Function(String id)? deleteUser,
+    TResult? Function()? checkUserHasFamily,
+    TResult? Function(String id)? getUserById,
+  }) {
+    return updateUserInfo?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(LoginDto loginDto)? loginRequest,
+    TResult Function(SignUpDto signUpDto)? signUpRequest,
+    TResult Function()? logoutRequest,
+    TResult Function()? tokenRefreshRequest,
+    TResult Function()? getMyProfile,
+    TResult Function()? updateUserInfo,
+    TResult Function(String id, String fcmToken)? updateFCMToken,
+    TResult Function(String id)? deleteUser,
+    TResult Function()? checkUserHasFamily,
+    TResult Function(String id)? getUserById,
+    required TResult orElse(),
+  }) {
+    if (updateUserInfo != null) {
+      return updateUserInfo();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthInitial value) initial,
+    required TResult Function(UserEventLoginRequest value) loginRequest,
+    required TResult Function(UserEventSignUpRequest value) signUpRequest,
+    required TResult Function(UserEventLogoutRequest value) logoutRequest,
+    required TResult Function(UserEventTokenRefreshRequest value)
+        tokenRefreshRequest,
+    required TResult Function(UserGetMyProfile value) getMyProfile,
+    required TResult Function(UserUpdateUserInfo value) updateUserInfo,
+    required TResult Function(UserUpdateFCMToken value) updateFCMToken,
+    required TResult Function(UserDeleteUser value) deleteUser,
+    required TResult Function(UserCheckUserHasFamily value) checkUserHasFamily,
+    required TResult Function(UserGetUserById value) getUserById,
+  }) {
+    return updateUserInfo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthInitial value)? initial,
+    TResult? Function(UserEventLoginRequest value)? loginRequest,
+    TResult? Function(UserEventSignUpRequest value)? signUpRequest,
+    TResult? Function(UserEventLogoutRequest value)? logoutRequest,
+    TResult? Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult? Function(UserGetMyProfile value)? getMyProfile,
+    TResult? Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult? Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult? Function(UserDeleteUser value)? deleteUser,
+    TResult? Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult? Function(UserGetUserById value)? getUserById,
+  }) {
+    return updateUserInfo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthInitial value)? initial,
+    TResult Function(UserEventLoginRequest value)? loginRequest,
+    TResult Function(UserEventSignUpRequest value)? signUpRequest,
+    TResult Function(UserEventLogoutRequest value)? logoutRequest,
+    TResult Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult Function(UserGetMyProfile value)? getMyProfile,
+    TResult Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult Function(UserDeleteUser value)? deleteUser,
+    TResult Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult Function(UserGetUserById value)? getUserById,
+    required TResult orElse(),
+  }) {
+    if (updateUserInfo != null) {
+      return updateUserInfo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserUpdateUserInfo implements UserEvent {
+  const factory UserUpdateUserInfo() = _$UserUpdateUserInfoImpl;
+}
+
+/// @nodoc
+abstract class _$$UserUpdateFCMTokenImplCopyWith<$Res> {
+  factory _$$UserUpdateFCMTokenImplCopyWith(_$UserUpdateFCMTokenImpl value,
+          $Res Function(_$UserUpdateFCMTokenImpl) then) =
+      __$$UserUpdateFCMTokenImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id, String fcmToken});
+}
+
+/// @nodoc
+class __$$UserUpdateFCMTokenImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserUpdateFCMTokenImpl>
+    implements _$$UserUpdateFCMTokenImplCopyWith<$Res> {
+  __$$UserUpdateFCMTokenImplCopyWithImpl(_$UserUpdateFCMTokenImpl _value,
+      $Res Function(_$UserUpdateFCMTokenImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? fcmToken = null,
+  }) {
+    return _then(_$UserUpdateFCMTokenImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      fcmToken: null == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UserUpdateFCMTokenImpl
+    with DiagnosticableTreeMixin
+    implements UserUpdateFCMToken {
+  const _$UserUpdateFCMTokenImpl({required this.id, required this.fcmToken});
+
+  @override
+  final String id;
+  @override
+  final String fcmToken;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UserEvent.updateFCMToken(id: $id, fcmToken: $fcmToken)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'UserEvent.updateFCMToken'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('fcmToken', fcmToken));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserUpdateFCMTokenImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.fcmToken, fcmToken) ||
+                other.fcmToken == fcmToken));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, fcmToken);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserUpdateFCMTokenImplCopyWith<_$UserUpdateFCMTokenImpl> get copyWith =>
+      __$$UserUpdateFCMTokenImplCopyWithImpl<_$UserUpdateFCMTokenImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(LoginDto loginDto) loginRequest,
+    required TResult Function(SignUpDto signUpDto) signUpRequest,
+    required TResult Function() logoutRequest,
+    required TResult Function() tokenRefreshRequest,
+    required TResult Function() getMyProfile,
+    required TResult Function() updateUserInfo,
+    required TResult Function(String id, String fcmToken) updateFCMToken,
+    required TResult Function(String id) deleteUser,
+    required TResult Function() checkUserHasFamily,
+    required TResult Function(String id) getUserById,
+  }) {
+    return updateFCMToken(id, fcmToken);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(LoginDto loginDto)? loginRequest,
+    TResult? Function(SignUpDto signUpDto)? signUpRequest,
+    TResult? Function()? logoutRequest,
+    TResult? Function()? tokenRefreshRequest,
+    TResult? Function()? getMyProfile,
+    TResult? Function()? updateUserInfo,
+    TResult? Function(String id, String fcmToken)? updateFCMToken,
+    TResult? Function(String id)? deleteUser,
+    TResult? Function()? checkUserHasFamily,
+    TResult? Function(String id)? getUserById,
+  }) {
+    return updateFCMToken?.call(id, fcmToken);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(LoginDto loginDto)? loginRequest,
+    TResult Function(SignUpDto signUpDto)? signUpRequest,
+    TResult Function()? logoutRequest,
+    TResult Function()? tokenRefreshRequest,
+    TResult Function()? getMyProfile,
+    TResult Function()? updateUserInfo,
+    TResult Function(String id, String fcmToken)? updateFCMToken,
+    TResult Function(String id)? deleteUser,
+    TResult Function()? checkUserHasFamily,
+    TResult Function(String id)? getUserById,
+    required TResult orElse(),
+  }) {
+    if (updateFCMToken != null) {
+      return updateFCMToken(id, fcmToken);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthInitial value) initial,
+    required TResult Function(UserEventLoginRequest value) loginRequest,
+    required TResult Function(UserEventSignUpRequest value) signUpRequest,
+    required TResult Function(UserEventLogoutRequest value) logoutRequest,
+    required TResult Function(UserEventTokenRefreshRequest value)
+        tokenRefreshRequest,
+    required TResult Function(UserGetMyProfile value) getMyProfile,
+    required TResult Function(UserUpdateUserInfo value) updateUserInfo,
+    required TResult Function(UserUpdateFCMToken value) updateFCMToken,
+    required TResult Function(UserDeleteUser value) deleteUser,
+    required TResult Function(UserCheckUserHasFamily value) checkUserHasFamily,
+    required TResult Function(UserGetUserById value) getUserById,
+  }) {
+    return updateFCMToken(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthInitial value)? initial,
+    TResult? Function(UserEventLoginRequest value)? loginRequest,
+    TResult? Function(UserEventSignUpRequest value)? signUpRequest,
+    TResult? Function(UserEventLogoutRequest value)? logoutRequest,
+    TResult? Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult? Function(UserGetMyProfile value)? getMyProfile,
+    TResult? Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult? Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult? Function(UserDeleteUser value)? deleteUser,
+    TResult? Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult? Function(UserGetUserById value)? getUserById,
+  }) {
+    return updateFCMToken?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthInitial value)? initial,
+    TResult Function(UserEventLoginRequest value)? loginRequest,
+    TResult Function(UserEventSignUpRequest value)? signUpRequest,
+    TResult Function(UserEventLogoutRequest value)? logoutRequest,
+    TResult Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult Function(UserGetMyProfile value)? getMyProfile,
+    TResult Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult Function(UserDeleteUser value)? deleteUser,
+    TResult Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult Function(UserGetUserById value)? getUserById,
+    required TResult orElse(),
+  }) {
+    if (updateFCMToken != null) {
+      return updateFCMToken(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserUpdateFCMToken implements UserEvent {
+  const factory UserUpdateFCMToken(
+      {required final String id,
+      required final String fcmToken}) = _$UserUpdateFCMTokenImpl;
+
+  String get id;
+  String get fcmToken;
+  @JsonKey(ignore: true)
+  _$$UserUpdateFCMTokenImplCopyWith<_$UserUpdateFCMTokenImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UserDeleteUserImplCopyWith<$Res> {
+  factory _$$UserDeleteUserImplCopyWith(_$UserDeleteUserImpl value,
+          $Res Function(_$UserDeleteUserImpl) then) =
+      __$$UserDeleteUserImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$UserDeleteUserImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserDeleteUserImpl>
+    implements _$$UserDeleteUserImplCopyWith<$Res> {
+  __$$UserDeleteUserImplCopyWithImpl(
+      _$UserDeleteUserImpl _value, $Res Function(_$UserDeleteUserImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$UserDeleteUserImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UserDeleteUserImpl
+    with DiagnosticableTreeMixin
+    implements UserDeleteUser {
+  const _$UserDeleteUserImpl({required this.id});
+
+  @override
+  final String id;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UserEvent.deleteUser(id: $id)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'UserEvent.deleteUser'))
+      ..add(DiagnosticsProperty('id', id));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserDeleteUserImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserDeleteUserImplCopyWith<_$UserDeleteUserImpl> get copyWith =>
+      __$$UserDeleteUserImplCopyWithImpl<_$UserDeleteUserImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(LoginDto loginDto) loginRequest,
+    required TResult Function(SignUpDto signUpDto) signUpRequest,
+    required TResult Function() logoutRequest,
+    required TResult Function() tokenRefreshRequest,
+    required TResult Function() getMyProfile,
+    required TResult Function() updateUserInfo,
+    required TResult Function(String id, String fcmToken) updateFCMToken,
+    required TResult Function(String id) deleteUser,
+    required TResult Function() checkUserHasFamily,
+    required TResult Function(String id) getUserById,
+  }) {
+    return deleteUser(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(LoginDto loginDto)? loginRequest,
+    TResult? Function(SignUpDto signUpDto)? signUpRequest,
+    TResult? Function()? logoutRequest,
+    TResult? Function()? tokenRefreshRequest,
+    TResult? Function()? getMyProfile,
+    TResult? Function()? updateUserInfo,
+    TResult? Function(String id, String fcmToken)? updateFCMToken,
+    TResult? Function(String id)? deleteUser,
+    TResult? Function()? checkUserHasFamily,
+    TResult? Function(String id)? getUserById,
+  }) {
+    return deleteUser?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(LoginDto loginDto)? loginRequest,
+    TResult Function(SignUpDto signUpDto)? signUpRequest,
+    TResult Function()? logoutRequest,
+    TResult Function()? tokenRefreshRequest,
+    TResult Function()? getMyProfile,
+    TResult Function()? updateUserInfo,
+    TResult Function(String id, String fcmToken)? updateFCMToken,
+    TResult Function(String id)? deleteUser,
+    TResult Function()? checkUserHasFamily,
+    TResult Function(String id)? getUserById,
+    required TResult orElse(),
+  }) {
+    if (deleteUser != null) {
+      return deleteUser(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthInitial value) initial,
+    required TResult Function(UserEventLoginRequest value) loginRequest,
+    required TResult Function(UserEventSignUpRequest value) signUpRequest,
+    required TResult Function(UserEventLogoutRequest value) logoutRequest,
+    required TResult Function(UserEventTokenRefreshRequest value)
+        tokenRefreshRequest,
+    required TResult Function(UserGetMyProfile value) getMyProfile,
+    required TResult Function(UserUpdateUserInfo value) updateUserInfo,
+    required TResult Function(UserUpdateFCMToken value) updateFCMToken,
+    required TResult Function(UserDeleteUser value) deleteUser,
+    required TResult Function(UserCheckUserHasFamily value) checkUserHasFamily,
+    required TResult Function(UserGetUserById value) getUserById,
+  }) {
+    return deleteUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthInitial value)? initial,
+    TResult? Function(UserEventLoginRequest value)? loginRequest,
+    TResult? Function(UserEventSignUpRequest value)? signUpRequest,
+    TResult? Function(UserEventLogoutRequest value)? logoutRequest,
+    TResult? Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult? Function(UserGetMyProfile value)? getMyProfile,
+    TResult? Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult? Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult? Function(UserDeleteUser value)? deleteUser,
+    TResult? Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult? Function(UserGetUserById value)? getUserById,
+  }) {
+    return deleteUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthInitial value)? initial,
+    TResult Function(UserEventLoginRequest value)? loginRequest,
+    TResult Function(UserEventSignUpRequest value)? signUpRequest,
+    TResult Function(UserEventLogoutRequest value)? logoutRequest,
+    TResult Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult Function(UserGetMyProfile value)? getMyProfile,
+    TResult Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult Function(UserDeleteUser value)? deleteUser,
+    TResult Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult Function(UserGetUserById value)? getUserById,
+    required TResult orElse(),
+  }) {
+    if (deleteUser != null) {
+      return deleteUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserDeleteUser implements UserEvent {
+  const factory UserDeleteUser({required final String id}) =
+      _$UserDeleteUserImpl;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$$UserDeleteUserImplCopyWith<_$UserDeleteUserImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UserCheckUserHasFamilyImplCopyWith<$Res> {
+  factory _$$UserCheckUserHasFamilyImplCopyWith(
+          _$UserCheckUserHasFamilyImpl value,
+          $Res Function(_$UserCheckUserHasFamilyImpl) then) =
+      __$$UserCheckUserHasFamilyImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UserCheckUserHasFamilyImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserCheckUserHasFamilyImpl>
+    implements _$$UserCheckUserHasFamilyImplCopyWith<$Res> {
+  __$$UserCheckUserHasFamilyImplCopyWithImpl(
+      _$UserCheckUserHasFamilyImpl _value,
+      $Res Function(_$UserCheckUserHasFamilyImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$UserCheckUserHasFamilyImpl
+    with DiagnosticableTreeMixin
+    implements UserCheckUserHasFamily {
+  const _$UserCheckUserHasFamilyImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UserEvent.checkUserHasFamily()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'UserEvent.checkUserHasFamily'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserCheckUserHasFamilyImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(LoginDto loginDto) loginRequest,
+    required TResult Function(SignUpDto signUpDto) signUpRequest,
+    required TResult Function() logoutRequest,
+    required TResult Function() tokenRefreshRequest,
+    required TResult Function() getMyProfile,
+    required TResult Function() updateUserInfo,
+    required TResult Function(String id, String fcmToken) updateFCMToken,
+    required TResult Function(String id) deleteUser,
+    required TResult Function() checkUserHasFamily,
+    required TResult Function(String id) getUserById,
+  }) {
+    return checkUserHasFamily();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(LoginDto loginDto)? loginRequest,
+    TResult? Function(SignUpDto signUpDto)? signUpRequest,
+    TResult? Function()? logoutRequest,
+    TResult? Function()? tokenRefreshRequest,
+    TResult? Function()? getMyProfile,
+    TResult? Function()? updateUserInfo,
+    TResult? Function(String id, String fcmToken)? updateFCMToken,
+    TResult? Function(String id)? deleteUser,
+    TResult? Function()? checkUserHasFamily,
+    TResult? Function(String id)? getUserById,
+  }) {
+    return checkUserHasFamily?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(LoginDto loginDto)? loginRequest,
+    TResult Function(SignUpDto signUpDto)? signUpRequest,
+    TResult Function()? logoutRequest,
+    TResult Function()? tokenRefreshRequest,
+    TResult Function()? getMyProfile,
+    TResult Function()? updateUserInfo,
+    TResult Function(String id, String fcmToken)? updateFCMToken,
+    TResult Function(String id)? deleteUser,
+    TResult Function()? checkUserHasFamily,
+    TResult Function(String id)? getUserById,
+    required TResult orElse(),
+  }) {
+    if (checkUserHasFamily != null) {
+      return checkUserHasFamily();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthInitial value) initial,
+    required TResult Function(UserEventLoginRequest value) loginRequest,
+    required TResult Function(UserEventSignUpRequest value) signUpRequest,
+    required TResult Function(UserEventLogoutRequest value) logoutRequest,
+    required TResult Function(UserEventTokenRefreshRequest value)
+        tokenRefreshRequest,
+    required TResult Function(UserGetMyProfile value) getMyProfile,
+    required TResult Function(UserUpdateUserInfo value) updateUserInfo,
+    required TResult Function(UserUpdateFCMToken value) updateFCMToken,
+    required TResult Function(UserDeleteUser value) deleteUser,
+    required TResult Function(UserCheckUserHasFamily value) checkUserHasFamily,
+    required TResult Function(UserGetUserById value) getUserById,
+  }) {
+    return checkUserHasFamily(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthInitial value)? initial,
+    TResult? Function(UserEventLoginRequest value)? loginRequest,
+    TResult? Function(UserEventSignUpRequest value)? signUpRequest,
+    TResult? Function(UserEventLogoutRequest value)? logoutRequest,
+    TResult? Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult? Function(UserGetMyProfile value)? getMyProfile,
+    TResult? Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult? Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult? Function(UserDeleteUser value)? deleteUser,
+    TResult? Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult? Function(UserGetUserById value)? getUserById,
+  }) {
+    return checkUserHasFamily?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthInitial value)? initial,
+    TResult Function(UserEventLoginRequest value)? loginRequest,
+    TResult Function(UserEventSignUpRequest value)? signUpRequest,
+    TResult Function(UserEventLogoutRequest value)? logoutRequest,
+    TResult Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult Function(UserGetMyProfile value)? getMyProfile,
+    TResult Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult Function(UserDeleteUser value)? deleteUser,
+    TResult Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult Function(UserGetUserById value)? getUserById,
+    required TResult orElse(),
+  }) {
+    if (checkUserHasFamily != null) {
+      return checkUserHasFamily(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserCheckUserHasFamily implements UserEvent {
+  const factory UserCheckUserHasFamily() = _$UserCheckUserHasFamilyImpl;
+}
+
+/// @nodoc
+abstract class _$$UserGetUserByIdImplCopyWith<$Res> {
+  factory _$$UserGetUserByIdImplCopyWith(_$UserGetUserByIdImpl value,
+          $Res Function(_$UserGetUserByIdImpl) then) =
+      __$$UserGetUserByIdImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$UserGetUserByIdImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserGetUserByIdImpl>
+    implements _$$UserGetUserByIdImplCopyWith<$Res> {
+  __$$UserGetUserByIdImplCopyWithImpl(
+      _$UserGetUserByIdImpl _value, $Res Function(_$UserGetUserByIdImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$UserGetUserByIdImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UserGetUserByIdImpl
+    with DiagnosticableTreeMixin
+    implements UserGetUserById {
+  const _$UserGetUserByIdImpl({required this.id});
+
+  @override
+  final String id;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UserEvent.getUserById(id: $id)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'UserEvent.getUserById'))
+      ..add(DiagnosticsProperty('id', id));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserGetUserByIdImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserGetUserByIdImplCopyWith<_$UserGetUserByIdImpl> get copyWith =>
+      __$$UserGetUserByIdImplCopyWithImpl<_$UserGetUserByIdImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(LoginDto loginDto) loginRequest,
+    required TResult Function(SignUpDto signUpDto) signUpRequest,
+    required TResult Function() logoutRequest,
+    required TResult Function() tokenRefreshRequest,
+    required TResult Function() getMyProfile,
+    required TResult Function() updateUserInfo,
+    required TResult Function(String id, String fcmToken) updateFCMToken,
+    required TResult Function(String id) deleteUser,
+    required TResult Function() checkUserHasFamily,
+    required TResult Function(String id) getUserById,
+  }) {
+    return getUserById(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(LoginDto loginDto)? loginRequest,
+    TResult? Function(SignUpDto signUpDto)? signUpRequest,
+    TResult? Function()? logoutRequest,
+    TResult? Function()? tokenRefreshRequest,
+    TResult? Function()? getMyProfile,
+    TResult? Function()? updateUserInfo,
+    TResult? Function(String id, String fcmToken)? updateFCMToken,
+    TResult? Function(String id)? deleteUser,
+    TResult? Function()? checkUserHasFamily,
+    TResult? Function(String id)? getUserById,
+  }) {
+    return getUserById?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(LoginDto loginDto)? loginRequest,
+    TResult Function(SignUpDto signUpDto)? signUpRequest,
+    TResult Function()? logoutRequest,
+    TResult Function()? tokenRefreshRequest,
+    TResult Function()? getMyProfile,
+    TResult Function()? updateUserInfo,
+    TResult Function(String id, String fcmToken)? updateFCMToken,
+    TResult Function(String id)? deleteUser,
+    TResult Function()? checkUserHasFamily,
+    TResult Function(String id)? getUserById,
+    required TResult orElse(),
+  }) {
+    if (getUserById != null) {
+      return getUserById(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthInitial value) initial,
+    required TResult Function(UserEventLoginRequest value) loginRequest,
+    required TResult Function(UserEventSignUpRequest value) signUpRequest,
+    required TResult Function(UserEventLogoutRequest value) logoutRequest,
+    required TResult Function(UserEventTokenRefreshRequest value)
+        tokenRefreshRequest,
+    required TResult Function(UserGetMyProfile value) getMyProfile,
+    required TResult Function(UserUpdateUserInfo value) updateUserInfo,
+    required TResult Function(UserUpdateFCMToken value) updateFCMToken,
+    required TResult Function(UserDeleteUser value) deleteUser,
+    required TResult Function(UserCheckUserHasFamily value) checkUserHasFamily,
+    required TResult Function(UserGetUserById value) getUserById,
+  }) {
+    return getUserById(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthInitial value)? initial,
+    TResult? Function(UserEventLoginRequest value)? loginRequest,
+    TResult? Function(UserEventSignUpRequest value)? signUpRequest,
+    TResult? Function(UserEventLogoutRequest value)? logoutRequest,
+    TResult? Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult? Function(UserGetMyProfile value)? getMyProfile,
+    TResult? Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult? Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult? Function(UserDeleteUser value)? deleteUser,
+    TResult? Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult? Function(UserGetUserById value)? getUserById,
+  }) {
+    return getUserById?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthInitial value)? initial,
+    TResult Function(UserEventLoginRequest value)? loginRequest,
+    TResult Function(UserEventSignUpRequest value)? signUpRequest,
+    TResult Function(UserEventLogoutRequest value)? logoutRequest,
+    TResult Function(UserEventTokenRefreshRequest value)? tokenRefreshRequest,
+    TResult Function(UserGetMyProfile value)? getMyProfile,
+    TResult Function(UserUpdateUserInfo value)? updateUserInfo,
+    TResult Function(UserUpdateFCMToken value)? updateFCMToken,
+    TResult Function(UserDeleteUser value)? deleteUser,
+    TResult Function(UserCheckUserHasFamily value)? checkUserHasFamily,
+    TResult Function(UserGetUserById value)? getUserById,
+    required TResult orElse(),
+  }) {
+    if (getUserById != null) {
+      return getUserById(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserGetUserById implements UserEvent {
+  const factory UserGetUserById({required final String id}) =
+      _$UserGetUserByIdImpl;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$$UserGetUserByIdImplCopyWith<_$UserGetUserByIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 UserState _$UserStateFromJson(Map<String, dynamic> json) {
   return _UserState.fromJson(json);
 }
 
 /// @nodoc
 mixin _$UserState {
-  AuthStatus get status => throw _privateConstructorUsedError;
+  UserStatus get status => throw _privateConstructorUsedError;
   User get user => throw _privateConstructorUsedError;
+  bool get userHasFamily => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   String get loadingMessage => throw _privateConstructorUsedError;
   String get successMessage => throw _privateConstructorUsedError;
@@ -842,8 +2169,9 @@ abstract class $UserStateCopyWith<$Res> {
       _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
   $Res call(
-      {AuthStatus status,
+      {UserStatus status,
       User user,
+      bool userHasFamily,
       String errorMessage,
       String loadingMessage,
       String successMessage});
@@ -864,6 +2192,7 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
   $Res call({
     Object? status = null,
     Object? user = freezed,
+    Object? userHasFamily = null,
     Object? errorMessage = null,
     Object? loadingMessage = null,
     Object? successMessage = null,
@@ -872,11 +2201,15 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as AuthStatus,
+              as UserStatus,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
+      userHasFamily: null == userHasFamily
+          ? _value.userHasFamily
+          : userHasFamily // ignore: cast_nullable_to_non_nullable
+              as bool,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -902,8 +2235,9 @@ abstract class _$$UserStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {AuthStatus status,
+      {UserStatus status,
       User user,
+      bool userHasFamily,
       String errorMessage,
       String loadingMessage,
       String successMessage});
@@ -922,6 +2256,7 @@ class __$$UserStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? user = freezed,
+    Object? userHasFamily = null,
     Object? errorMessage = null,
     Object? loadingMessage = null,
     Object? successMessage = null,
@@ -930,11 +2265,15 @@ class __$$UserStateImplCopyWithImpl<$Res>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as AuthStatus,
+              as UserStatus,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
+      userHasFamily: null == userHasFamily
+          ? _value.userHasFamily
+          : userHasFamily // ignore: cast_nullable_to_non_nullable
+              as bool,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -957,6 +2296,7 @@ class _$UserStateImpl with DiagnosticableTreeMixin implements _UserState {
   const _$UserStateImpl(
       {required this.status,
       required this.user,
+      required this.userHasFamily,
       required this.errorMessage,
       required this.loadingMessage,
       required this.successMessage});
@@ -965,9 +2305,11 @@ class _$UserStateImpl with DiagnosticableTreeMixin implements _UserState {
       _$$UserStateImplFromJson(json);
 
   @override
-  final AuthStatus status;
+  final UserStatus status;
   @override
   final User user;
+  @override
+  final bool userHasFamily;
   @override
   final String errorMessage;
   @override
@@ -977,7 +2319,7 @@ class _$UserStateImpl with DiagnosticableTreeMixin implements _UserState {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserState(status: $status, user: $user, errorMessage: $errorMessage, loadingMessage: $loadingMessage, successMessage: $successMessage)';
+    return 'UserState(status: $status, user: $user, userHasFamily: $userHasFamily, errorMessage: $errorMessage, loadingMessage: $loadingMessage, successMessage: $successMessage)';
   }
 
   @override
@@ -987,6 +2329,7 @@ class _$UserStateImpl with DiagnosticableTreeMixin implements _UserState {
       ..add(DiagnosticsProperty('type', 'UserState'))
       ..add(DiagnosticsProperty('status', status))
       ..add(DiagnosticsProperty('user', user))
+      ..add(DiagnosticsProperty('userHasFamily', userHasFamily))
       ..add(DiagnosticsProperty('errorMessage', errorMessage))
       ..add(DiagnosticsProperty('loadingMessage', loadingMessage))
       ..add(DiagnosticsProperty('successMessage', successMessage));
@@ -999,6 +2342,8 @@ class _$UserStateImpl with DiagnosticableTreeMixin implements _UserState {
             other is _$UserStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other.user, user) &&
+            (identical(other.userHasFamily, userHasFamily) ||
+                other.userHasFamily == userHasFamily) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
             (identical(other.loadingMessage, loadingMessage) ||
@@ -1013,6 +2358,7 @@ class _$UserStateImpl with DiagnosticableTreeMixin implements _UserState {
       runtimeType,
       status,
       const DeepCollectionEquality().hash(user),
+      userHasFamily,
       errorMessage,
       loadingMessage,
       successMessage);
@@ -1033,8 +2379,9 @@ class _$UserStateImpl with DiagnosticableTreeMixin implements _UserState {
 
 abstract class _UserState implements UserState {
   const factory _UserState(
-      {required final AuthStatus status,
+      {required final UserStatus status,
       required final User user,
+      required final bool userHasFamily,
       required final String errorMessage,
       required final String loadingMessage,
       required final String successMessage}) = _$UserStateImpl;
@@ -1043,9 +2390,11 @@ abstract class _UserState implements UserState {
       _$UserStateImpl.fromJson;
 
   @override
-  AuthStatus get status;
+  UserStatus get status;
   @override
   User get user;
+  @override
+  bool get userHasFamily;
   @override
   String get errorMessage;
   @override

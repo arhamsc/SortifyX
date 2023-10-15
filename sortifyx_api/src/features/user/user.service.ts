@@ -46,7 +46,10 @@ export class UserService {
       },
     });
     if (!user) throw new NotFoundException('User not registered with us.');
-    return { message: `Got user data with userId: ${user.id}.`, data: user };
+    return {
+      message: `Got user data of ${user.firstName} ${user.lastName}.`,
+      data: user,
+    };
   }
 
   async findOneByUsername(

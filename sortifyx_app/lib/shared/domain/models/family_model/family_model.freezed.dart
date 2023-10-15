@@ -19,7 +19,7 @@ FamilyModel _$FamilyModelFromJson(Map<String, dynamic> json) {
     case 'default':
       return Family.fromJson(json);
     case 'essentialFamilyFields':
-      return _FamilyEssentialFields.fromJson(json);
+      return FamilyEssentialFields.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'FamilyModel',
@@ -79,20 +79,20 @@ mixin _$FamilyModel {
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
     TResult Function(Family value) $default, {
-    required TResult Function(_FamilyEssentialFields value)
+    required TResult Function(FamilyEssentialFields value)
         essentialFamilyFields,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(Family value)? $default, {
-    TResult? Function(_FamilyEssentialFields value)? essentialFamilyFields,
+    TResult? Function(FamilyEssentialFields value)? essentialFamilyFields,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(Family value)? $default, {
-    TResult Function(_FamilyEssentialFields value)? essentialFamilyFields,
+    TResult Function(FamilyEssentialFields value)? essentialFamilyFields,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -397,7 +397,7 @@ class _$FamilyImpl extends Family with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
     TResult Function(Family value) $default, {
-    required TResult Function(_FamilyEssentialFields value)
+    required TResult Function(FamilyEssentialFields value)
         essentialFamilyFields,
   }) {
     return $default(this);
@@ -407,7 +407,7 @@ class _$FamilyImpl extends Family with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(Family value)? $default, {
-    TResult? Function(_FamilyEssentialFields value)? essentialFamilyFields,
+    TResult? Function(FamilyEssentialFields value)? essentialFamilyFields,
   }) {
     return $default?.call(this);
   }
@@ -416,7 +416,7 @@ class _$FamilyImpl extends Family with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(Family value)? $default, {
-    TResult Function(_FamilyEssentialFields value)? essentialFamilyFields,
+    TResult Function(FamilyEssentialFields value)? essentialFamilyFields,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -526,7 +526,7 @@ class __$$FamilyEssentialFieldsImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$FamilyEssentialFieldsImpl extends _FamilyEssentialFields
+class _$FamilyEssentialFieldsImpl extends FamilyEssentialFields
     with DiagnosticableTreeMixin {
   const _$FamilyEssentialFieldsImpl(
       {required this.id,
@@ -661,7 +661,7 @@ class _$FamilyEssentialFieldsImpl extends _FamilyEssentialFields
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
     TResult Function(Family value) $default, {
-    required TResult Function(_FamilyEssentialFields value)
+    required TResult Function(FamilyEssentialFields value)
         essentialFamilyFields,
   }) {
     return essentialFamilyFields(this);
@@ -671,7 +671,7 @@ class _$FamilyEssentialFieldsImpl extends _FamilyEssentialFields
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(Family value)? $default, {
-    TResult? Function(_FamilyEssentialFields value)? essentialFamilyFields,
+    TResult? Function(FamilyEssentialFields value)? essentialFamilyFields,
   }) {
     return essentialFamilyFields?.call(this);
   }
@@ -680,7 +680,7 @@ class _$FamilyEssentialFieldsImpl extends _FamilyEssentialFields
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(Family value)? $default, {
-    TResult Function(_FamilyEssentialFields value)? essentialFamilyFields,
+    TResult Function(FamilyEssentialFields value)? essentialFamilyFields,
     required TResult orElse(),
   }) {
     if (essentialFamilyFields != null) {
@@ -697,16 +697,16 @@ class _$FamilyEssentialFieldsImpl extends _FamilyEssentialFields
   }
 }
 
-abstract class _FamilyEssentialFields extends FamilyModel {
-  const factory _FamilyEssentialFields(
+abstract class FamilyEssentialFields extends FamilyModel {
+  const factory FamilyEssentialFields(
       {required final String id,
       required final String familyHeadId,
       final UserModel? familyHead,
       required final String familyName,
       required final String familyCode}) = _$FamilyEssentialFieldsImpl;
-  const _FamilyEssentialFields._() : super._();
+  const FamilyEssentialFields._() : super._();
 
-  factory _FamilyEssentialFields.fromJson(Map<String, dynamic> json) =
+  factory FamilyEssentialFields.fromJson(Map<String, dynamic> json) =
       _$FamilyEssentialFieldsImpl.fromJson;
 
   @override

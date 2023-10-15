@@ -25,6 +25,11 @@ export class UserController {
     return this.userService.findAll();
   }
 
+  @Get('my')
+  findMyProfile(@GetCurrentUser('id') userId: string) {
+    return this.userService.findOneById(userId);
+  }
+
   @Get('/check-my-family-count')
   checkUserHasFamily(@GetCurrentUser('id') userId: string) {
     return this.userService.checkUserHasFamily(userId);

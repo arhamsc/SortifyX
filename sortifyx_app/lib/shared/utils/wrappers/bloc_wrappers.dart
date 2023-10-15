@@ -17,14 +17,14 @@ FutureOr<void> userBlocWrapper<T>(
   } on DioException catch (e) {
     emit(
       state.copyWith(
-        status: AuthStatus.error,
+        status: UserStatus.error,
         errorMessage: getDioExceptionMessage(e),
       ),
     );
   } catch (e) {
     emit(
       state.copyWith(
-        status: AuthStatus.error,
+        status: UserStatus.error,
         errorMessage: "Something went wrong.",
       ),
     );
