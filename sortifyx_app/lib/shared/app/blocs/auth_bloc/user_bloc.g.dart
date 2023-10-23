@@ -14,8 +14,8 @@ _$UserStateImpl _$$UserStateImplFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = _$UserStateImpl(
-          status: $checkedConvert(
-              'status', (v) => $enumDecode(_$UserStatusEnumMap, v)),
+          status: $checkedConvert('status',
+              (v) => UserStateStatusEnum.fromJson(v as Map<String, dynamic>)),
           user: $checkedConvert(
               'user', (v) => User.fromJson(v as Map<String, dynamic>)),
           userHasFamily: $checkedConvert('userHasFamily', (v) => v as bool),
@@ -29,19 +29,10 @@ _$UserStateImpl _$$UserStateImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$UserStateImplToJson(_$UserStateImpl instance) =>
     <String, dynamic>{
-      'status': _$UserStatusEnumMap[instance.status]!,
+      'status': instance.status.toJson(),
       'user': instance.user.toJson(),
       'userHasFamily': instance.userHasFamily,
       'errorMessage': instance.errorMessage,
       'loadingMessage': instance.loadingMessage,
       'successMessage': instance.successMessage,
     };
-
-const _$UserStatusEnumMap = {
-  UserStatus.initial: 'initial',
-  UserStatus.loading: 'loading',
-  UserStatus.success: 'success',
-  UserStatus.error: 'error',
-  UserStatus.loggedOut: 'loggedOut',
-  UserStatus.loggedIn: 'loggedIn',
-};

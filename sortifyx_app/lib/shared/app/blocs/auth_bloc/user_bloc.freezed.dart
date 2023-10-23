@@ -2150,7 +2150,7 @@ UserState _$UserStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserState {
-  UserStatus get status => throw _privateConstructorUsedError;
+  UserStateStatusEnum get status => throw _privateConstructorUsedError;
   User get user => throw _privateConstructorUsedError;
   bool get userHasFamily => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
@@ -2169,12 +2169,14 @@ abstract class $UserStateCopyWith<$Res> {
       _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
   $Res call(
-      {UserStatus status,
+      {UserStateStatusEnum status,
       User user,
       bool userHasFamily,
       String errorMessage,
       String loadingMessage,
       String successMessage});
+
+  $UserStateStatusEnumCopyWith<$Res> get status;
 }
 
 /// @nodoc
@@ -2201,7 +2203,7 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as UserStatus,
+              as UserStateStatusEnum,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -2224,6 +2226,14 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
               as String,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserStateStatusEnumCopyWith<$Res> get status {
+    return $UserStateStatusEnumCopyWith<$Res>(_value.status, (value) {
+      return _then(_value.copyWith(status: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -2235,12 +2245,15 @@ abstract class _$$UserStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {UserStatus status,
+      {UserStateStatusEnum status,
       User user,
       bool userHasFamily,
       String errorMessage,
       String loadingMessage,
       String successMessage});
+
+  @override
+  $UserStateStatusEnumCopyWith<$Res> get status;
 }
 
 /// @nodoc
@@ -2265,7 +2278,7 @@ class __$$UserStateImplCopyWithImpl<$Res>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as UserStatus,
+              as UserStateStatusEnum,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -2305,7 +2318,7 @@ class _$UserStateImpl with DiagnosticableTreeMixin implements _UserState {
       _$$UserStateImplFromJson(json);
 
   @override
-  final UserStatus status;
+  final UserStateStatusEnum status;
   @override
   final User user;
   @override
@@ -2379,7 +2392,7 @@ class _$UserStateImpl with DiagnosticableTreeMixin implements _UserState {
 
 abstract class _UserState implements UserState {
   const factory _UserState(
-      {required final UserStatus status,
+      {required final UserStateStatusEnum status,
       required final User user,
       required final bool userHasFamily,
       required final String errorMessage,
@@ -2390,7 +2403,7 @@ abstract class _UserState implements UserState {
       _$UserStateImpl.fromJson;
 
   @override
-  UserStatus get status;
+  UserStateStatusEnum get status;
   @override
   User get user;
   @override

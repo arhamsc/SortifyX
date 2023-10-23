@@ -15,6 +15,25 @@ class AppRouter {
     // initialLocation: "${RouteDetails.authSignUpFamilyPage.path}?page=register",
     initialLocation: RouteDetails.authPage.path,
     navigatorKey: navigatorKey,
+    
+    redirect: (context, state) {
+      final userState = getIt.get<UserBloc>().state;
+      final bool loggedIn = userState.status.isLoggedIn;
+      // MyTalkerLogger.instance.talker.critical("Login State $loggedIn");
+      if (!loggedIn) {
+        return state.namedLocation(RouteDetails.authPage.name);
+      }
+      // MyTalkerLogger.instance.talker.critical("Not Redirected");
+      if (state.matchedLocation == RouteDetails.authPage.path) {
+        if (userState.userHasFamily) {
+          return state.namedLocation(RouteDetails.documentsHomePage.name);
+        } else {
+          return state.namedLocation(RouteDetails.authFamilyIntroPage.name);
+        }
+      }
+      return null;
+    },
+    
     routes: [
       GoRoute(
         name: RouteDetails.authPage.name,
@@ -31,13 +50,6 @@ class AppRouter {
         path: RouteDetails.documentsHomePage.path,
         builder: (context, state) => const DocumentsHome(),
       ),
-      // GoRoute(
-      //   name: RouteDetails.authSignUpFamilyPage.name,
-      //   path: RouteDetails.authSignUpFamilyPage.path,
-      //   builder: (context, state) => RegisterFamily(
-      //     familySignUpType: state.uri.queryParameters['page'],
-      //   ),
-      // ),
     ],
     observers: [
       getIt.get<MyTalker>().talkerRouteObserver,

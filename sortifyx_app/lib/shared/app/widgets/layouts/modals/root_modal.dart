@@ -3,14 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sortifyx_app/main.dart';
+import 'package:sortifyx_app/shared/app/app.dart';
 import 'package:sortifyx_app/shared/app/cubits/cubits.dart';
+import 'package:flash/flash.dart';
 
 class RootModal extends StatelessWidget {
-  const RootModal({
+  RootModal({
     Key? key,
     required this.child,
   }) : super(key: key);
   final Widget child;
+
+  // Flushbar? _flushbar;
+
+  // final flushBarKey = const GlobalObjectKey("MY_FLUSH_BAR");
+  FlashController? _flashController;
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ModalCubit, ModalState>(
@@ -33,26 +41,73 @@ class RootModal extends StatelessWidget {
             button2OnPressed,
             modalHeight,
           ) {
-            ScaffoldMessenger.of(navigatorKey.currentContext ?? context)
-                .showSnackBar(
-              SnackBar(
-                content: Container(
-                  child: Column(
-                    children: [
-                      Text(modalTitle),
-                      Text(modalMessage),
-                    ],
+            showFlash(
+              context: navigatorKey.currentContext ?? context,
+              persistent: false,
+              duration: modalType != ModalType.loading
+                  ? const Duration(seconds: 4)
+                  : null,
+              builder: (context, controller) {
+                _flashController = controller;
+                return FlashBar(
+                  controller: controller,
+                  behavior: FlashBehavior.floating,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    side: BorderSide(
+                      color: Palette.tertiaryDefault,
+                      // strokeAlign: BorderSide.strokeAlignInside,
+                    ),
                   ),
-                ),
-                backgroundColor: Colors.transparent,
-                behavior: SnackBarBehavior.floating,
-                elevation: 0.0,
-              ),
+                  showProgressIndicator: modalType == ModalType.loading,
+                  backgroundColor: modalType == ModalType.info
+                      ? Palette.secondaryDefault
+                      : modalType == ModalType.success
+                          ? Palette.quaternaryDefault
+                          : modalType == ModalType.error
+                              ? Colors.redAccent
+                              : modalType == ModalType.warning
+                                  ? Colors.yellowAccent
+                                  : Palette.secondaryDefault,
+                  elevation: 0,
+                  margin: const EdgeInsets.all(32.0),
+                  clipBehavior: Clip.antiAlias,
+                  indicatorColor: Colors.red,
+                  icon: modalType != ModalType.loading
+                      ? Icon(
+                          modalType == ModalType.info
+                              ? Icons.info_outline_rounded
+                              : modalType == ModalType.success
+                                  ? Icons.done_outline_rounded
+                                  : modalType == ModalType.error
+                                      ? Icons.error
+                                      : modalType == ModalType.warning
+                                          ? Icons.warning_amber_rounded
+                                          : Icons.account_circle_outlined,
+                          color: modalType == ModalType.info
+                              ? Palette.primaryDefault
+                              : modalType == ModalType.success
+                                  ? Palette.lightBG
+                                  : modalType == ModalType.error
+                                      ? Palette.secondaryDefault
+                                      : modalType == ModalType.warning
+                                          ? Palette.primaryDefault
+                                          : Palette.primaryDefault,
+                        )
+                      : null,
+                  insetAnimationDuration: const Duration(
+                    milliseconds: 500,
+                  ),
+                  title: TextTitleSmall(
+                    text: modalTitle,
+                  ),
+                  content: TextBodySmall(text: modalMessage),
+                );
+              },
             );
           },
           inactive: () {
-            ScaffoldMessenger.of(navigatorKey.currentContext ?? context)
-                .removeCurrentSnackBar();
+            _flashController?.dismiss();
           },
         );
       },

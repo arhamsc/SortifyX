@@ -1,10 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'modal_state.dart';
 part 'modal_cubit.freezed.dart';
 
+@singleton
 class ModalCubit extends Cubit<ModalState> {
   ModalCubit() : super(const ModalState.initial());
 

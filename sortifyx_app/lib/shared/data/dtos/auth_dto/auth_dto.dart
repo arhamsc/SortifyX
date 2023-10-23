@@ -13,12 +13,12 @@ class AuthDto with _$AuthDto {
     required String lastName,
     required String phone,
     String? fcmToken,
-  }) = LoginDto;
+  }) = SignUpDto;
 
   factory AuthDto.login({
     required String username,
     required String password,
-  }) = SignUpDto;
+  }) = LoginDto;
 
   factory AuthDto.fromJson(Map<String, dynamic> json) =>
       _$AuthDtoFromJson(json);

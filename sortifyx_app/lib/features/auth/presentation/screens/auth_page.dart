@@ -86,7 +86,7 @@ class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return RootScaffold(
       body: SizedBox(
         width: 100.w,
         height: 100.h,

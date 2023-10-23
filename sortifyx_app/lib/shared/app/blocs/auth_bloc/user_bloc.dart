@@ -4,6 +4,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sortifyx_app/shared/data/data.dart';
 import 'package:sortifyx_app/shared/domain/domain.dart';
+import 'package:sortifyx_app/shared/enums/user_state_status_enum/user_state_status_enum.dart';
 import 'package:sortifyx_app/shared/utils/wrappers/bloc_wrappers.dart';
 
 part 'user_bloc.g.dart';
@@ -18,7 +19,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
         super(UserState(
           errorMessage: "",
           loadingMessage: "",
-          status: UserStatus.initial,
+          status: UserStateStatusEnum.initial(),
           successMessage: "",
           user: UserModel.emptyUser(),
           userHasFamily: false,
@@ -63,7 +64,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
       () async {
         emit(
           state.copyWith(
-            status: UserStatus.loading,
+            status: UserStateStatusEnum.loading(),
             loadingMessage: "Logging you in, please wait.",
           ),
         );
@@ -74,7 +75,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
         emit(
           state.copyWith(
             user: user,
-            status: UserStatus.loggedIn,
+            status: UserStateStatusEnum.loggedIn(),
             successMessage: "Welcome back to SortifyX",
           ),
         );
@@ -89,7 +90,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
       () async {
         emit(
           state.copyWith(
-            status: UserStatus.loading,
+            status: UserStateStatusEnum.loading(),
             loadingMessage: "Signing you up, please wait.",
           ),
         );
@@ -100,7 +101,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
         emit(
           state.copyWith(
             user: user,
-            status: UserStatus.loggedIn,
+            status: UserStateStatusEnum.loggedIn(),
             successMessage: "Welcome to SortifyX",
           ),
         );
@@ -115,7 +116,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
       () async {
         emit(
           state.copyWith(
-            status: UserStatus.loading,
+            status: UserStateStatusEnum.loading(),
             loadingMessage: "Logging you in, please wait.",
           ),
         );
@@ -124,7 +125,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
         emit(
           state.copyWith(
             user: UserModel.emptyUser(),
-            status: UserStatus.loggedIn,
+            status: UserStateStatusEnum.loggedIn(),
             successMessage: "See you again later.",
           ),
         );
@@ -139,7 +140,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
       () async {
         emit(
           state.copyWith(
-            status: UserStatus.loading,
+            status: UserStateStatusEnum.loading(),
             loadingMessage: "Re-Logging you in, please wait.",
           ),
         );
@@ -148,7 +149,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
         emit(
           state.copyWith(
             user: user,
-            status: UserStatus.loggedIn,
+            status: UserStateStatusEnum.loggedIn(),
             successMessage: "Welcome back to SortifyX",
           ),
         );
@@ -162,7 +163,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
       () async {
         emit(
           state.copyWith(
-            status: UserStatus.loading,
+            status: UserStateStatusEnum.loading(),
             loadingMessage: "Fetching your profile, please wait.",
           ),
         );
@@ -171,7 +172,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
         emit(
           state.copyWith(
             user: user as User,
-            status: UserStatus.loggedIn,
+            status: UserStateStatusEnum.loggedIn(),
             successMessage: "Your profile has been fetched.",
           ),
         );
@@ -186,7 +187,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
       () async {
         emit(
           state.copyWith(
-            status: UserStatus.loading,
+            status: UserStateStatusEnum.loading(),
             loadingMessage: "Updating your info, please wait.",
           ),
         );
@@ -195,7 +196,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
             await _userRepo.updateFCMToken(event.id, event.fcmToken);
         emit(
           state.copyWith(
-            status: UserStatus.loggedIn,
+            status: UserStateStatusEnum.loggedIn(),
             successMessage: message,
           ),
         );
@@ -210,7 +211,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
       () async {
         emit(
           state.copyWith(
-            status: UserStatus.loading,
+            status: UserStateStatusEnum.loading(),
             loadingMessage: "Deleting your profile, please wait.",
           ),
         );
@@ -219,7 +220,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
         emit(
           state.copyWith(
             userHasFamily: res.data ?? false,
-            status: UserStatus.loggedIn,
+            status: UserStateStatusEnum.loggedIn(),
             successMessage: res.message,
           ),
         );
@@ -233,7 +234,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
       () async {
         emit(
           state.copyWith(
-            status: UserStatus.loading,
+            status: UserStateStatusEnum.loading(),
             loadingMessage: "Fetching profile, please wait.",
           ),
         );
@@ -241,7 +242,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
         final res = await _userRepo.getUserById(event.id);
         emit(
           state.copyWith(
-            status: UserStatus.loggedIn,
+            status: UserStateStatusEnum.loggedIn(),
             successMessage: res.message,
           ),
         );

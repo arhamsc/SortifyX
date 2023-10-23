@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:sortifyx_app/config/injectable/injectable.dart';
 import 'package:sortifyx_app/features/auth/application/cubits/cubits.dart';
 import 'package:sortifyx_app/shared/app/app.dart';
+import 'package:sortifyx_app/shared/app/cubits/cubits.dart';
 import 'package:sortifyx_app/shared/data/data.dart';
 import 'package:sortifyx_app/shared/utils/utils.dart';
 
@@ -55,26 +57,18 @@ class LoginForm extends StatelessWidget {
                   SizedBoxSeparator(
                     height: getHeight(30),
                   ),
-                  PrimaryAnimatedButton(
+                  PrimaryButton(
                     label: "Login",
                     variant: 2,
                     isSuccess: authState.status.isLoggedIn,
-                    successCallback: () {
-                      //TODO: Navigate to family reg page.
-                      // if (authState.user.familyId == null ||
-                      //     (authState.user.familyId ?? "").isEmpty) {
-                      //   context.goNamed(
-                      //     RouteDetails.authFamilyIntroPage.name,
-                      //   );
-                      // } else {
-                      context.goNamed(
-                        RouteDetails.documentsHomePage.name,
-                      );
-                      // }
-                    },
                     onPressed: () {
                       if (form.invalid) {
                         form.markAllAsTouched();
+                        getIt.get<ModalCubit>().showModal(
+                              modalMessage: "Check your credentials.",
+                              modalTitle: "Login",
+                              modalType: ModalType.error,
+                            );
                         return;
                       }
                       final loginDto = LoginDto.fromJson(form.value);
@@ -88,6 +82,19 @@ class LoginForm extends StatelessWidget {
                   SizedBoxSeparator(
                     height: getHeight(5),
                   ),
+                  // ElevatedButton(
+                  //     onPressed: () async {
+                  //       getIt.get<ModalCubit>().showModal(
+                  //             modalMessage: "Check your credentials.",
+                  //             modalTitle: "Login",
+                  //             modalType: ModalType.error,
+                  //           );
+                  //       // getIt
+                  //       //     .get<MyTalker>()
+                  //       //     .talker
+                  //       //     .log(getIt.get<UserBloc>().state);
+                  //     },
+                  //     child: Text("Te")),
                   GestureDetector(
                     onTap: onToggleAuth,
                     child: Text.rich(

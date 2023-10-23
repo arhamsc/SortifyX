@@ -23,7 +23,7 @@ extension ASExt on UserStatus {
 @freezed
 class UserState with _$UserState {
   const factory UserState({
-    required UserStatus status,
+    required UserStateStatusEnum status,
     required User user,
     required bool userHasFamily,
     required String errorMessage,

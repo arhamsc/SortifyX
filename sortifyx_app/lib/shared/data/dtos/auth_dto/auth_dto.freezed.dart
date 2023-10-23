@@ -17,9 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 AuthDto _$AuthDtoFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'signUp':
-      return LoginDto.fromJson(json);
-    case 'login':
       return SignUpDto.fromJson(json);
+    case 'login':
+      return LoginDto.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'AuthDto',
@@ -58,20 +58,20 @@ mixin _$AuthDto {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoginDto value) signUp,
-    required TResult Function(SignUpDto value) login,
+    required TResult Function(SignUpDto value) signUp,
+    required TResult Function(LoginDto value) login,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoginDto value)? signUp,
-    TResult? Function(SignUpDto value)? login,
+    TResult? Function(SignUpDto value)? signUp,
+    TResult? Function(LoginDto value)? login,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoginDto value)? signUp,
-    TResult Function(SignUpDto value)? login,
+    TResult Function(SignUpDto value)? signUp,
+    TResult Function(LoginDto value)? login,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -118,10 +118,11 @@ class _$AuthDtoCopyWithImpl<$Res, $Val extends AuthDto>
 }
 
 /// @nodoc
-abstract class _$$LoginDtoImplCopyWith<$Res> implements $AuthDtoCopyWith<$Res> {
-  factory _$$LoginDtoImplCopyWith(
-          _$LoginDtoImpl value, $Res Function(_$LoginDtoImpl) then) =
-      __$$LoginDtoImplCopyWithImpl<$Res>;
+abstract class _$$SignUpDtoImplCopyWith<$Res>
+    implements $AuthDtoCopyWith<$Res> {
+  factory _$$SignUpDtoImplCopyWith(
+          _$SignUpDtoImpl value, $Res Function(_$SignUpDtoImpl) then) =
+      __$$SignUpDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -135,11 +136,11 @@ abstract class _$$LoginDtoImplCopyWith<$Res> implements $AuthDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$LoginDtoImplCopyWithImpl<$Res>
-    extends _$AuthDtoCopyWithImpl<$Res, _$LoginDtoImpl>
-    implements _$$LoginDtoImplCopyWith<$Res> {
-  __$$LoginDtoImplCopyWithImpl(
-      _$LoginDtoImpl _value, $Res Function(_$LoginDtoImpl) _then)
+class __$$SignUpDtoImplCopyWithImpl<$Res>
+    extends _$AuthDtoCopyWithImpl<$Res, _$SignUpDtoImpl>
+    implements _$$SignUpDtoImplCopyWith<$Res> {
+  __$$SignUpDtoImplCopyWithImpl(
+      _$SignUpDtoImpl _value, $Res Function(_$SignUpDtoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -153,7 +154,7 @@ class __$$LoginDtoImplCopyWithImpl<$Res>
     Object? phone = null,
     Object? fcmToken = freezed,
   }) {
-    return _then(_$LoginDtoImpl(
+    return _then(_$SignUpDtoImpl(
       username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -188,8 +189,8 @@ class __$$LoginDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$LoginDtoImpl implements LoginDto {
-  _$LoginDtoImpl(
+class _$SignUpDtoImpl implements SignUpDto {
+  _$SignUpDtoImpl(
       {required this.username,
       required this.email,
       required this.password,
@@ -200,8 +201,8 @@ class _$LoginDtoImpl implements LoginDto {
       final String? $type})
       : $type = $type ?? 'signUp';
 
-  factory _$LoginDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LoginDtoImplFromJson(json);
+  factory _$SignUpDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SignUpDtoImplFromJson(json);
 
   @override
   final String username;
@@ -230,7 +231,7 @@ class _$LoginDtoImpl implements LoginDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoginDtoImpl &&
+            other is _$SignUpDtoImpl &&
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.email, email) || other.email == email) &&
@@ -253,8 +254,8 @@ class _$LoginDtoImpl implements LoginDto {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoginDtoImplCopyWith<_$LoginDtoImpl> get copyWith =>
-      __$$LoginDtoImplCopyWithImpl<_$LoginDtoImpl>(this, _$identity);
+  _$$SignUpDtoImplCopyWith<_$SignUpDtoImpl> get copyWith =>
+      __$$SignUpDtoImplCopyWithImpl<_$SignUpDtoImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -299,8 +300,8 @@ class _$LoginDtoImpl implements LoginDto {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoginDto value) signUp,
-    required TResult Function(SignUpDto value) login,
+    required TResult Function(SignUpDto value) signUp,
+    required TResult Function(LoginDto value) login,
   }) {
     return signUp(this);
   }
@@ -308,8 +309,8 @@ class _$LoginDtoImpl implements LoginDto {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoginDto value)? signUp,
-    TResult? Function(SignUpDto value)? login,
+    TResult? Function(SignUpDto value)? signUp,
+    TResult? Function(LoginDto value)? login,
   }) {
     return signUp?.call(this);
   }
@@ -317,8 +318,8 @@ class _$LoginDtoImpl implements LoginDto {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoginDto value)? signUp,
-    TResult Function(SignUpDto value)? login,
+    TResult Function(SignUpDto value)? signUp,
+    TResult Function(LoginDto value)? login,
     required TResult orElse(),
   }) {
     if (signUp != null) {
@@ -329,24 +330,24 @@ class _$LoginDtoImpl implements LoginDto {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LoginDtoImplToJson(
+    return _$$SignUpDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class LoginDto implements AuthDto {
-  factory LoginDto(
+abstract class SignUpDto implements AuthDto {
+  factory SignUpDto(
       {required final String username,
       required final String email,
       required final String password,
       required final String firstName,
       required final String lastName,
       required final String phone,
-      final String? fcmToken}) = _$LoginDtoImpl;
+      final String? fcmToken}) = _$SignUpDtoImpl;
 
-  factory LoginDto.fromJson(Map<String, dynamic> json) =
-      _$LoginDtoImpl.fromJson;
+  factory SignUpDto.fromJson(Map<String, dynamic> json) =
+      _$SignUpDtoImpl.fromJson;
 
   @override
   String get username;
@@ -359,27 +360,26 @@ abstract class LoginDto implements AuthDto {
   String? get fcmToken;
   @override
   @JsonKey(ignore: true)
-  _$$LoginDtoImplCopyWith<_$LoginDtoImpl> get copyWith =>
+  _$$SignUpDtoImplCopyWith<_$SignUpDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SignUpDtoImplCopyWith<$Res>
-    implements $AuthDtoCopyWith<$Res> {
-  factory _$$SignUpDtoImplCopyWith(
-          _$SignUpDtoImpl value, $Res Function(_$SignUpDtoImpl) then) =
-      __$$SignUpDtoImplCopyWithImpl<$Res>;
+abstract class _$$LoginDtoImplCopyWith<$Res> implements $AuthDtoCopyWith<$Res> {
+  factory _$$LoginDtoImplCopyWith(
+          _$LoginDtoImpl value, $Res Function(_$LoginDtoImpl) then) =
+      __$$LoginDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String username, String password});
 }
 
 /// @nodoc
-class __$$SignUpDtoImplCopyWithImpl<$Res>
-    extends _$AuthDtoCopyWithImpl<$Res, _$SignUpDtoImpl>
-    implements _$$SignUpDtoImplCopyWith<$Res> {
-  __$$SignUpDtoImplCopyWithImpl(
-      _$SignUpDtoImpl _value, $Res Function(_$SignUpDtoImpl) _then)
+class __$$LoginDtoImplCopyWithImpl<$Res>
+    extends _$AuthDtoCopyWithImpl<$Res, _$LoginDtoImpl>
+    implements _$$LoginDtoImplCopyWith<$Res> {
+  __$$LoginDtoImplCopyWithImpl(
+      _$LoginDtoImpl _value, $Res Function(_$LoginDtoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -388,7 +388,7 @@ class __$$SignUpDtoImplCopyWithImpl<$Res>
     Object? username = null,
     Object? password = null,
   }) {
-    return _then(_$SignUpDtoImpl(
+    return _then(_$LoginDtoImpl(
       username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -403,13 +403,13 @@ class __$$SignUpDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SignUpDtoImpl implements SignUpDto {
-  _$SignUpDtoImpl(
+class _$LoginDtoImpl implements LoginDto {
+  _$LoginDtoImpl(
       {required this.username, required this.password, final String? $type})
       : $type = $type ?? 'login';
 
-  factory _$SignUpDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SignUpDtoImplFromJson(json);
+  factory _$LoginDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LoginDtoImplFromJson(json);
 
   @override
   final String username;
@@ -428,7 +428,7 @@ class _$SignUpDtoImpl implements SignUpDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SignUpDtoImpl &&
+            other is _$LoginDtoImpl &&
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.password, password) ||
@@ -442,8 +442,8 @@ class _$SignUpDtoImpl implements SignUpDto {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SignUpDtoImplCopyWith<_$SignUpDtoImpl> get copyWith =>
-      __$$SignUpDtoImplCopyWithImpl<_$SignUpDtoImpl>(this, _$identity);
+  _$$LoginDtoImplCopyWith<_$LoginDtoImpl> get copyWith =>
+      __$$LoginDtoImplCopyWithImpl<_$LoginDtoImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -485,8 +485,8 @@ class _$SignUpDtoImpl implements SignUpDto {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoginDto value) signUp,
-    required TResult Function(SignUpDto value) login,
+    required TResult Function(SignUpDto value) signUp,
+    required TResult Function(LoginDto value) login,
   }) {
     return login(this);
   }
@@ -494,8 +494,8 @@ class _$SignUpDtoImpl implements SignUpDto {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoginDto value)? signUp,
-    TResult? Function(SignUpDto value)? login,
+    TResult? Function(SignUpDto value)? signUp,
+    TResult? Function(LoginDto value)? login,
   }) {
     return login?.call(this);
   }
@@ -503,8 +503,8 @@ class _$SignUpDtoImpl implements SignUpDto {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoginDto value)? signUp,
-    TResult Function(SignUpDto value)? login,
+    TResult Function(SignUpDto value)? signUp,
+    TResult Function(LoginDto value)? login,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -515,19 +515,19 @@ class _$SignUpDtoImpl implements SignUpDto {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SignUpDtoImplToJson(
+    return _$$LoginDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class SignUpDto implements AuthDto {
-  factory SignUpDto(
+abstract class LoginDto implements AuthDto {
+  factory LoginDto(
       {required final String username,
-      required final String password}) = _$SignUpDtoImpl;
+      required final String password}) = _$LoginDtoImpl;
 
-  factory SignUpDto.fromJson(Map<String, dynamic> json) =
-      _$SignUpDtoImpl.fromJson;
+  factory LoginDto.fromJson(Map<String, dynamic> json) =
+      _$LoginDtoImpl.fromJson;
 
   @override
   String get username;
@@ -535,6 +535,6 @@ abstract class SignUpDto implements AuthDto {
   String get password;
   @override
   @JsonKey(ignore: true)
-  _$$SignUpDtoImplCopyWith<_$SignUpDtoImpl> get copyWith =>
+  _$$LoginDtoImplCopyWith<_$LoginDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

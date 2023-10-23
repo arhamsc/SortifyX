@@ -8,12 +8,12 @@ part of 'auth_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LoginDtoImpl _$$LoginDtoImplFromJson(Map<String, dynamic> json) =>
+_$SignUpDtoImpl _$$SignUpDtoImplFromJson(Map<String, dynamic> json) =>
     $checkedCreate(
-      r'_$LoginDtoImpl',
+      r'_$SignUpDtoImpl',
       json,
       ($checkedConvert) {
-        final val = _$LoginDtoImpl(
+        final val = _$SignUpDtoImpl(
           username: $checkedConvert('username', (v) => v as String),
           email: $checkedConvert('email', (v) => v as String),
           password: $checkedConvert('password', (v) => v as String),
@@ -28,7 +28,7 @@ _$LoginDtoImpl _$$LoginDtoImplFromJson(Map<String, dynamic> json) =>
       fieldKeyMap: const {r'$type': 'runtimeType'},
     );
 
-Map<String, dynamic> _$$LoginDtoImplToJson(_$LoginDtoImpl instance) =>
+Map<String, dynamic> _$$SignUpDtoImplToJson(_$SignUpDtoImpl instance) =>
     <String, dynamic>{
       'username': instance.username,
       'email': instance.email,
@@ -40,12 +40,12 @@ Map<String, dynamic> _$$LoginDtoImplToJson(_$LoginDtoImpl instance) =>
       'runtimeType': instance.$type,
     };
 
-_$SignUpDtoImpl _$$SignUpDtoImplFromJson(Map<String, dynamic> json) =>
+_$LoginDtoImpl _$$LoginDtoImplFromJson(Map<String, dynamic> json) =>
     $checkedCreate(
-      r'_$SignUpDtoImpl',
+      r'_$LoginDtoImpl',
       json,
       ($checkedConvert) {
-        final val = _$SignUpDtoImpl(
+        final val = _$LoginDtoImpl(
           username: $checkedConvert('username', (v) => v as String),
           password: $checkedConvert('password', (v) => v as String),
           $type: $checkedConvert('runtimeType', (v) => v as String?),
@@ -55,7 +55,7 @@ _$SignUpDtoImpl _$$SignUpDtoImplFromJson(Map<String, dynamic> json) =>
       fieldKeyMap: const {r'$type': 'runtimeType'},
     );
 
-Map<String, dynamic> _$$SignUpDtoImplToJson(_$SignUpDtoImpl instance) =>
+Map<String, dynamic> _$$LoginDtoImplToJson(_$LoginDtoImpl instance) =>
     <String, dynamic>{
       'username': instance.username,
       'password': instance.password,
