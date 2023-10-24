@@ -1,11 +1,16 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
+
+import 'package:flash/flash_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sortifyx_app/config/injectable/injectable.dart';
 import 'package:sortifyx_app/main.dart';
 import 'package:sortifyx_app/shared/app/app.dart';
 import 'package:sortifyx_app/shared/app/cubits/cubits.dart';
 import 'package:flash/flash.dart';
+import 'package:sortifyx_app/shared/utils/my_talker.dart';
 
 class RootModal extends StatelessWidget {
   RootModal({
@@ -14,10 +19,9 @@ class RootModal extends StatelessWidget {
   }) : super(key: key);
   final Widget child;
 
-  // Flushbar? _flushbar;
-
-  // final flushBarKey = const GlobalObjectKey("MY_FLUSH_BAR");
   FlashController? _flashController;
+  bool _isFlashOpen = false;
+  Completer _c = Completer();
 
   @override
   Widget build(BuildContext context) {
@@ -40,15 +44,24 @@ class RootModal extends StatelessWidget {
             button1OnPressed,
             button2OnPressed,
             modalHeight,
-          ) {
-            showFlash(
-              context: navigatorKey.currentContext ?? context,
+          ) async {
+            getIt.get<MyTalker>().talker.good(modalType);
+            if (modalType != ModalType.loading) {
+              !_c.isCompleted ? _c.complete() : null;
+            } else {
+              _c = Completer();
+            }
+            getIt.get<MyTalker>().talker.good(_c.toString());
+            _isFlashOpen = true;
+            await (navigatorKey.currentContext ?? context).showFlash(
               persistent: false,
               duration: modalType != ModalType.loading
                   ? const Duration(seconds: 4)
                   : null,
+              dismissCompleter: modalType == ModalType.loading ? _c : null,
               builder: (context, controller) {
                 _flashController = controller;
+
                 return FlashBar(
                   controller: controller,
                   behavior: FlashBehavior.floating,
@@ -105,9 +118,10 @@ class RootModal extends StatelessWidget {
                 );
               },
             );
+            _isFlashOpen = false;
           },
           inactive: () {
-            _flashController?.dismiss();
+            getIt.get<MyTalker>().talker.log(_flashController);
           },
         );
       },

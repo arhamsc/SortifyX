@@ -98,7 +98,9 @@ class MyApp extends StatelessWidget {
           child: MaterialApp.router(
             title: 'SortifyX',
             routerConfig: _appRouter.router,
-            builder: (_, child) => wrapWithOverlay(builder: (_) => child ?? const Scaffold(),),
+            builder: (_, child) => wrapWithOverlay(
+              builder: (_) => child ?? const Scaffold(),
+            ),
             theme: ThemeData(
               primarySwatch: Palette.primaryDefault,
               textTheme: CustomTypography.textTheme,

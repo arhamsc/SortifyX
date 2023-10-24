@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:sortifyx_app/config/injectable/injectable.dart';
+import 'package:sortifyx_app/shared/api/dio_api.dart';
 
 FutureOr<T> dioTryCatchWrapper<T>(
-    FutureOr<T> Function() tryBlock,) async {
-      final Dio dio = getIt.get();
+  FutureOr<T> Function() tryBlock,
+) async {
+  final Dio dio = getIt.get<API>().dio;
   try {
     return await tryBlock();
   } on DioException catch (e) {

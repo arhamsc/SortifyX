@@ -2,9 +2,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sortifyx_app/config/injectable/injectable.dart';
 import 'package:sortifyx_app/shared/data/data.dart';
 import 'package:sortifyx_app/shared/domain/domain.dart';
 import 'package:sortifyx_app/shared/enums/user_state_status_enum/user_state_status_enum.dart';
+import 'package:sortifyx_app/shared/utils/utils.dart';
 import 'package:sortifyx_app/shared/utils/wrappers/bloc_wrappers.dart';
 
 part 'user_bloc.g.dart';
@@ -25,6 +27,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
           userHasFamily: false,
         )) {
     on<UserEvent>((event, emit) async {
+      getIt.get<MyTalker>().talker.log(event.runtimeType);
       switch (event.runtimeType) {
         case _$UserEventLoginRequestImpl:
           await _onAuthLoginRequest(event, emit);
@@ -72,6 +75,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
         final user = await _userRepo.authenticateLogin(
           event.loginDto,
         );
+        getIt.get<MyTalker>().talker.log(user);
         emit(
           state.copyWith(
             user: user,

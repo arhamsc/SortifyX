@@ -179,28 +179,30 @@ class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
                   ),
                 ),
                 /* AUTH FORM */
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: getHeight(50),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: getHeight(50),
+                        ),
+                        child: StrokeTextVTitle(
+                          text: authStep == AuthStep.signUp
+                              ? "Sign Up"
+                              : authStep == AuthStep.username
+                                  ? "Set Username"
+                                  : "Login",
+                        ),
                       ),
-                      child: StrokeTextVTitle(
-                        text: authStep == AuthStep.signUp
-                            ? "Sign Up"
-                            : authStep == AuthStep.username
-                                ? "Set Username"
-                                : "Login",
+                      SizedBox(
+                        width: getWidth(304),
+                        child: AnimatedSwitcher(
+                          duration: 600.ms,
+                          child: _formWidget,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: getWidth(304),
-                      child: AnimatedSwitcher(
-                        duration: 600.ms,
-                        child: _formWidget,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

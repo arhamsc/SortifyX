@@ -1,3 +1,5 @@
+import 'package:flash/flash_helper.dart';
+import 'package:flutter/src/widgets/basic.dart';
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sortifyx_app/config/injectable/injectable.dart';
@@ -15,7 +17,6 @@ class AppRouter {
     // initialLocation: "${RouteDetails.authSignUpFamilyPage.path}?page=register",
     initialLocation: RouteDetails.authPage.path,
     navigatorKey: navigatorKey,
-    
     redirect: (context, state) {
       final userState = getIt.get<UserBloc>().state;
       final bool loggedIn = userState.status.isLoggedIn;
@@ -38,7 +39,11 @@ class AppRouter {
       GoRoute(
         name: RouteDetails.authPage.name,
         path: RouteDetails.authPage.path,
-        builder: (context, state) => const AuthPage(),
+        builder: (context, state) => wrapWithOverlay(
+          builder: (context) {
+            return const AuthPage();
+          }
+        ),
       ),
       GoRoute(
         name: RouteDetails.authFamilyIntroPage.name,

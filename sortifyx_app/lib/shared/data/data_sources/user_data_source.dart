@@ -9,7 +9,7 @@ import 'package:sortifyx_app/shared/utils/utils.dart';
 @injectable
 @Order(-2)
 class UserDataSource {
-  final API _api = getIt.get();
+  final API _api = getIt.get<API>();
   late final Dio _dio;
 
   UserDataSource() {

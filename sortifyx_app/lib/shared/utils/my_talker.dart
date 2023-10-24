@@ -19,9 +19,9 @@ class MyTalker {
   late TalkerRouteObserver _talkerRouteObserver;
 
   MyTalker() {
-    _talkerLogger = TalkerLogger();
+    // _talkerLogger = TalkerLogger();
     // TalkerFlutter.init();
-    _talker = Talker(logger: _talkerLogger); //*IMP
+    _talker = Talker(); //*IMP
     _talkerDioLogger = MyTalkerDioLogger(
       talker: _talker,
       settings: const TalkerDioLoggerSettings(

@@ -72,7 +72,7 @@ class LoginForm extends StatelessWidget {
                         return;
                       }
                       final loginDto = LoginDto.fromJson(form.value);
-                      context.read<UserBloc>().add(
+                      getIt.get<UserBloc>().add(
                             UserEvent.loginRequest(
                               loginDto: loginDto,
                             ),
@@ -114,7 +114,11 @@ class LoginForm extends StatelessWidget {
                         ],
                       ),
                     ),
-                  )
+                  ),
+                  if (form.invalid)
+                    SizedBoxSeparator(
+                      height: getHeight(5),
+                    ),
                 ],
               );
             });
