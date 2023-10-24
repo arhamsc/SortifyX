@@ -6,70 +6,56 @@ import 'package:sortifyx_app/shared/app/app.dart';
 import 'package:sortifyx_app/shared/app/cubits/modal_cubit/modal_cubit.dart';
 import 'package:sortifyx_app/shared/utils/my_talker.dart';
 
-class UserBlocListener extends StatelessWidget {
-  const UserBlocListener({super.key, required this.child});
+class FamilyBlocListener extends StatelessWidget {
+  const FamilyBlocListener({super.key, required this.child});
   final Widget child;
   @override
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
-        BlocListener<UserBloc, UserState>(
-          listener: (context, userState) {
-            userState.status.when(
+        BlocListener<FamilyBloc, FamilyState>(
+          listener: (context, familyState) {
+            familyState.status.when(
               initial: () {},
               loading: () {
                 getIt.get<ModalCubit>().showModal(
-                      modalMessage: userState.loadingMessage,
+                      modalMessage: familyState.loadingMessage,
                       modalTitle: "Loading",
                       modalType: ModalType.loading,
                     );
               },
               success: () {
                 getIt.get<ModalCubit>().showModal(
-                      modalMessage: userState.successMessage,
+                      modalMessage: familyState.successMessage,
                       modalTitle: "Great!!",
                       modalType: ModalType.success,
                     );
               },
               error: () {
                 getIt.get<ModalCubit>().showModal(
-                      modalMessage: userState.errorMessage,
+                      modalMessage: familyState.errorMessage,
                       modalTitle: "OOPs!!",
                       modalType: ModalType.error,
                     );
               },
-              loggedOut: () {
-                getIt.get<ModalCubit>().showModal(
-                      modalMessage: userState.successMessage,
-                      modalTitle: "Logged Out",
-                      modalType: ModalType.info,
-                    );
-              },
-              loggedIn: () {
+              joinedFamily: () {
                 getIt.get<UserBloc>().add(const UserEvent.checkUserHasFamily());
                 getIt.get<ModalCubit>().showModal(
-                      modalMessage: userState.successMessage,
-                      modalTitle: "Welcome!!",
+                      modalMessage: familyState.successMessage,
+                      modalTitle: "Great!!",
                       modalType: ModalType.success,
                     );
               },
-              signedUp: () {},
+              registeredFamily: () {
+                getIt.get<ModalCubit>().showModal(
+                      modalMessage: familyState.successMessage,
+                      modalTitle: "Great!!",
+                      modalType: ModalType.success,
+                    );
+              },
             );
           },
         ),
-        BlocListener<UserBloc, UserState>(
-          listener: (context, userState) {
-            getIt.get<MyTalker>().talker.log("Called Listener 2");
-            if (!userState.userHasFamily) {
-              GoRouter.of(context).refresh();
-            } else {
-              getIt
-                  .get<AppRouter>()
-                  .router
-                  .pushReplacementNamed(RouteDetails.documentsHomePage.name);
-            }
-          },
-        )
       ],
       child: child,
     );

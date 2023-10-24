@@ -18,6 +18,7 @@ _$UserStateImpl _$$UserStateImplFromJson(Map<String, dynamic> json) =>
               (v) => UserStateStatusEnum.fromJson(v as Map<String, dynamic>)),
           user: $checkedConvert(
               'user', (v) => User.fromJson(v as Map<String, dynamic>)),
+          isAuthenticated: $checkedConvert('isAuthenticated', (v) => v as bool),
           userHasFamily: $checkedConvert('userHasFamily', (v) => v as bool),
           errorMessage: $checkedConvert('errorMessage', (v) => v as String),
           loadingMessage: $checkedConvert('loadingMessage', (v) => v as String),
@@ -31,6 +32,7 @@ Map<String, dynamic> _$$UserStateImplToJson(_$UserStateImpl instance) =>
     <String, dynamic>{
       'status': instance.status.toJson(),
       'user': instance.user.toJson(),
+      'isAuthenticated': instance.isAuthenticated,
       'userHasFamily': instance.userHasFamily,
       'errorMessage': instance.errorMessage,
       'loadingMessage': instance.loadingMessage,

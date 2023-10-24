@@ -8,11 +8,11 @@ import '../../../../shared/app/app.dart';
 
 class GlassBgAnimation extends StatelessWidget {
   const GlassBgAnimation({
-    Key? key,
+    super.key,
     this.width,
     this.height,
     this.child,
-  }) : super(key: key);
+  });
   final double? width;
   final double? height;
   final Widget? child;

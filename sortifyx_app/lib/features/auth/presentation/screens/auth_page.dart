@@ -1,17 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:sizer/sizer.dart';
+import 'package:sortifyx_app/config/injectable/injectable.dart';
 
 import '../../../../constants/constants.dart';
 import '../../../../shared/app/app.dart';
 import '../../../../shared/utils/utils.dart';
-import '../../../../shared/app/widgets/widgets.dart';
 import '../../application/cubits/cubits.dart';
 import '../widgets/widgets.dart';
 
@@ -59,10 +57,6 @@ class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
   void initState() {
     _formWidget =
         LoginForm(onToggleAuth: () => changeAuthMode(AuthStep.signUp));
-    //     _formWidget = UsernameForm(
-    //   onGoBack: () => {},
-    //   onGoToLogin: () => {},
-    // );
     _opacityController = AnimationController(
       vsync: this,
       duration: 300.ms,
@@ -71,9 +65,8 @@ class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
         Tween<double>(begin: 1.0, end: 0.0).animate(_opacityController);
     _opacityAnimation.addListener(() => setState(() {}));
 
-    Future.delayed(Duration.zero, () {
-      authForm = context.read<AuthFormCubit>().state.loginForm;
-    });
+    authForm = getIt.get<AuthFormCubit>().state.loginForm;
+
     super.initState();
   }
 

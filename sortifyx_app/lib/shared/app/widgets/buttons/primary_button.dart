@@ -7,7 +7,7 @@ import '../../../utils/utils.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
-    Key? key,
+    super.key,
     this.variant = 1,
     this.onPressed,
     required this.label,
@@ -18,7 +18,7 @@ class PrimaryButton extends StatelessWidget {
     this.labelWidget,
     this.isLoading = false,
     this.isSuccess = false,
-  }) : super(key: key);
+  });
   final int variant;
   final Function()? onPressed;
   final String label;

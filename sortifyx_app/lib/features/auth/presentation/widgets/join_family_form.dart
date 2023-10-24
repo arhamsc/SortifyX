@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:sizer/sizer.dart';
 import 'package:sortifyx_app/config/injectable/injectable.dart';
+import 'package:sortifyx_app/shared/app/app.dart';
 
 import '../../../../shared/utils/utils.dart';
 import '../../../../shared/app/widgets/widgets.dart';
@@ -41,7 +42,11 @@ class JoinFamilyForm extends StatelessWidget {
                   form.markAllAsTouched();
                   return;
                 }
-                getIt.get<MyTalker>().talker.log(form.value);
+                getIt.get<FamilyBloc>().add(
+                      FamilyEvent.joinFamily(
+                        familyCode: form.control("familyCode").value,
+                      ),
+                    );
               },
             ),
             SizedBoxSeparator(

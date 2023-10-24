@@ -8,7 +8,7 @@ import 'package:sortifyx_app/shared/utils/utils.dart';
 
 class PrimaryAnimatedButton extends StatefulWidget {
   const PrimaryAnimatedButton({
-    Key? key,
+    super.key,
     this.variant = 1,
     this.onPressed,
     required this.label,
@@ -20,7 +20,7 @@ class PrimaryAnimatedButton extends StatefulWidget {
     this.isLoading = false,
     this.isSuccess = false,
     this.successCallback,
-  }) : super(key: key);
+  });
   final int variant;
   final Function()? onPressed;
   final String label;

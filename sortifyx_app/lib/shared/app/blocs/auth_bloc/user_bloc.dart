@@ -1,3 +1,4 @@
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -7,14 +8,13 @@ import 'package:sortifyx_app/shared/data/data.dart';
 import 'package:sortifyx_app/shared/domain/domain.dart';
 import 'package:sortifyx_app/shared/enums/user_state_status_enum/user_state_status_enum.dart';
 import 'package:sortifyx_app/shared/utils/utils.dart';
-import 'package:sortifyx_app/shared/utils/wrappers/bloc_wrappers.dart';
 
 part 'user_bloc.g.dart';
 part 'user_bloc.freezed.dart';
 part 'user_event.dart';
 part 'user_state.dart';
 
-@singleton
+@lazySingleton
 class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
   UserBloc(UserRepository userRepo)
       : _userRepo = userRepo,
@@ -25,38 +25,42 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
           successMessage: "",
           user: UserModel.emptyUser(),
           userHasFamily: false,
+          isAuthenticated: false,
         )) {
-    on<UserEvent>((event, emit) async {
-      getIt.get<MyTalker>().talker.log(event.runtimeType);
-      switch (event.runtimeType) {
-        case _$UserEventLoginRequestImpl:
-          await _onAuthLoginRequest(event, emit);
-          break;
-        case _$UserEventSignUpRequestImpl:
-          await _onAuthSignUpRequest(event, emit);
-          break;
-        case _$UserEventLogoutRequestImpl:
-          await _onAuthLogoutRequest(event, emit);
-          break;
-        case _$UserEventTokenRefreshRequestImpl:
-          await _onAuthTokenRefreshRequest(event, emit);
-          break;
-        case _$UserGetMyProfileImpl:
-          await _onGetMyProfile(event, emit);
-          break;
-        case _$UserUpdateFCMTokenImpl:
-          await _onUpdateFCMToken(event, emit);
-          break;
-        case _$UserCheckUserHasFamilyImpl:
-          await _onCheckUserHasFamily(event, emit);
-          break;
-        case _$UserGetUserByIdImpl:
-          await _onGetUserById(event, emit);
-          break;
-        default:
-          break;
-      }
-    });
+    on<UserEvent>(
+      (event, emit) async {
+        getIt.get<MyTalker>().talker.log(event.runtimeType);
+        switch (event.runtimeType) {
+          case const (_$UserEventLoginRequestImpl):
+            await _onAuthLoginRequest(event, emit);
+            break;
+          case const (_$UserEventSignUpRequestImpl):
+            await _onAuthSignUpRequest(event, emit);
+            break;
+          case const (_$UserEventLogoutRequestImpl):
+            await _onAuthLogoutRequest(event, emit);
+            break;
+          case const (_$UserEventTokenRefreshRequestImpl):
+            await _onAuthTokenRefreshRequest(event, emit);
+            break;
+          case const (_$UserGetMyProfileImpl):
+            await _onGetMyProfile(event, emit);
+            break;
+          case const (_$UserUpdateFCMTokenImpl):
+            await _onUpdateFCMToken(event, emit);
+            break;
+          case const (_$UserCheckUserHasFamilyImpl):
+            await _onCheckUserHasFamily(event, emit);
+            break;
+          case const (_$UserGetUserByIdImpl):
+            await _onGetUserById(event, emit);
+            break;
+          default:
+            break;
+        }
+      },
+      transformer: sequential(),
+    );
   }
 
   final UserRepository _userRepo;
@@ -79,6 +83,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
         emit(
           state.copyWith(
             user: user,
+            isAuthenticated: true,
             status: UserStateStatusEnum.loggedIn(),
             successMessage: "Welcome back to SortifyX",
           ),
@@ -105,6 +110,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
         emit(
           state.copyWith(
             user: user,
+            isAuthenticated: true,
             status: UserStateStatusEnum.loggedIn(),
             successMessage: "Welcome to SortifyX",
           ),
@@ -129,7 +135,8 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
         emit(
           state.copyWith(
             user: UserModel.emptyUser(),
-            status: UserStateStatusEnum.loggedIn(),
+            isAuthenticated: false,
+            status: UserStateStatusEnum.loggedOut(),
             successMessage: "See you again later.",
           ),
         );
@@ -176,7 +183,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
         emit(
           state.copyWith(
             user: user as User,
-            status: UserStateStatusEnum.loggedIn(),
+            status: UserStateStatusEnum.success(),
             successMessage: "Your profile has been fetched.",
           ),
         );
@@ -200,7 +207,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
             await _userRepo.updateFCMToken(event.id, event.fcmToken);
         emit(
           state.copyWith(
-            status: UserStateStatusEnum.loggedIn(),
+            status: UserStateStatusEnum.success(),
             successMessage: message,
           ),
         );
@@ -216,7 +223,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
         emit(
           state.copyWith(
             status: UserStateStatusEnum.loading(),
-            loadingMessage: "Deleting your profile, please wait.",
+            loadingMessage: "Checking your family please wait.",
           ),
         );
         if (event is! _$UserCheckUserHasFamilyImpl) return;
@@ -224,7 +231,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
         emit(
           state.copyWith(
             userHasFamily: res.data ?? false,
-            status: UserStateStatusEnum.loggedIn(),
+            status: UserStateStatusEnum.success(),
             successMessage: res.message,
           ),
         );
@@ -246,7 +253,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with HydratedMixin {
         final res = await _userRepo.getUserById(event.id);
         emit(
           state.copyWith(
-            status: UserStateStatusEnum.loggedIn(),
+            status: UserStateStatusEnum.success(),
             successMessage: res.message,
           ),
         );

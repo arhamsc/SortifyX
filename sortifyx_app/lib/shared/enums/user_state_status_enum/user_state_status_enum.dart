@@ -24,6 +24,7 @@ class UserStateStatusEnum with _$UserStateStatusEnum {
   factory UserStateStatusEnum.error() = _UserStatusError;
   factory UserStateStatusEnum.loggedOut() = _UserStatusLoggedOut;
   factory UserStateStatusEnum.loggedIn() = _UserStatusLoggedIn;
+  factory UserStateStatusEnum.signedUp() = _UserStatusSignedUp;
 
   bool get isInitial => this is _UserStatusInitial;
   bool get isLoading => this is _UserStatusLoading;

@@ -1,5 +1,4 @@
 import 'package:flash/flash_helper.dart';
-import 'package:flutter/src/widgets/basic.dart';
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sortifyx_app/config/injectable/injectable.dart';
@@ -14,36 +13,32 @@ import '../app.dart';
 @Order(-1)
 class AppRouter {
   final GoRouter router = GoRouter(
-    // initialLocation: "${RouteDetails.authSignUpFamilyPage.path}?page=register",
     initialLocation: RouteDetails.authPage.path,
     navigatorKey: navigatorKey,
     redirect: (context, state) {
       final userState = getIt.get<UserBloc>().state;
-      final bool loggedIn = userState.status.isLoggedIn;
+      final bool loggedIn = userState.isAuthenticated;
       // MyTalkerLogger.instance.talker.critical("Login State $loggedIn");
       if (!loggedIn) {
         return state.namedLocation(RouteDetails.authPage.name);
-      }
-      // MyTalkerLogger.instance.talker.critical("Not Redirected");
-      if (state.matchedLocation == RouteDetails.authPage.path) {
-        if (userState.userHasFamily) {
-          return state.namedLocation(RouteDetails.documentsHomePage.name);
-        } else {
+      } else {
+        if (!userState.userHasFamily) {
           return state.namedLocation(RouteDetails.authFamilyIntroPage.name);
         }
+        // getIt.get<MyTalker>().talker.log(state.path == null);
+        if (state.path == null) {
+          return state.namedLocation(RouteDetails.documentsHomePage.name);
+        }
+        return null;
       }
-      return null;
     },
-    
     routes: [
       GoRoute(
         name: RouteDetails.authPage.name,
         path: RouteDetails.authPage.path,
-        builder: (context, state) => wrapWithOverlay(
-          builder: (context) {
-            return const AuthPage();
-          }
-        ),
+        builder: (context, state) => wrapWithOverlay(builder: (context) {
+          return const AuthPage();
+        }),
       ),
       GoRoute(
         name: RouteDetails.authFamilyIntroPage.name,

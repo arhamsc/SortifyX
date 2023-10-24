@@ -5,6 +5,7 @@ import 'package:sortifyx_app/config/injectable/injectable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:sortifyx_app/shared/data/data.dart';
 import 'package:sortifyx_app/shared/domain/domain.dart';
+import 'package:sortifyx_app/shared/enums/family_bloc_status/family_bloc_status.dart';
 import 'package:sortifyx_app/shared/utils/utils.dart';
 
 part 'family_event.dart';
@@ -12,27 +13,27 @@ part 'family_state.dart';
 part 'family_bloc.freezed.dart';
 part 'family_bloc.g.dart';
 
-@singleton
+@lazySingleton
 class FamilyBloc extends Bloc<FamilyEvent, FamilyState> with HydratedMixin {
   FamilyBloc() : super(FamilyState.empty()) {
     on<FamilyEvent>((event, emit) async {
       getIt.get<MyTalker>().talker.debug(event.runtimeType);
 
       switch (event.runtimeType) {
-        case _FamilyCreateFamily:
+        case const (_$FamilyCreateFamilyImpl):
           await _onCreateFamily(event, emit);
           break;
-        case _FamilyGetMyFamilies:
+        case const (_$FamilyGetMyFamiliesImpl):
           await _onGetMyFamilies(event, emit);
           break;
-        case _FamilyGetFamilyById:
+        case const (_$FamilyGetFamilyByIdImpl):
           await _onGetFamilyById(event, emit);
           break;
-        case _FamilyJoinFamily:
+        case const (_$FamilyJoinFamilyImpl):
           await _onJoinFamily(event, emit);
 
           break;
-        case _FamilyUpdateFamily:
+        case const (_$FamilyUpdateFamilyImpl):
           await _onUpdateFamily(event, emit);
           break;
       }
@@ -46,7 +47,7 @@ class FamilyBloc extends Bloc<FamilyEvent, FamilyState> with HydratedMixin {
     await familyBlocWrapper(() async {
       emit(
         state.copyWith(
-          status: FamilyBlocStatus.loading,
+          status: FamilyBlocStatus.loading(),
           loadingMessage: "Creating your family, please wait.",
         ),
       );
@@ -54,7 +55,7 @@ class FamilyBloc extends Bloc<FamilyEvent, FamilyState> with HydratedMixin {
       final res = await _familyRepository.createFamily(event.dto);
       emit(
         state.copyWith(
-          status: FamilyBlocStatus.success,
+          status: FamilyBlocStatus.registeredFamily(),
           successMessage: res.message,
           myFamily: res.data ?? FamilyModel.emptyFamily,
         ),
@@ -67,7 +68,7 @@ class FamilyBloc extends Bloc<FamilyEvent, FamilyState> with HydratedMixin {
     await familyBlocWrapper(() async {
       emit(
         state.copyWith(
-          status: FamilyBlocStatus.loading,
+          status: FamilyBlocStatus.loading(),
           loadingMessage: "Getting your families, please wait.",
         ),
       );
@@ -75,7 +76,7 @@ class FamilyBloc extends Bloc<FamilyEvent, FamilyState> with HydratedMixin {
       final res = await _familyRepository.getMyFamilies();
       emit(
         state.copyWith(
-          status: FamilyBlocStatus.success,
+          status: FamilyBlocStatus.success(),
           successMessage: res.message,
           myFamilies: res.data ?? [],
         ),
@@ -88,7 +89,7 @@ class FamilyBloc extends Bloc<FamilyEvent, FamilyState> with HydratedMixin {
     await familyBlocWrapper(() async {
       emit(
         state.copyWith(
-          status: FamilyBlocStatus.loading,
+          status: FamilyBlocStatus.loading(),
           loadingMessage: "Getting family, please wait.",
         ),
       );
@@ -97,7 +98,7 @@ class FamilyBloc extends Bloc<FamilyEvent, FamilyState> with HydratedMixin {
       //TODO: See what state, variable you can create to store this.
       emit(
         state.copyWith(
-          status: FamilyBlocStatus.success,
+          status: FamilyBlocStatus.success(),
           successMessage: res.message,
           // myFamily: res.data ?? FamilyModel.emptyFamily,
         ),
@@ -110,7 +111,7 @@ class FamilyBloc extends Bloc<FamilyEvent, FamilyState> with HydratedMixin {
     await familyBlocWrapper(() async {
       emit(
         state.copyWith(
-          status: FamilyBlocStatus.loading,
+          status: FamilyBlocStatus.loading(),
           loadingMessage: "Making a you a part of the family, please wait.",
         ),
       );
@@ -118,7 +119,7 @@ class FamilyBloc extends Bloc<FamilyEvent, FamilyState> with HydratedMixin {
       final res = await _familyRepository.joinFamily(event.familyCode);
       emit(
         state.copyWith(
-          status: FamilyBlocStatus.success,
+          status: FamilyBlocStatus.joinedFamily(),
           successMessage: res.message,
           myFamily: res.data ?? FamilyModel.emptyFamily,
         ),
@@ -131,7 +132,7 @@ class FamilyBloc extends Bloc<FamilyEvent, FamilyState> with HydratedMixin {
     await familyBlocWrapper(() async {
       emit(
         state.copyWith(
-          status: FamilyBlocStatus.loading,
+          status: FamilyBlocStatus.loading(),
           loadingMessage: "Updating your family, please wait.",
         ),
       );
@@ -139,7 +140,7 @@ class FamilyBloc extends Bloc<FamilyEvent, FamilyState> with HydratedMixin {
       final res = await _familyRepository.updateFamily(event.dto);
       emit(
         state.copyWith(
-          status: FamilyBlocStatus.success,
+          status: FamilyBlocStatus.success(),
           successMessage: res.message,
           myFamily: res.data ?? FamilyModel.emptyFamily,
         ),

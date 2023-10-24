@@ -1135,6 +1135,7 @@ abstract class $FamilyStateCopyWith<$Res> {
       String errorMessage,
       String loadingMessage});
 
+  $FamilyBlocStatusCopyWith<$Res> get status;
   $FamilyModelCopyWith<$Res> get myFamily;
 }
 
@@ -1193,6 +1194,14 @@ class _$FamilyStateCopyWithImpl<$Res, $Val extends FamilyState>
 
   @override
   @pragma('vm:prefer-inline')
+  $FamilyBlocStatusCopyWith<$Res> get status {
+    return $FamilyBlocStatusCopyWith<$Res>(_value.status, (value) {
+      return _then(_value.copyWith(status: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $FamilyModelCopyWith<$Res> get myFamily {
     return $FamilyModelCopyWith<$Res>(_value.myFamily, (value) {
       return _then(_value.copyWith(myFamily: value) as $Val);
@@ -1217,6 +1226,8 @@ abstract class _$$FamilyStateImplCopyWith<$Res>
       String errorMessage,
       String loadingMessage});
 
+  @override
+  $FamilyBlocStatusCopyWith<$Res> get status;
   @override
   $FamilyModelCopyWith<$Res> get myFamily;
 }

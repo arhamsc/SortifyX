@@ -2152,6 +2152,7 @@ UserState _$UserStateFromJson(Map<String, dynamic> json) {
 mixin _$UserState {
   UserStateStatusEnum get status => throw _privateConstructorUsedError;
   User get user => throw _privateConstructorUsedError;
+  bool get isAuthenticated => throw _privateConstructorUsedError;
   bool get userHasFamily => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   String get loadingMessage => throw _privateConstructorUsedError;
@@ -2171,6 +2172,7 @@ abstract class $UserStateCopyWith<$Res> {
   $Res call(
       {UserStateStatusEnum status,
       User user,
+      bool isAuthenticated,
       bool userHasFamily,
       String errorMessage,
       String loadingMessage,
@@ -2194,6 +2196,7 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
   $Res call({
     Object? status = null,
     Object? user = freezed,
+    Object? isAuthenticated = null,
     Object? userHasFamily = null,
     Object? errorMessage = null,
     Object? loadingMessage = null,
@@ -2208,6 +2211,10 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
+      isAuthenticated: null == isAuthenticated
+          ? _value.isAuthenticated
+          : isAuthenticated // ignore: cast_nullable_to_non_nullable
+              as bool,
       userHasFamily: null == userHasFamily
           ? _value.userHasFamily
           : userHasFamily // ignore: cast_nullable_to_non_nullable
@@ -2247,6 +2254,7 @@ abstract class _$$UserStateImplCopyWith<$Res>
   $Res call(
       {UserStateStatusEnum status,
       User user,
+      bool isAuthenticated,
       bool userHasFamily,
       String errorMessage,
       String loadingMessage,
@@ -2269,6 +2277,7 @@ class __$$UserStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? user = freezed,
+    Object? isAuthenticated = null,
     Object? userHasFamily = null,
     Object? errorMessage = null,
     Object? loadingMessage = null,
@@ -2283,6 +2292,10 @@ class __$$UserStateImplCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
+      isAuthenticated: null == isAuthenticated
+          ? _value.isAuthenticated
+          : isAuthenticated // ignore: cast_nullable_to_non_nullable
+              as bool,
       userHasFamily: null == userHasFamily
           ? _value.userHasFamily
           : userHasFamily // ignore: cast_nullable_to_non_nullable
@@ -2309,6 +2322,7 @@ class _$UserStateImpl with DiagnosticableTreeMixin implements _UserState {
   const _$UserStateImpl(
       {required this.status,
       required this.user,
+      required this.isAuthenticated,
       required this.userHasFamily,
       required this.errorMessage,
       required this.loadingMessage,
@@ -2322,6 +2336,8 @@ class _$UserStateImpl with DiagnosticableTreeMixin implements _UserState {
   @override
   final User user;
   @override
+  final bool isAuthenticated;
+  @override
   final bool userHasFamily;
   @override
   final String errorMessage;
@@ -2332,7 +2348,7 @@ class _$UserStateImpl with DiagnosticableTreeMixin implements _UserState {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserState(status: $status, user: $user, userHasFamily: $userHasFamily, errorMessage: $errorMessage, loadingMessage: $loadingMessage, successMessage: $successMessage)';
+    return 'UserState(status: $status, user: $user, isAuthenticated: $isAuthenticated, userHasFamily: $userHasFamily, errorMessage: $errorMessage, loadingMessage: $loadingMessage, successMessage: $successMessage)';
   }
 
   @override
@@ -2342,6 +2358,7 @@ class _$UserStateImpl with DiagnosticableTreeMixin implements _UserState {
       ..add(DiagnosticsProperty('type', 'UserState'))
       ..add(DiagnosticsProperty('status', status))
       ..add(DiagnosticsProperty('user', user))
+      ..add(DiagnosticsProperty('isAuthenticated', isAuthenticated))
       ..add(DiagnosticsProperty('userHasFamily', userHasFamily))
       ..add(DiagnosticsProperty('errorMessage', errorMessage))
       ..add(DiagnosticsProperty('loadingMessage', loadingMessage))
@@ -2355,6 +2372,8 @@ class _$UserStateImpl with DiagnosticableTreeMixin implements _UserState {
             other is _$UserStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other.user, user) &&
+            (identical(other.isAuthenticated, isAuthenticated) ||
+                other.isAuthenticated == isAuthenticated) &&
             (identical(other.userHasFamily, userHasFamily) ||
                 other.userHasFamily == userHasFamily) &&
             (identical(other.errorMessage, errorMessage) ||
@@ -2371,6 +2390,7 @@ class _$UserStateImpl with DiagnosticableTreeMixin implements _UserState {
       runtimeType,
       status,
       const DeepCollectionEquality().hash(user),
+      isAuthenticated,
       userHasFamily,
       errorMessage,
       loadingMessage,
@@ -2394,6 +2414,7 @@ abstract class _UserState implements UserState {
   const factory _UserState(
       {required final UserStateStatusEnum status,
       required final User user,
+      required final bool isAuthenticated,
       required final bool userHasFamily,
       required final String errorMessage,
       required final String loadingMessage,
@@ -2406,6 +2427,8 @@ abstract class _UserState implements UserState {
   UserStateStatusEnum get status;
   @override
   User get user;
+  @override
+  bool get isAuthenticated;
   @override
   bool get userHasFamily;
   @override

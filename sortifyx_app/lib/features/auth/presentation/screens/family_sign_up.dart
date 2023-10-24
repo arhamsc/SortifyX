@@ -5,7 +5,6 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../shared/app/app.dart';
 import '../../../../shared/utils/utils.dart';
-import '../../../../shared/app/widgets/widgets.dart';
 import '../widgets/widgets.dart';
 
 // ignore: must_be_immutable

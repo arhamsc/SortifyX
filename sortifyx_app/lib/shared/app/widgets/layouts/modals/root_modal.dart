@@ -3,29 +3,25 @@ import 'dart:async';
 
 import 'package:flash/flash_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sortifyx_app/config/injectable/injectable.dart';
 import 'package:sortifyx_app/main.dart';
 import 'package:sortifyx_app/shared/app/app.dart';
 import 'package:sortifyx_app/shared/app/cubits/cubits.dart';
 import 'package:flash/flash.dart';
-import 'package:sortifyx_app/shared/utils/my_talker.dart';
 
+// ignore: must_be_immutable
 class RootModal extends StatelessWidget {
   RootModal({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
   final Widget child;
 
-  FlashController? _flashController;
-  bool _isFlashOpen = false;
   Completer _c = Completer();
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ModalCubit, ModalState>(
+    return BlocListener<ModalCubit, ModalState>(
       listener: (context, modalState) {
         modalState.when(
           initial: () => {},
@@ -45,14 +41,12 @@ class RootModal extends StatelessWidget {
             button2OnPressed,
             modalHeight,
           ) async {
-            getIt.get<MyTalker>().talker.good(modalType);
             if (modalType != ModalType.loading) {
               !_c.isCompleted ? _c.complete() : null;
             } else {
               _c = Completer();
             }
-            getIt.get<MyTalker>().talker.good(_c.toString());
-            _isFlashOpen = true;
+
             await (navigatorKey.currentContext ?? context).showFlash(
               persistent: false,
               duration: modalType != ModalType.loading
@@ -60,8 +54,6 @@ class RootModal extends StatelessWidget {
                   : null,
               dismissCompleter: modalType == ModalType.loading ? _c : null,
               builder: (context, controller) {
-                _flashController = controller;
-
                 return FlashBar(
                   controller: controller,
                   behavior: FlashBehavior.floating,
@@ -118,71 +110,14 @@ class RootModal extends StatelessWidget {
                 );
               },
             );
-            _isFlashOpen = false;
           },
           inactive: () {
-            getIt.get<MyTalker>().talker.log(_flashController);
+            // getIt.get<MyTalker>().talker.log(_flashController);
+            !_c.isCompleted ? _c.complete() : null;
           },
         );
       },
-      builder: (context, modalState) {
-        //TODO: Implement a Widget, in case isModal is true
-        return Stack(
-          children: [
-            child,
-            // if (modalState is ModalActive)
-            AnimatedSwitcher(
-              duration: 300.ms,
-              child: modalState.when(
-                initial: () => const SizedBox(
-                  key: ValueKey(0),
-                ),
-                active: (
-                  modalMessage,
-                  modalTitle,
-                  modalType,
-                  isModal,
-                  modalChild,
-                  disableClose,
-                  fullScreen,
-                  showButton1,
-                  showButton2,
-                  button1Text,
-                  button2Text,
-                  button1OnPressed,
-                  button2OnPressed,
-                  modalHeight,
-                ) =>
-                    const Stack(
-                  key: ValueKey(1),
-                  children: [
-                    // BackdropFilter(
-                    //   filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                    //   child: Center(
-                    //     child:
-                    //     MainModal(
-                    //       modalChild: modalChild,
-                    //       modalTitle: modalTitle,
-                    //       disableClose: disableClose,
-                    //       fullScreen: fullScreen,
-                    //       showButton1: showButton1,
-                    //       showButton2: showButton2,
-                    //       button1OnPressed: button1OnPressed,
-                    //       button2OnPressed: button2OnPressed,
-                    //       button1Text: button1Text,
-                    //       button2Text: button2Text,
-                    //       modalHeight: modalHeight,
-                    //     ),
-                    //   ),
-                    // ),
-                  ],
-                ),
-                inactive: () => const SizedBox(key: ValueKey(2)),
-              ),
-            )
-          ],
-        );
-      },
+      child: child,
     );
   }
 }

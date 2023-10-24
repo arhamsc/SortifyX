@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 class TextTitleLarge extends StatelessWidget {
   const TextTitleLarge({
-    Key? key,
+    super.key,
     required this.text,
     this.style,
     this.textColor,
     this.alignment,
-  }) : super(key: key);
+  });
   final String text;
   final TextStyle? style;
   final Color? textColor;

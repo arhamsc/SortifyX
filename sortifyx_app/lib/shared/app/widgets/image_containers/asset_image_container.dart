@@ -3,12 +3,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class AssetImageContainer extends StatelessWidget {
   const AssetImageContainer({
-    Key? key,
+    super.key,
     this.isSvg = false,
     required this.assetPath,
     this.width,
     this.height,
-  }) : super(key: key);
+  });
 
   final bool isSvg;
   final String assetPath;

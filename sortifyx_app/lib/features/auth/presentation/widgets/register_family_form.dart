@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:sizer/sizer.dart';
 import 'package:sortifyx_app/config/injectable/injectable.dart';
+import 'package:sortifyx_app/shared/app/app.dart';
+import 'package:sortifyx_app/shared/app/blocs/family_bloc/family_bloc.dart';
+import 'package:sortifyx_app/shared/data/data.dart';
 
 import '../../../../shared/utils/utils.dart';
 import '../../../../shared/app/widgets/widgets.dart';
@@ -49,36 +52,42 @@ class _RegisterFamilyFormState extends State<RegisterFamilyForm> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextDisplayLarge(text: "Your Family Code is:\n$_familyCode"),
-                // PrimaryButton(
-                //   label: "Get Code",
-                //   width: 20.w,
-                //   height: 4.h,
-                //   onPressed: () {
-                //     if (form.invalid) {
-                //       form.markAllAsTouched();
-                //       return;
-                //     }
-                //     setFamilyCode(
-                //       form.control('familyName').value,
-                //     );
-                //   },
-                // ),
+                BlocBuilder<FamilyBloc, FamilyState>(
+                  builder: (context, state) {
+                    return TextDisplayLarge(
+                        text:
+                            "Your Family Code is:\n${state.myFamily.familyCode}");
+                  },
+                ),
               ],
             ),
             SizedBoxSeparator(
               height: getHeight(30),
             ),
-            PrimaryButton(
-              label: "Register",
-              variant: 2,
-              width: 100.w,
-              onPressed: () {
-                if (form.invalid) {
-                  form.markAllAsTouched();
-                  return;
-                }
-                getIt.get<MyTalker>().talker.log(form.value);
+            BlocBuilder<FamilyBloc, FamilyState>(
+              builder: (context, state) {
+                return PrimaryButton(
+                  label: state.status.isRegisteredFamily
+                      ? "Go to home"
+                      : "Register",
+                  variant: 2,
+                  width: 100.w,
+                  onPressed: () {
+                    if (form.invalid) {
+                      form.markAllAsTouched();
+                      return;
+                    }
+                    final dto = CreateFamilyDto.fromJson(form.value);
+                    state.status.isRegisteredFamily
+                        ? getIt
+                            .get<UserBloc>()
+                            .add(const UserEvent.checkUserHasFamily())
+                        : getIt
+                            .get<FamilyBloc>()
+                            .add(FamilyEvent.createFamily(dto: dto));
+                    // getIt.get<MyTalker>().talker.log(form.value);
+                  },
+                );
               },
             ),
             SizedBoxSeparator(

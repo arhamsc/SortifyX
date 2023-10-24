@@ -19,9 +19,8 @@ class MyTalker {
   late TalkerRouteObserver _talkerRouteObserver;
 
   MyTalker() {
-    // _talkerLogger = TalkerLogger();
-    // TalkerFlutter.init();
-    _talker = Talker(); //*IMP
+    _talkerLogger = TalkerLogger();
+    _talker = Talker(logger: _talkerLogger); //*IMP
     _talkerDioLogger = MyTalkerDioLogger(
       talker: _talker,
       settings: const TalkerDioLoggerSettings(
@@ -69,12 +68,7 @@ class MyTalker {
 }
 
 class MyTalkerDioLogger extends TalkerDioLogger {
-  MyTalkerDioLogger(
-      {required Talker talker, required TalkerDioLoggerSettings settings})
-      : super(
-          talker: talker,
-          settings: settings,
-        );
+  MyTalkerDioLogger({required Talker super.talker, required super.settings});
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     // FirebaseCrashlytics.instance.recordError(

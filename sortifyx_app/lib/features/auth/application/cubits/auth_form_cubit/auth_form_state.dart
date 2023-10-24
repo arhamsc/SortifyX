@@ -42,9 +42,12 @@ class AuthFormState extends Equatable {
 
   final signUpForm = FormGroup(
     {
-      "id": FormControl<String>(value: "aa"),//Dummy values
+      "id": FormControl<String>(value: "aa"), //Dummy values
       "email": FormControl<String>(
-          validators: [Validators.required, Validators.email]),
+        validators: [Validators.required, Validators.email],
+        asyncValidators: [UniqueEmailAsyncValidator()],
+        asyncValidatorsDebounceTime: 1000,
+      ),
       "password": FormControl<String>(validators: [
         Validators.required,
         Validators.pattern(strongPasswordRegex),
@@ -63,6 +66,8 @@ class AuthFormState extends Equatable {
           // Validators.required,
           Validators.minLength(5),
         ],
+        asyncValidators: [UniqueUsernameAsyncValidator()],
+        asyncValidatorsDebounceTime: 1000,
       ),
     },
     validators: [

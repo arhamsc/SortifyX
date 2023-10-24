@@ -4,7 +4,6 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../shared/app/app.dart';
 import '../../../../shared/utils/utils.dart';
-import '../../../../shared/app/widgets/widgets.dart';
 import '../widgets/widgets.dart';
 import 'screens.dart';
 
@@ -13,7 +12,7 @@ class FamilyRegistrationIntro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return RootScaffold(
       body: SizedBox(
         width: 100.w,
         height: 100.h,

@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 class TextDisplayLarge extends StatelessWidget {
   const TextDisplayLarge({
-    Key? key,
+    super.key,
     required this.text,
     this.style,
     this.textColor,
     this.alignment,
     this.softWrap,
-  }) : super(key: key);
+  });
   final String text;
   final TextStyle? style;
   final Color? textColor;

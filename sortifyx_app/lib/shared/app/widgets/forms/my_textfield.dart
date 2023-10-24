@@ -8,7 +8,7 @@ import 'package:sortifyx_app/shared/app/widgets/widgets.dart';
 
 class MyTextfield<T> extends StatelessWidget {
   const MyTextfield({
-    Key? key,
+    super.key,
     this.width,
     this.height,
     required this.label,
@@ -17,7 +17,9 @@ class MyTextfield<T> extends StatelessWidget {
     this.variant = 1,
     required this.formFieldName,
     this.hideText,
-  }) : super(key: key);
+    this.validationMessages,
+    this.suffixIcon,
+  });
   final double? width;
   final double? height;
   final String label;
@@ -26,6 +28,8 @@ class MyTextfield<T> extends StatelessWidget {
   final int variant;
   final String formFieldName;
   final bool? hideText;
+  final Map<String, String Function(Object)>? validationMessages;
+  final Widget? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +54,7 @@ class MyTextfield<T> extends StatelessWidget {
             formControlName: formFieldName,
             obscureText: hideText ?? false,
             style: Theme.of(context).textTheme.displayMedium,
+            validationMessages: validationMessages,
             decoration: InputDecoration(
               hintText: hintText,
               hintStyle: Theme.of(context).textTheme.displaySmall?.copyWith(
@@ -70,7 +75,9 @@ class MyTextfield<T> extends StatelessWidget {
                   width: 1.sp,
                 ),
               ),
+              suffixIcon: suffixIcon,
             ),
+            
           )
         ],
       ),

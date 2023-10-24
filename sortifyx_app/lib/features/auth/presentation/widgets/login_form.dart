@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:sortifyx_app/config/injectable/injectable.dart';
 import 'package:sortifyx_app/features/auth/application/cubits/cubits.dart';
@@ -12,9 +11,9 @@ import 'package:sortifyx_app/shared/utils/utils.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
-    Key? key,
+    super.key,
     required this.onToggleAuth,
-  }) : super(key: key);
+  });
   final Function() onToggleAuth;
 
   @override

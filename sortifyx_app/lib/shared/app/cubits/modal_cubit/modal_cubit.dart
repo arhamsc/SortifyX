@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 part 'modal_state.dart';
 part 'modal_cubit.freezed.dart';
 
-@singleton
+@lazySingleton
 class ModalCubit extends Cubit<ModalState> {
   ModalCubit() : super(const ModalState.initial());
 
@@ -26,9 +26,9 @@ class ModalCubit extends Cubit<ModalState> {
     String? button1Text,
     String? button2Text,
   }) {
-    if (state is _ModalActive) {
-      emit(const _ModalInactive());
-    }
+    // if (state is _ModalActive) {
+    //   emit(const _ModalInactive());
+    // }
     emit(
       ModalState.active(
         modalChild: modalChild,

@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sortifyx_app/config/injectable/injectable.dart';
 import 'package:sortifyx_app/shared/app/app.dart';
+import 'package:sortifyx_app/shared/enums/family_bloc_status/family_bloc_status.dart';
 import 'package:sortifyx_app/shared/enums/user_state_status_enum/user_state_status_enum.dart';
 import 'package:sortifyx_app/shared/utils/my_talker.dart';
 
@@ -45,15 +45,16 @@ FutureOr<void> familyBlocWrapper<T>(
   } on DioException catch (e) {
     emit(
       state.copyWith(
-        status: FamilyBlocStatus.error,
+        status: FamilyBlocStatus.error(),
         errorMessage: getDioExceptionMessage(e),
       ),
     );
   } catch (e) {
+    getIt.get<MyTalker>().talker.error(e);
     emit(
       state.copyWith(
-        status: FamilyBlocStatus.error,
-        errorMessage: "Something went wrong.",
+        status: FamilyBlocStatus.error(),
+        errorMessage: e.toString(),
       ),
     );
   }

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class SizedBoxSeparator extends StatelessWidget {
   const SizedBoxSeparator({
-    Key? key,
+    super.key,
     this.width,
     this.height,
-  }) : super(key: key);
+  });
   final double? width;
   final double? height;
 

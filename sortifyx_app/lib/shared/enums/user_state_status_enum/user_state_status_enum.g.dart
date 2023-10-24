@@ -127,3 +127,23 @@ Map<String, dynamic> _$$UserStatusLoggedInImplToJson(
     <String, dynamic>{
       'runtimeType': instance.$type,
     };
+
+_$UserStatusSignedUpImpl _$$UserStatusSignedUpImplFromJson(
+        Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$UserStatusSignedUpImpl',
+      json,
+      ($checkedConvert) {
+        final val = _$UserStatusSignedUpImpl(
+          $type: $checkedConvert('runtimeType', (v) => v as String?),
+        );
+        return val;
+      },
+      fieldKeyMap: const {r'$type': 'runtimeType'},
+    );
+
+Map<String, dynamic> _$$UserStatusSignedUpImplToJson(
+        _$UserStatusSignedUpImpl instance) =>
+    <String, dynamic>{
+      'runtimeType': instance.$type,
+    };

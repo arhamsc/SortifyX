@@ -16,7 +16,16 @@ class FamilyRepository {
       final res = await _familyDataSource.createFamily(dto);
       return ApiResponse.fromJson(
         res.data,
-        (json) => FamilyModel.fromJson(json as Map<String, dynamic>),
+        (json) => FamilyModel.fromJson(
+          {
+            ...json as Map<String, dynamic>,
+            "runtimeType": "essentialFamilyFields",
+            "familyHead": {
+              "runtimeType": "essentialFields",
+              ...json["familyHead"] as Map<String, dynamic>,
+            },
+          },
+        ),
       );
     });
   }
@@ -48,7 +57,16 @@ class FamilyRepository {
       final res = await _familyDataSource.joinFamily(familyCode);
       return ApiResponse.fromJson(
         res.data,
-        (json) => FamilyModel.fromJson(json as Map<String, dynamic>),
+        (json) => FamilyModel.fromJson(
+          {
+            ...json as Map<String, dynamic>,
+            "runtimeType": "essentialFamilyFields",
+            "familyHead": {
+              "runtimeType": "essentialFields",
+              ...json["familyHead"] as Map<String, dynamic>,
+            },
+          },
+        ),
       );
     });
   }

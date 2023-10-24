@@ -1,4 +1,6 @@
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sortifyx_app/config/injectable/injectable.dart';
 import 'package:sortifyx_app/shared/data/data.dart';
 import 'package:sortifyx_app/shared/domain/domain.dart';
 import 'package:sortifyx_app/shared/utils/utils.dart';
@@ -10,7 +12,15 @@ class UserRepository {
   late final UserDataSource _userDataSource;
 
   UserRepository(UserDataSource authDataSource)
-      : _userDataSource = authDataSource;
+      : _userDataSource = authDataSource {
+    SharedPreferences.getInstance().then((pref) {
+      final token = pref.getString("accessToken");
+      if (token != null) {
+        _userDataSource.setAPIToken(token);
+        getIt.get<MyTalker>().talker.log(token);
+      }
+    });
+  }
 
   Future<User> authenticateLogin(LoginDto loginDto) async {
     return await repoTryCatchWrapper(() async {
@@ -105,6 +115,21 @@ class UserRepository {
         (json) => UserModel.fromJson(
           json as Map<String, dynamic>,
         ),
+      );
+    });
+  }
+
+  Future<ApiResponse<bool>> checkUsernameOrEmail(
+      {String? username, String? email}) async {
+    return await repoTryCatchWrapper<ApiResponse<bool>>(() async {
+      final userResponse = await _userDataSource.checkUsernameOrEmail(
+        username: username,
+        email: email,
+      );
+
+      return ApiResponse.fromJson(
+        userResponse.data,
+        (json) => json as bool,
       );
     });
   }

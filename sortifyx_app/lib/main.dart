@@ -15,22 +15,26 @@ import 'package:sortifyx_app/shared/app/app.dart';
 import 'package:sortifyx_app/shared/app/cubits/modal_cubit/modal_cubit.dart';
 import 'package:sortifyx_app/shared/utils/utils.dart';
 
-import 'features/auth/application/bloc/bloc.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
-  await runZonedGuarded(
+  runZonedGuarded(
     () async {
-      WidgetsFlutterBinding.ensureInitialized();
-
       /* App Configs */
+      WidgetsFlutterBinding.ensureInitialized();
       final appConfig = AppConfig();
+      
 
       //*Order matters
       await appConfig.loadEnv();
-      configureGetItDependencies();
+
+      await configureGetItDependencies();
+      
+      //Bloc observer is being assigned after the getIt configures the bloc, so if the blocs aren't lazySingleton then the observer will not work.
       await appConfig.configureBloc();
+
+      getIt.get<MyTalker>().talker.log(Bloc.observer);
 
       FlutterError.onError = (FlutterErrorDetails errorDetails) {
         getIt.get<MyTalker>().talker.handle(errorDetails.exception,
@@ -38,7 +42,7 @@ void main() async {
       };
       Animate.restartOnHotReload = true;
 
-      return runApp(
+      runApp(
         MyApp(),
       );
     },
@@ -56,8 +60,8 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   MyApp({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final AppRouter _appRouter = getIt.get();
 

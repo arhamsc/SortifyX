@@ -19,7 +19,7 @@ class UserDataSource {
   Future<void> setAPIToken(String token) async {
     _api.setSortifyXBearerToken = token;
     final pref = await SharedPreferences.getInstance();
-    pref.setString("accessToken", token);
+    await pref.setString("accessToken", token);
   }
 
   String? getAPIToken() => _api.getSortifyXBearerToken;
@@ -99,5 +99,20 @@ class UserDataSource {
         return _dio.get("/user/$id");
       },
     );
+  }
+
+  Future<Response<T>> checkUsernameOrEmail<T>(
+      {String? username, String? email}) async {
+    return await dioTryCatchWrapper(() async {
+      if (username?.isNotEmpty ?? false) {
+        return _dio.post("/auth/check-username-or-email", data: {
+          "username": username,
+        });
+      } else {
+        return _dio.post("/auth/check-username-or-email", data: {
+          "email": email,
+        });
+      }
+    });
   }
 }

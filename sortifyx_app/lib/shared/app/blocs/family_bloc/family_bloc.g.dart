@@ -14,8 +14,8 @@ _$FamilyStateImpl _$$FamilyStateImplFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = _$FamilyStateImpl(
-          status: $checkedConvert(
-              'status', (v) => $enumDecode(_$FamilyBlocStatusEnumMap, v)),
+          status: $checkedConvert('status',
+              (v) => FamilyBlocStatus.fromJson(v as Map<String, dynamic>)),
           myFamily: $checkedConvert('myFamily',
               (v) => FamilyModel.fromJson(v as Map<String, dynamic>)),
           myFamilies: $checkedConvert(
@@ -34,7 +34,7 @@ _$FamilyStateImpl _$$FamilyStateImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$FamilyStateImplToJson(_$FamilyStateImpl instance) =>
     <String, dynamic>{
-      'status': _$FamilyBlocStatusEnumMap[instance.status]!,
+      'status': instance.status.toJson(),
       'myFamily': instance.myFamily.toJson(),
       'myFamilies': instance.myFamilies.map((e) => e.toJson()).toList(),
       'joinedFamily': instance.joinedFamily,
@@ -42,10 +42,3 @@ Map<String, dynamic> _$$FamilyStateImplToJson(_$FamilyStateImpl instance) =>
       'errorMessage': instance.errorMessage,
       'loadingMessage': instance.loadingMessage,
     };
-
-const _$FamilyBlocStatusEnumMap = {
-  FamilyBlocStatus.initial: 'initial',
-  FamilyBlocStatus.loading: 'loading',
-  FamilyBlocStatus.success: 'success',
-  FamilyBlocStatus.error: 'error',
-};

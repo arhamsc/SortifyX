@@ -28,6 +28,8 @@ UserStateStatusEnum _$UserStateStatusEnumFromJson(Map<String, dynamic> json) {
       return _UserStatusLoggedOut.fromJson(json);
     case 'loggedIn':
       return _UserStatusLoggedIn.fromJson(json);
+    case 'signedUp':
+      return _UserStatusSignedUp.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'UserStateStatusEnum',
@@ -45,6 +47,7 @@ mixin _$UserStateStatusEnum {
     required TResult Function() error,
     required TResult Function() loggedOut,
     required TResult Function() loggedIn,
+    required TResult Function() signedUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +58,7 @@ mixin _$UserStateStatusEnum {
     TResult? Function()? error,
     TResult? Function()? loggedOut,
     TResult? Function()? loggedIn,
+    TResult? Function()? signedUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +69,7 @@ mixin _$UserStateStatusEnum {
     TResult Function()? error,
     TResult Function()? loggedOut,
     TResult Function()? loggedIn,
+    TResult Function()? signedUp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -143,6 +148,7 @@ class _$UserStatusInitialImpl extends _UserStatusInitial {
     required TResult Function() error,
     required TResult Function() loggedOut,
     required TResult Function() loggedIn,
+    required TResult Function() signedUp,
   }) {
     return initial();
   }
@@ -156,6 +162,7 @@ class _$UserStatusInitialImpl extends _UserStatusInitial {
     TResult? Function()? error,
     TResult? Function()? loggedOut,
     TResult? Function()? loggedIn,
+    TResult? Function()? signedUp,
   }) {
     return initial?.call();
   }
@@ -169,6 +176,7 @@ class _$UserStatusInitialImpl extends _UserStatusInitial {
     TResult Function()? error,
     TResult Function()? loggedOut,
     TResult Function()? loggedIn,
+    TResult Function()? signedUp,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -246,6 +254,7 @@ class _$UserStatusLoadingImpl extends _UserStatusLoading {
     required TResult Function() error,
     required TResult Function() loggedOut,
     required TResult Function() loggedIn,
+    required TResult Function() signedUp,
   }) {
     return loading();
   }
@@ -259,6 +268,7 @@ class _$UserStatusLoadingImpl extends _UserStatusLoading {
     TResult? Function()? error,
     TResult? Function()? loggedOut,
     TResult? Function()? loggedIn,
+    TResult? Function()? signedUp,
   }) {
     return loading?.call();
   }
@@ -272,6 +282,7 @@ class _$UserStatusLoadingImpl extends _UserStatusLoading {
     TResult Function()? error,
     TResult Function()? loggedOut,
     TResult Function()? loggedIn,
+    TResult Function()? signedUp,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -349,6 +360,7 @@ class _$UserStatusSuccessImpl extends _UserStatusSuccess {
     required TResult Function() error,
     required TResult Function() loggedOut,
     required TResult Function() loggedIn,
+    required TResult Function() signedUp,
   }) {
     return success();
   }
@@ -362,6 +374,7 @@ class _$UserStatusSuccessImpl extends _UserStatusSuccess {
     TResult? Function()? error,
     TResult? Function()? loggedOut,
     TResult? Function()? loggedIn,
+    TResult? Function()? signedUp,
   }) {
     return success?.call();
   }
@@ -375,6 +388,7 @@ class _$UserStatusSuccessImpl extends _UserStatusSuccess {
     TResult Function()? error,
     TResult Function()? loggedOut,
     TResult Function()? loggedIn,
+    TResult Function()? signedUp,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -452,6 +466,7 @@ class _$UserStatusErrorImpl extends _UserStatusError {
     required TResult Function() error,
     required TResult Function() loggedOut,
     required TResult Function() loggedIn,
+    required TResult Function() signedUp,
   }) {
     return error();
   }
@@ -465,6 +480,7 @@ class _$UserStatusErrorImpl extends _UserStatusError {
     TResult? Function()? error,
     TResult? Function()? loggedOut,
     TResult? Function()? loggedIn,
+    TResult? Function()? signedUp,
   }) {
     return error?.call();
   }
@@ -478,6 +494,7 @@ class _$UserStatusErrorImpl extends _UserStatusError {
     TResult Function()? error,
     TResult Function()? loggedOut,
     TResult Function()? loggedIn,
+    TResult Function()? signedUp,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -556,6 +573,7 @@ class _$UserStatusLoggedOutImpl extends _UserStatusLoggedOut {
     required TResult Function() error,
     required TResult Function() loggedOut,
     required TResult Function() loggedIn,
+    required TResult Function() signedUp,
   }) {
     return loggedOut();
   }
@@ -569,6 +587,7 @@ class _$UserStatusLoggedOutImpl extends _UserStatusLoggedOut {
     TResult? Function()? error,
     TResult? Function()? loggedOut,
     TResult? Function()? loggedIn,
+    TResult? Function()? signedUp,
   }) {
     return loggedOut?.call();
   }
@@ -582,6 +601,7 @@ class _$UserStatusLoggedOutImpl extends _UserStatusLoggedOut {
     TResult Function()? error,
     TResult Function()? loggedOut,
     TResult Function()? loggedIn,
+    TResult Function()? signedUp,
     required TResult orElse(),
   }) {
     if (loggedOut != null) {
@@ -659,6 +679,7 @@ class _$UserStatusLoggedInImpl extends _UserStatusLoggedIn {
     required TResult Function() error,
     required TResult Function() loggedOut,
     required TResult Function() loggedIn,
+    required TResult Function() signedUp,
   }) {
     return loggedIn();
   }
@@ -672,6 +693,7 @@ class _$UserStatusLoggedInImpl extends _UserStatusLoggedIn {
     TResult? Function()? error,
     TResult? Function()? loggedOut,
     TResult? Function()? loggedIn,
+    TResult? Function()? signedUp,
   }) {
     return loggedIn?.call();
   }
@@ -685,6 +707,7 @@ class _$UserStatusLoggedInImpl extends _UserStatusLoggedIn {
     TResult Function()? error,
     TResult Function()? loggedOut,
     TResult Function()? loggedIn,
+    TResult Function()? signedUp,
     required TResult orElse(),
   }) {
     if (loggedIn != null) {
@@ -707,4 +730,110 @@ abstract class _UserStatusLoggedIn extends UserStateStatusEnum {
 
   factory _UserStatusLoggedIn.fromJson(Map<String, dynamic> json) =
       _$UserStatusLoggedInImpl.fromJson;
+}
+
+/// @nodoc
+abstract class _$$UserStatusSignedUpImplCopyWith<$Res> {
+  factory _$$UserStatusSignedUpImplCopyWith(_$UserStatusSignedUpImpl value,
+          $Res Function(_$UserStatusSignedUpImpl) then) =
+      __$$UserStatusSignedUpImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UserStatusSignedUpImplCopyWithImpl<$Res>
+    extends _$UserStateStatusEnumCopyWithImpl<$Res, _$UserStatusSignedUpImpl>
+    implements _$$UserStatusSignedUpImplCopyWith<$Res> {
+  __$$UserStatusSignedUpImplCopyWithImpl(_$UserStatusSignedUpImpl _value,
+      $Res Function(_$UserStatusSignedUpImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$UserStatusSignedUpImpl extends _UserStatusSignedUp {
+  _$UserStatusSignedUpImpl({final String? $type})
+      : $type = $type ?? 'signedUp',
+        super._();
+
+  factory _$UserStatusSignedUpImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserStatusSignedUpImplFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'UserStateStatusEnum.signedUp()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$UserStatusSignedUpImpl);
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function() error,
+    required TResult Function() loggedOut,
+    required TResult Function() loggedIn,
+    required TResult Function() signedUp,
+  }) {
+    return signedUp();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function()? error,
+    TResult? Function()? loggedOut,
+    TResult? Function()? loggedIn,
+    TResult? Function()? signedUp,
+  }) {
+    return signedUp?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function()? error,
+    TResult Function()? loggedOut,
+    TResult Function()? loggedIn,
+    TResult Function()? signedUp,
+    required TResult orElse(),
+  }) {
+    if (signedUp != null) {
+      return signedUp();
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UserStatusSignedUpImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _UserStatusSignedUp extends UserStateStatusEnum {
+  factory _UserStatusSignedUp() = _$UserStatusSignedUpImpl;
+  _UserStatusSignedUp._() : super._();
+
+  factory _UserStatusSignedUp.fromJson(Map<String, dynamic> json) =
+      _$UserStatusSignedUpImpl.fromJson;
 }

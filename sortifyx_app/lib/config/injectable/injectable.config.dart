@@ -50,9 +50,10 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i10.UserRepository>(
         () => _i10.UserRepository(gh<_i9.UserDataSource>()));
     gh.singleton<_i11.AuthFormCubit>(_i11.AuthFormCubit());
-    gh.singleton<_i12.FamilyBloc>(_i12.FamilyBloc());
-    gh.singleton<_i13.ModalCubit>(_i13.ModalCubit());
-    gh.singleton<_i14.UserBloc>(_i14.UserBloc(gh<_i9.UserRepository>()));
+    gh.lazySingleton<_i12.FamilyBloc>(() => _i12.FamilyBloc());
+    gh.lazySingleton<_i13.ModalCubit>(() => _i13.ModalCubit());
+    gh.lazySingleton<_i14.UserBloc>(
+        () => _i14.UserBloc(gh<_i9.UserRepository>()));
     return this;
   }
 }
