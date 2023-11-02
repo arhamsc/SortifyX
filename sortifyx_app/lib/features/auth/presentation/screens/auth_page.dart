@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:sortifyx_app/config/injectable/injectable.dart';
 
 import '../../../../constants/constants.dart';
@@ -80,6 +80,8 @@ class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return RootScaffold(
+      showAppBar: false,
+      fullWidth: true,
       body: SizedBox(
         width: 100.w,
         height: 100.h,

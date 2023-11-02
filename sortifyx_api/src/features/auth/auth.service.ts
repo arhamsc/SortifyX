@@ -30,10 +30,11 @@ export class AuthService {
       data: {
         email: signUpDto.email,
         passwordHash,
-        username: '',
+        username: signUpDto.username,
         firstName: signUpDto.firstName,
         lastName: signUpDto.lastName,
         fcmToken: signUpDto.fcmToken,
+        phone: signUpDto.phone,
       },
     });
     const tokens = await this.getTokens(
@@ -49,7 +50,7 @@ export class AuthService {
 
   async checkUsernameOrEmail(
     checkUsernameOrEmailDto: CheckUsernameOrEmailDto,
-  ): Promise<CommonMessageResponse> {
+  ): Promise<ResponseWithData<boolean>> {
     if (!checkUsernameOrEmailDto.email && !checkUsernameOrEmailDto.username) {
       throw new BadRequestException(
         'Please provide username or email to verify.',
@@ -65,9 +66,9 @@ export class AuthService {
     });
     if (user) {
       if (checkUsernameOrEmailDto.username) {
-        throw new ForbiddenException('Username already taken');
+        return { message: 'Username already taken.', data: false };
       } else {
-        throw new ForbiddenException('Email already taken');
+        return { message: 'Email already taken.', data: false };
       }
     }
     let message: string;
@@ -76,7 +77,7 @@ export class AuthService {
     } else {
       message = 'Email is available';
     }
-    return { message };
+    return { message, data: true };
   }
 
   async loginLocal(loginDto: AuthLoginDto): Promise<AuthResponse> {

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:sortifyx_app/config/injectable/injectable.dart';
 import 'package:sortifyx_app/features/auth/application/cubits/cubits.dart';
 import 'package:sortifyx_app/shared/app/app.dart';

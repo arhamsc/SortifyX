@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../app.dart';
 import '../../../utils/utils.dart';
@@ -63,12 +63,12 @@ class PrimaryButton extends StatelessWidget {
           ),
         ),
         child: labelWidget ??
-            ( FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text(
-                      label,
-                    ),
-                  )),
+            (FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                label,
+              ),
+            )),
       ),
     );
   }

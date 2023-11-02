@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'package:sortifyx_app/config/config.dart';
 import 'package:sortifyx_app/config/injectable/injectable.dart';
@@ -14,7 +14,6 @@ import 'package:sortifyx_app/features/auth/application/cubits/auth_form_cubit/au
 import 'package:sortifyx_app/shared/app/app.dart';
 import 'package:sortifyx_app/shared/app/cubits/modal_cubit/modal_cubit.dart';
 import 'package:sortifyx_app/shared/utils/utils.dart';
-
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -24,13 +23,12 @@ void main() async {
       /* App Configs */
       WidgetsFlutterBinding.ensureInitialized();
       final appConfig = AppConfig();
-      
 
       //*Order matters
       await appConfig.loadEnv();
 
       await configureGetItDependencies();
-      
+
       //Bloc observer is being assigned after the getIt configures the bloc, so if the blocs aren't lazySingleton then the observer will not work.
       await appConfig.configureBloc();
 
@@ -82,7 +80,7 @@ class MyApp extends StatelessWidget {
           create: (context) => getIt.get<ModalCubit>(),
         ),
       ],
-      child: Sizer(
+      child: ResponsiveSizer(
         builder: (context, _, __) => ReactiveFormConfig(
           validationMessages: {
             ValidationMessage.required: (_) =>
@@ -109,6 +107,7 @@ class MyApp extends StatelessWidget {
               primarySwatch: Palette.primaryDefault,
               textTheme: CustomTypography.textTheme,
               scaffoldBackgroundColor: Palette.lightBG,
+              iconTheme: IconThemeData(color: Palette.tertiaryDefault),
               extensions: <ThemeExtension<dynamic>>[
                 CustomTheme.lightThemePalette,
               ],

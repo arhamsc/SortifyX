@@ -1,6 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../shared/app/app.dart';
 import '../../../../shared/utils/utils.dart';
@@ -13,6 +13,8 @@ class FamilyRegistrationIntro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RootScaffold(
+      showAppBar: false,
+      fullWidth: true,
       body: SizedBox(
         width: 100.w,
         height: 100.h,

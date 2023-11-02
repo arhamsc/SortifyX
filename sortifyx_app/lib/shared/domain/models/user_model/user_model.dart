@@ -53,6 +53,10 @@ class UserModel with _$UserModel {
     phone: '',
   );
 
+  String get fullName => "$firstName $lastName";
+  String get getInitials =>
+      "${firstName.substring(0, 1)}${lastName.substring(0, 1)}";
+
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
   // Map<String, dynamic> toJson() =>toJson(this);

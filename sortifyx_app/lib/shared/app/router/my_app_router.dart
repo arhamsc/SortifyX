@@ -48,7 +48,7 @@ class AppRouter {
       GoRoute(
         name: RouteDetails.documentsHomePage.name,
         path: RouteDetails.documentsHomePage.path,
-        builder: (context, state) => const DocumentsHome(),
+        builder: (context, state) => DocumentsHome(),
       ),
     ],
     observers: [

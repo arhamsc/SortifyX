@@ -14,6 +14,7 @@ import { PrismaService } from './global/prisma/prisma.service';
 import { AccessTokenGuard } from './shared/guards';
 import { UserModule } from './features/user/user.module';
 import { JwtModule } from '@nestjs/jwt';
+import { CloudinaryModule } from './dynamic_modules/cloudinary/cloudinary.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { JwtModule } from '@nestjs/jwt';
     CaslModule,
     UserModule,
     JwtModule.register({}),
+    CloudinaryModule,
   ],
   controllers: [],
   providers: [

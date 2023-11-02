@@ -17,6 +17,44 @@ enum AuthStep {
   FINISHED
 }
 
+enum FamilyAccess {
+  ALL
+  ME
+}
+
+enum LabelType {
+  FILETYPE //Aadhaar, DL, etc
+  TAG
+}
+
+model File {
+  id String @id @default(uuid())
+
+  //Specific to cloudinary fields in comments
+  filePublicID     String //Public_ID
+  fileAssetID      String //assetId
+  fileOriginalName String //original_filename
+  fileDownloadUrl  String //secure_url
+  fileFolder       String //folder
+
+  Document Document[]
+}
+
+model Label {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  labelType LabelType
+
+  name String
+
+  //Below structure is -> when it is null, the type is public, if it is not null then it is specific to that family
+  family   Family?    @relation(fields: [familyId], references: [id]) //If not null then belongs to only that family
+  familyId String?
+  Document Document[]
+}
+
 model User {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
@@ -41,6 +79,10 @@ model User {
 
   authStep AuthStep @default(NONE)
 
+  ForMemberDocuments Document[] @relation(name: "docForMember")
+
+  Document Document[]
+
   @@map("users")
 }
 
@@ -58,5 +100,33 @@ model Family {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  Document Document[]
+  Label    Label[]
+
   @@map("families")
+}
+
+model Document {
+  id String @id @default(uuid())
+
+  fileName String
+  file     File   @relation(fields: [fileId], references: [id])
+  fileId   String
+
+  uploadedBy User   @relation(fields: [userId], references: [id])
+  userId     String
+
+  forMember   User?  @relation(name: "docForMember", fields: [forMemberId], references: [id])
+  forMemberId String?
+
+  family       Family       @relation(fields: [familyId], references: [id])
+  familyId     String
+  familyAccess FamilyAccess @default(ME)
+
+  label    Label   @relation(fields: [labelId], references: [id])
+  labelId  String
+  location String? //Only if the document type is survey
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

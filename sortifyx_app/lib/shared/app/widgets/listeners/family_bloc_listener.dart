@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:sortifyx_app/config/injectable/injectable.dart';
 import 'package:sortifyx_app/shared/app/app.dart';
 import 'package:sortifyx_app/shared/app/cubits/modal_cubit/modal_cubit.dart';
-import 'package:sortifyx_app/shared/utils/my_talker.dart';
 
 class FamilyBlocListener extends StatelessWidget {
   const FamilyBlocListener({super.key, required this.child});
