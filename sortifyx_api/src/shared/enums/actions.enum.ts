@@ -6,6 +6,14 @@ export enum FamilyAction {
   DeleteFamily = 'deleteFamily',
 }
 
+export enum AdminFeatureAction {
+  ManageAdminFeature = 'manageAdminFeature',
+  CreateAdminFeature = 'createAdminFeature',
+  ReadAdminFeature = 'readAdminFeature',
+  UpdateAdminFeature = 'updateAdminFeature',
+  DeleteAdminFeature = 'deleteAdminFeature',
+}
+
 export enum DocumentAction {
   ManageDocument = 'manageDocument',
   CreateDocument = 'createDocument',

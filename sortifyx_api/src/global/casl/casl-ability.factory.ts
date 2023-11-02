@@ -6,13 +6,18 @@ import {
   createMongoAbility,
 } from '@casl/ability';
 import { Injectable } from '@nestjs/common';
-import { Family, User } from '@prisma/client';
-import { FamilyAction } from 'src/shared/enums';
+import { Family, Label, User } from '@prisma/client';
+import { AdminFeatureAction, FamilyAction } from 'src/shared/enums';
 
 type MySubjects = Family | 'Family' | User | 'User';
+type MyAdminFeatureSubjects = Label | 'Label' | User | 'User';
 
 export type AppFamilyAbility = PureAbility<
   [FamilyAction, InferSubjects<MySubjects> | 'all'],
+  MongoQuery
+>;
+export type AppAdminFeatureAbility = PureAbility<
+  [AdminFeatureAction, InferSubjects<MyAdminFeatureSubjects> | 'all'],
   MongoQuery
 >;
 
@@ -40,6 +45,29 @@ export class CaslAbilityFactory {
       //   familyHeadId: { $eq: user.id },
       // });
       //* Can add more like for family vice-head etc
+    }
+
+    return build();
+  }
+
+  createAdminFeatureForUser(user: User, forFeature: string) {
+    const { can, cannot, build } = new AbilityBuilder<AppAdminFeatureAbility>(
+      createMongoAbility,
+    );
+
+    if (user.isAdmin) {
+      can(AdminFeatureAction.ManageAdminFeature, 'all'); // read-write access to everything
+    } else {
+      if (forFeature === 'labels') {
+        // console.log({ user });
+        can(AdminFeatureAction.DeleteAdminFeature, 'Label', {
+          createdById: user.id,
+        });
+
+        can(AdminFeatureAction.UpdateAdminFeature, 'Label', {
+          createdById: user.id,
+        });
+      }
     }
 
     return build();

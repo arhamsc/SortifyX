@@ -15,6 +15,8 @@ import { AccessTokenGuard } from './shared/guards';
 import { UserModule } from './features/user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { CloudinaryModule } from './dynamic_modules/cloudinary/cloudinary.module';
+import { DocumentsModule } from './features/documents/documents.module';
+import { LabelsModule } from './features/admin/labels/labels.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { CloudinaryModule } from './dynamic_modules/cloudinary/cloudinary.module
     UserModule,
     JwtModule.register({}),
     CloudinaryModule,
+    DocumentsModule,
+    LabelsModule,
   ],
   controllers: [],
   providers: [
