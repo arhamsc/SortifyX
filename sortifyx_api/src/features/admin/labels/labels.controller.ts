@@ -14,7 +14,7 @@ import { CreateLabelDto } from './dto/create-label.dto';
 import { UpdateLabelDto } from './dto/update-label.dto';
 import { CheckHasFamily } from 'src/shared/decorators/check-has-family.decorator';
 import { LabelType } from '@prisma/client';
-import { GetCurrentUser, IsAdmin } from 'src/shared/decorators';
+import { GetCurrentUser } from 'src/shared/decorators';
 import { AdminFeatureAuthor } from '../decorators/admin-feature-author/admin-feature-author.decorator';
 import { AdminFeatureAction } from 'src/shared/enums';
 

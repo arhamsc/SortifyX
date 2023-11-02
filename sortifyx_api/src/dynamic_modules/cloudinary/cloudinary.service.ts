@@ -8,9 +8,13 @@ export class CloudinaryService {
   constructor(
     @Inject('CLOUDINARY_OPTIONS') private options: Record<string, any>,
   ) {}
+  ///Pass public_id and set overwrite to true, together to overwrite.
   uploadFile(
     file: Express.Multer.File,
     subfolder: string,
+    fileName?: string,
+    overwrite?: boolean,
+    public_id?: string,
   ): Promise<CloudinaryResponse> {
     return new Promise<CloudinaryResponse>((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
@@ -18,6 +22,9 @@ export class CloudinaryService {
           folder: `SortifyX/${this.options.moduleFolder}/${subfolder}`,
           unique_filename: true,
           use_filename: true,
+          filename_override: fileName ?? file.originalname,
+          overwrite,
+          public_id,
         },
         (error, result) => {
           // result.

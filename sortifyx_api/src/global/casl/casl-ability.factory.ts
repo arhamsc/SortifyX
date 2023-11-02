@@ -6,11 +6,16 @@ import {
   createMongoAbility,
 } from '@casl/ability';
 import { Injectable } from '@nestjs/common';
-import { Family, Label, User } from '@prisma/client';
-import { AdminFeatureAction, FamilyAction } from 'src/shared/enums';
+import { Document, Family, Label, User } from '@prisma/client';
+import {
+  AdminFeatureAction,
+  DocumentAction,
+  FamilyAction,
+} from 'src/shared/enums';
 
 type MySubjects = Family | 'Family' | User | 'User';
 type MyAdminFeatureSubjects = Label | 'Label' | User | 'User';
+type MyDocSubjects = Document | 'Document' | User | 'User';
 
 export type AppFamilyAbility = PureAbility<
   [FamilyAction, InferSubjects<MySubjects> | 'all'],
@@ -18,6 +23,10 @@ export type AppFamilyAbility = PureAbility<
 >;
 export type AppAdminFeatureAbility = PureAbility<
   [AdminFeatureAction, InferSubjects<MyAdminFeatureSubjects> | 'all'],
+  MongoQuery
+>;
+export type AppDocumentAbility = PureAbility<
+  [DocumentAction, InferSubjects<MyDocSubjects> | 'all'],
   MongoQuery
 >;
 
@@ -70,6 +79,41 @@ export class CaslAbilityFactory {
       }
     }
 
+    return build();
+  }
+
+  createDocumentRoleForUser(user: User) {
+    const { can, cannot, build } = new AbilityBuilder<AppDocumentAbility>(
+      createMongoAbility,
+    );
+
+    if (user.isAdmin) {
+      can(DocumentAction.ManageDocument, 'all'); // read-write access to everything
+    } else {
+      // console.log({ user });
+      can(DocumentAction.UpdateDocument, 'Document', {
+        uploadedById: user.id,
+      });
+
+      can(DocumentAction.DeleteDocument, 'Document', {
+        uploadedById: user.id,
+      });
+
+      //Family members, familyHead or owner only can view the doc
+      can(DocumentAction.ReadDocument, 'Document', {
+        $or: [
+          {
+            uploadedById: user.id,
+          },
+          {
+            'family.familyHeadId': user.id,
+          },
+          {
+            'family.familyMembers.id': user.id,
+          },
+        ],
+      });
+    }
     return build();
   }
 }

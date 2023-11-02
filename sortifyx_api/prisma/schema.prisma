@@ -117,8 +117,8 @@ model Document {
   file     File   @relation(fields: [fileId], references: [id])
   fileId   String
 
-  uploadedBy User   @relation(fields: [userId], references: [id])
-  userId     String
+  uploadedBy User   @relation(fields: [uploadedById], references: [id])
+  uploadedById     String
 
   forMember   User?   @relation(name: "docForMember", fields: [forMemberId], references: [id])
   forMemberId String?
